@@ -1,2 +1,2 @@
-# SocialNetworkServiceForPet
-SocialNetworkServiceForPet
+# PetStagram
+PetStagram
