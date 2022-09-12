@@ -1,0 +1,6 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# application-db.properties 우선 제외
+application-db.properties
