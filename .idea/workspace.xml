@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="build: 002-BASIC-BUILD-TEST&#10;- .gitignore 추가&#10;- board -&gt; feed로 이름변경&#10;- picture -&gt; feed_photo로 이름변경&#10;- hashtag, comment 폴더 추가" />
+    <list default="true" id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="build: 002-BASIC-BUILD-TEST &#10;- application-db.properties 삭제 -&gt; 각자 dev properties 생성 후 gitignore에 추가하는 방향으로&#10;- .gitignore 추가&#10;- board -&gt; feed로 이름변경&#10;- picture -&gt; feed_photo로 이름변경&#10;- repository 폴더 추가&#10;- hashtag, comment 폴더 추가" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +23,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PetStagram" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -53,16 +58,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/yuna/Downloads/PetStagram/src/main/java/B4F2/PetStagram/picture",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yuna/Downloads/PetStagram/src/main/java/B4F2/PetStagram/picture&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/picture" />
