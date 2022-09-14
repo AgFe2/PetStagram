@@ -22,7 +22,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
-.idea/**
+.idea/shelf
 *.iws
 *.iml
 *.ipr
