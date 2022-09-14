@@ -22,7 +22,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
-.idea/
+.idea/**
 *.iws
 *.iml
 *.ipr
@@ -45,3 +45,4 @@ src/main/resources/application-local.yml
 /build.gradle
 /settings.gradle
 /src/main/resources/application.properties
+/gradle/
