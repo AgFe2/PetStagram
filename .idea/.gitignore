@@ -1,9 +1,0 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-<<<<<<< HEAD
-=======
-
-# application-db.properties 우선 제외
-application-db.properties
->>>>>>> origin/main

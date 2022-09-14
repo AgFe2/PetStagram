@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+/front/
+=======
 HELP.md
-.gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -19,6 +22,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
+.idea/shelf
 *.iws
 *.iml
 *.ipr
@@ -35,3 +39,10 @@ out/
 
 ### VS Code ###
 .vscode/
+>>>>>>> 1173bafc4386127cd806e8ee52136a98881e290c
+
+src/main/resources/application-local.yml
+/build.gradle
+/settings.gradle
+/src/main/resources/application.properties
+/gradle/
