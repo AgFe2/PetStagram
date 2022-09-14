@@ -1,7 +1,7 @@
 package B4F2.PetStagram.member.util;
 
-public class TestPr {
+public class PrTest {
     public static void main(String[] args) {
-        System.out.println("hello");
+        System.out.println("Hello");
     }
 }
