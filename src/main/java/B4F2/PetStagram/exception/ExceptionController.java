@@ -14,7 +14,6 @@ import javax.servlet.ServletException;
 @ControllerAdvice
 @Slf4j
 public class ExceptionController {
-
     @ExceptionHandler({
             CustomException.class
     })
