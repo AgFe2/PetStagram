@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-//@WebFilter(urlPatterns = "/member/*")
+//@WebFilter(urlPatterns = "/member/*") todo 로그인유저만 접근 가능 경로 설정
 @RequiredArgsConstructor
 public class MemberFilter implements Filter {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;

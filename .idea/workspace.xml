@@ -4,27 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="build: 002-BASIC-BUILD-TEST&#10;- .gitignore 추가&#10;- board -&gt; feed로 이름변경&#10;- picture -&gt; feed_photo로 이름변경&#10;- hashtag, comment 폴더 추가">
+    <list default="true" id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="build: ">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/application/SignInApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/application/SignInApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/util/PRtest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/filter/MemberFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/filter/MemberFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662944915675</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor: MEMBER-SIGNIN">
+      <created>1663249389196</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663249389196</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +144,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트" />
+    <MESSAGE value="refactor: MEMBER-SIGNIN" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: MEMBER-SIGNIN" />
   </component>
 </project>
