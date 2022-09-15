@@ -23,6 +23,7 @@ public class SecurityConfiguration  {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -54,6 +55,4 @@ public class SecurityConfiguration  {
 
                 .build();
     }
-
-
 }

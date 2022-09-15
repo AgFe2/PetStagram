@@ -26,5 +26,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### VS Code ###
+.vscode/
 
 /src/main/resources/application-local.yml

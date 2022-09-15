@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ServletComponentScan
 public class PetStagramApplication {
 
+	// main branch
 	public static void main(String[] args) {
 		SpringApplication.run(PetStagramApplication.class, args);
 	}
