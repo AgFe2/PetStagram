@@ -1,0 +1,11 @@
+.top-contents-group {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+}
+
+.top-contents-item {
+  width: 300px;
+  height: 300px;
+  background-color: #ccc;
+}
