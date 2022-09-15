@@ -11,8 +11,8 @@ public enum ErrorCode {
     ///login
     LOGIN_FAIL(HttpStatus.BAD_REQUEST,"아이디나 패스워드를 확인해 주세요."),
 
-    INVALID_EMAIL(HttpStatus.OK,"잘못된 아이디(이메일)입니다"),
-    INVALID_PASSWORD(HttpStatus.OK,"잘못된 패스워드입니다")
+    INVALID_EMAIL(HttpStatus.BAD_REQUEST,"잘못된 아이디(이메일)입니다"),
+    INVALID_PASSWORD(HttpStatus.BAD_REQUEST,"잘못된 패스워드입니다")
 
     ;
 
