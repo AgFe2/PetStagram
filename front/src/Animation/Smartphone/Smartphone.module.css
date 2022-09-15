@@ -1,0 +1,105 @@
+.smartphoneContainer{
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+:root{
+    --color-line :#d3d3d3;
+}
+.phoneline{
+    position: relative;
+    width: 380px;
+    height: 680px;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%,70%);
+    z-index: 1;
+    border: 5px solid #fefefe;
+    border-radius: 40px;
+}
+.smartphone{
+    /* position: relative; */
+    width: 360px;
+    height: 650px;
+    border: 16px solid #000000;
+    border-top-width: 20px;
+    border-bottom-width: 20px;
+    border-radius: 36px;
+    z-index: 1;
+}
+.frontPhoneline{
+    position: absolute;
+    width: 380px;
+    height: 670px;
+    top: 50%;
+    left: 20%;
+    transform: translate(-30%,10%);
+    border: 5px solid #fefefe;
+    border-radius: 40px;
+}
+.Frontsmartphone{
+    width: 360px;
+    height: 650px;
+    /* margin: auto; */
+    border: 16px solid #000000;
+    border-top-width: 20px;
+    border-bottom-width: 20px;
+    border-radius: 36px;
+    /* z-index: 2; */
+}
+.bezel{
+    width: 180px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 28%;
+    background-color: #000;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px ;
+}
+.smartphone:before{
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -10px;
+    left: 52%;
+    border: 1px solid #fff;
+    transform: translate(-50%,300%);
+    background: #333;
+    border-radius: 10px;
+    z-index: 1;
+}
+.Frontsmartphone:before{
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -10px;
+    left: 52%;
+    border: 1px solid #fff;
+    transform: translate(-50%,300%);
+    background: #333;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.smartphone{
+    width: 350px;
+    height: 640px;
+    background: #fff;
+}
+.Frontsmartphone{
+    width: 350px;
+    height: 640px;
+    background: #fff;
+}
+
+.content{
+    font-family: 'Futura';
+    font-weight: 800;
+    font-size: 50px;
+    padding: 20px;
+}
