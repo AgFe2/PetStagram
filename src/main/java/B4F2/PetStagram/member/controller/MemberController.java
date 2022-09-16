@@ -39,19 +39,19 @@ public class MemberController {
             return "register_form";
         }
 
-        memberService.register(
+        if (memberService.register(
                 memberRegisterForm.getMemberId(),
                 memberRegisterForm.getName(),
                 memberRegisterForm.getPassword1(),
-                memberRegisterForm.getPhone());
-
-        emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getMemberId(), memberRegisterForm.getMemberId());
+                memberRegisterForm.getPhone())) {
+            emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getMemberId(), memberRegisterForm.getMemberId());
+        }
 
         return "redirect:/";
     }
 
     @GetMapping("confirm-email")
-    public String viewConfirmEmail(@Valid @RequestParam String token){
+    public String viewConfirmEmail(@Valid @RequestParam String token) {
         memberService.confirmEmail(token);
 
         return "redirect:/login";
