@@ -21,6 +21,7 @@ public class SignInApplication {
     private final JwtAuthenticationProvider provider;
     private final PasswordEncoder passwordEncoder;
 
+
     public String SignInToken(SignInForm form){
 
         /*====인크립트 사용 전 테스트용====*/
@@ -28,11 +29,11 @@ public class SignInApplication {
         Member m = memberService.findValidMember(form.getEmail(), form.getPassword())
                 .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAIL));
 
-        return provider.createToken(m.getEmail(),m.getId());
+        return provider.createToken(m.getEmail());
 
 
         /*=====인크립트 사용시=====*/
-
+//
 //        Member m = this.memberRepository.findByEmail(form.getEmail())
 //                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_EMAIL));
 //

@@ -15,9 +15,20 @@ public class JwtAuthenticationProvider {
 
     private long tokenValidTime = 1000L * 60 * 60 * 24; //1일
 
-    public String createToken(String userPk, Long id){
-        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(userPk)).setId(Aes256Util.encrypt(id.toString()));
+
+    //todo=========
+//    public String getUserEmail(String token){
+//        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+//
+//        return new String(Objects.requireNonNull(Aes256Util.decrypt(c.getId())));
+//    }
+
+    public String createToken(String email){
+        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
+        claims.put("email",email);
+
         Date now = new Date();
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -25,6 +36,7 @@ public class JwtAuthenticationProvider {
                 .signWith(SignatureAlgorithm.HS256,secretKey)
                 .compact();
     }
+
     //=====토큰에 대한 validation 체크=====
     public boolean validateToken(String jwtToken){
         try{

@@ -30,8 +30,11 @@ public class SecurityConfiguration  {
 
                 .authorizeRequests()
                 //todo 전체 접근 허용 경로
-                .antMatchers("/**"
-                        /*, "/member/**"*/)
+                .antMatchers(
+                        "/**"
+                        ,
+                        "/member/**"
+                        )
                 .permitAll()
                 .and()
 
