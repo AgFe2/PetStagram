@@ -31,11 +31,11 @@ public class SecurityConfiguration  {
                 .authorizeRequests()
                 //todo 전체 접근 허용 경로
                 .antMatchers("/**"
-                        , "/member/**")
+                        /*, "/member/**"*/)
                 .permitAll()
                 .and()
 
-//                todo 프론트 협업시 로그인 실패 이 방식 사용??
+//                todo 프론트 협업시 로그인 실패 이 방식 사용
 //                .formLogin()
 //                .loginPage("/login")
 //                .failureHandler(getFailureHandler())

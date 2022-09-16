@@ -4,7 +4,7 @@ import B4F2.PetStagram.configuration.JwtAuthenticationProvider;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.member.domain.SignInForm;
-import B4F2.PetStagram.member.entity.MemberEntity;
+import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
 import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class SignInApplication {
 
         /*====인크립트 사용 전 테스트용====*/
 
-        MemberEntity m = memberService.findValidMember(form.getEmail(), form.getPassword())
+        Member m = memberService.findValidMember(form.getEmail(), form.getPassword())
                 .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAIL));
 
         return provider.createToken(m.getEmail(),m.getId());
@@ -33,7 +33,7 @@ public class SignInApplication {
 
         /*=====인크립트 사용시=====*/
 
-//        MemberEntity m = this.memberRepository.findByEmail(form.getEmail())
+//        Member m = this.memberRepository.findByEmail(form.getEmail())
 //                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_EMAIL));
 //
 //        if (!this.passwordEncoder.matches(form.getPassword(), m.getPassword())){
@@ -41,7 +41,7 @@ public class SignInApplication {
 //        }
 //
 //        return provider.createToken(m.getEmail(),m.getId());
-//
+
 
     }
 }
