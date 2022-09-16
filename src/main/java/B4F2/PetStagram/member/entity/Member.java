@@ -1,4 +1,4 @@
-package B4F2.PetStagram.member;
+package B4F2.PetStagram.member.entity;
 
 import lombok.*;
 
@@ -23,9 +23,10 @@ public class Member {
 
     private LocalDate regDt;
 
-    private String followingList;
-    private String followerList;
-
     private String emailAuthKey;
     private boolean emailAuthYn;
+
+    public void emailVerifiedSuccess() {
+        this.emailAuthYn = true;
+    }
 }

@@ -1,5 +1,6 @@
 package B4F2.PetStagram.member.controller;
 
+import B4F2.PetStagram.email.service.EmailConfirmTokenService;
 import B4F2.PetStagram.member.MemberRegisterForm;
 import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
+    private final EmailConfirmTokenService emailConfirmTokenService;
 
     @GetMapping("/member/register")
     public String register(MemberRegisterForm memberRegisterForm) {
@@ -22,16 +25,10 @@ public class MemberController {
     }
 
     @PostMapping("/member/register")
-    public String signup(@Valid MemberRegisterForm memberRegisterForm,
-                         BindingResult bindingResult) {
-        System.out.println(memberRegisterForm.getMemberId());
-        System.out.println(memberRegisterForm.getName());
-        System.out.println(memberRegisterForm.getPassword1());
-        System.out.println(memberRegisterForm.getPassword2());
-        System.out.println(memberRegisterForm.getPhone());
+    public String register(@Valid MemberRegisterForm memberRegisterForm,
+                           BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            System.out.println("에러 체크");
             return "register_form";
         }
 
@@ -39,7 +36,6 @@ public class MemberController {
             bindingResult.rejectValue("password2",
                     "passwordInCorrect",
                     "2개의 패스워드가 일치하지 않습니다.");
-            System.out.println("비밀번호가 다릅니다.");
             return "register_form";
         }
 
@@ -49,6 +45,15 @@ public class MemberController {
                 memberRegisterForm.getPassword1(),
                 memberRegisterForm.getPhone());
 
+        emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getMemberId(), memberRegisterForm.getMemberId());
+
         return "redirect:/";
+    }
+
+    @GetMapping("confirm-email")
+    public String viewConfirmEmail(@Valid @RequestParam String token){
+        memberService.confirmEmail(token);
+
+        return "redirect:/login";
     }
 }
