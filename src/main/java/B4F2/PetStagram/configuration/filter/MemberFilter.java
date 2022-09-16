@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 // todo 로그인유저만 접근 가능 경로 설정
-//@WebFilter(urlPatterns = "/member/*")
+@WebFilter(urlPatterns = "/member/sign-in")
 @RequiredArgsConstructor
 public class MemberFilter implements Filter {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;

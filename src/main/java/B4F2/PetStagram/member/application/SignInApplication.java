@@ -29,11 +29,11 @@ public class SignInApplication {
         Member m = memberService.findValidMember(form.getEmail(), form.getPassword())
                 .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAIL));
 
-        return provider.createToken(m.getEmail());
+        return provider.createToken(m.getEmail(),m.getId());
 
 
         /*=====인크립트 사용시=====*/
-//
+
 //        Member m = this.memberRepository.findByEmail(form.getEmail())
 //                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_EMAIL));
 //
