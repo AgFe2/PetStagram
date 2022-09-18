@@ -40,8 +40,13 @@ public class SecurityConfiguration  {
                 .and()
 
                 //todo 접근제한경로
-//                .antMatcher("/member/sign-in")
-//                .addFilterAfter(this.memberFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers()
+                .antMatchers(
+                        "/member/sign-in"
+                        , "/example"
+                        )
+                .and()
+                .addFilterAfter(this.memberFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }
