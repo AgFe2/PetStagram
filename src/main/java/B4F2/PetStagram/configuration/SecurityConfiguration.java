@@ -2,6 +2,7 @@ package B4F2.PetStagram.configuration;
 
 
 import B4F2.PetStagram.configuration.filter.MemberFilter;
+import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,8 @@ import javax.servlet.Filter;
 @EnableWebSecurity
 public class SecurityConfiguration  {
 
-    private final MemberFilter memberFilter;
+    private final JwtAuthenticationProvider provider;
+    private final MemberService memberService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,7 +36,7 @@ public class SecurityConfiguration  {
                 .antMatchers(
                         // todo 모든 접근 허용 경로
 //                        "/" ,
-                        "/**"
+                        "/member/sign-in"
 //                        ,"/member/*"
                 ).permitAll()
                 .and()
@@ -42,11 +44,10 @@ public class SecurityConfiguration  {
                 //todo 접근제한경로
                 .requestMatchers()
                 .antMatchers(
-                        "example"
-//                        , "/member/sign-in"
+                        "/example"
                         )
                 .and()
-                .addFilterAfter(this.memberFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new MemberFilter(provider, memberService), UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }

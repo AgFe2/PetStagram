@@ -19,7 +19,9 @@ public class JwtAuthenticationProvider {
     //todo========= 방법1 테스트
 //    public String getUserEmail(String token){
 //        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+//
 //        return new String(Objects.toString(Aes256Util.decrypt(c.getId())));
+//        return new String(Objects.toString(Aes256Util.decrypt(c.getSubject())));
 //    }
 
     //todo========= 방법2 테스트

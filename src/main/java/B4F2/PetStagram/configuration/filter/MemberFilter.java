@@ -7,12 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RequiredArgsConstructor
-@Component
 public class MemberFilter implements Filter {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final MemberService memberService;
