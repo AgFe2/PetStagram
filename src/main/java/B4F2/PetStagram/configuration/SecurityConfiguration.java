@@ -40,10 +40,8 @@ public class SecurityConfiguration  {
                 .and()
 
                 //todo 접근제한경로
-                .antMatcher("/member/sign-in")
-                //todo 추가 접근제한 경로. 포스트맨 테스트로는 두개다 작동하는것처럼 보임. 추가 테스트 필요
-                //.antMatcher("/customer")
-                .addFilterAfter(this.memberFilter, UsernamePasswordAuthenticationFilter.class)
+//                .antMatcher("/member/sign-in")
+//                .addFilterAfter(this.memberFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }
