@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 // todo 로그인유저만 접근 가능 경로 설정
-//@WebFilter(urlPatterns = "/customercustomer/sign-in")
+//@WebFilter(urlPatterns = {"/member/sign-in"})
 //@RequiredArgsConstructor
 //@Component
 //public class MemberFilter implements Filter {
 //    private final JwtAuthenticationProvider jwtAuthenticationProvider;
 //    private final MemberService memberService;
-//
 //
 //    @Override
 //    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

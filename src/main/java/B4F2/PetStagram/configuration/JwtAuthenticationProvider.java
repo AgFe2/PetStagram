@@ -16,10 +16,23 @@ public class JwtAuthenticationProvider {
     private long tokenValidTime = 1000L * 60 * 60 * 24; //1일
 
 
-    //todo=========
+    //todo========= 방법1 테스트
 //    public String getUserEmail(String token){
 //        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-//        return new String(Objects.requireNonNull(Aes256Util.decrypt(c.getId())));
+//        return new String(Objects.toString(Aes256Util.decrypt(c.getId())));
+//    }
+
+    //todo========= 방법2 테스트
+//    public String getUserEmail(String token){
+//        return this.parseClaims(token).getSubject();
+//    }
+//
+//    private Claims parseClaims(String token) {
+//        try {
+//            return Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
+//        } catch (ExpiredJwtException e) {
+//            return e.getClaims();
+//        }
 //    }
 
     public String createToken(String userPk, Long id){
