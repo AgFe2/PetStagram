@@ -36,7 +36,7 @@ public class SecurityConfiguration  {
                 .antMatchers(
                         // todo 모든 접근 허용 경로
 //                        "/" ,
-                        "/member/sign-in"
+                        "/**"
 //                        ,"/member/*"
                 ).permitAll()
                 .and()
@@ -51,5 +51,4 @@ public class SecurityConfiguration  {
 
                 .build();
     }
-
 }
