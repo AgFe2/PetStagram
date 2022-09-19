@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.Filter;
 
@@ -32,6 +33,12 @@ public class SecurityConfiguration  {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .and()
+
                 .authorizeRequests()
                 .antMatchers(
                         // todo 모든 접근 허용 경로
@@ -45,9 +52,11 @@ public class SecurityConfiguration  {
                 .requestMatchers()
                 .antMatchers(
                         "/example"
+//                        , "/member/sign-in"
                         )
                 .and()
                 .addFilterAfter(new MemberFilter(provider, memberService), UsernamePasswordAuthenticationFilter.class)
+
 
                 .build();
     }
