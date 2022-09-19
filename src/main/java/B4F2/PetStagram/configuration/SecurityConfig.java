@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration  {
+public class SecurityConfig {
 
     private final JwtAuthenticationProvider provider;
     private final MemberService memberService;
@@ -54,8 +54,8 @@ public class SecurityConfiguration  {
 //                        , "/member/sign-in"
                         )
                 .and()
-                .addFilterAfter(new MemberFilter(provider, memberService), UsernamePasswordAuthenticationFilter.class)
 
+                .addFilterAfter(new MemberFilter(provider, memberService), UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }

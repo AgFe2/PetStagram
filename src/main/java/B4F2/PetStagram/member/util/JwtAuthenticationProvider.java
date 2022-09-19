@@ -48,8 +48,8 @@ public class JwtAuthenticationProvider {
                 .setExpiration(new Date(now.getTime()+tokenValidTime))
                 .signWith(SignatureAlgorithm.HS256,secretKey)
                 .compact();
-
     }
+
     //=====토큰에 대한 validation 체크=====
     public boolean validateToken(String jwtToken){
         try{

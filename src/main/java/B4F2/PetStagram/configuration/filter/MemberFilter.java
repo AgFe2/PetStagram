@@ -19,14 +19,14 @@ public class MemberFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("X-AUTH-TOKEN");
         if(!jwtAuthenticationProvider.validateToken(token)){
-            //todo 메시지 수정 1
-            throw new ServletException("Invalid Access 1");
+
+            throw new ServletException("Invalid Access");
         }
 
         MemberVo vo = jwtAuthenticationProvider.getMemberVo(token);
         memberService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
-                //todo 메시지 수정 2
-                ()->new ServletException("Invalid access 2")
+
+                ()->new ServletException("Invalid User")
         );
         chain.doFilter(request,response);
     }
