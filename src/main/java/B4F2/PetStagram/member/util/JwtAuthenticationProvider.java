@@ -1,4 +1,4 @@
-package B4F2.PetStagram.configuration;
+package B4F2.PetStagram.member.util;
 
 import B4F2.PetStagram.member.util.Aes256Util;
 import B4F2.PetStagram.member.domain.MemberVo;

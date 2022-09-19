@@ -3,6 +3,7 @@ package B4F2.PetStagram.configuration;
 
 import B4F2.PetStagram.configuration.filter.MemberFilter;
 import B4F2.PetStagram.member.service.MemberService;
+import B4F2.PetStagram.member.util.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.servlet.Filter;
 
 
 @RequiredArgsConstructor

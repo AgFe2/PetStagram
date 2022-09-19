@@ -1,10 +1,9 @@
 package B4F2.PetStagram.configuration.filter;
 
-import B4F2.PetStagram.configuration.JwtAuthenticationProvider;
+import B4F2.PetStagram.member.util.JwtAuthenticationProvider;
 import B4F2.PetStagram.member.domain.MemberVo;
 import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

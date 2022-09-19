@@ -1,6 +1,6 @@
 package B4F2.PetStagram.member.application;
 
-import B4F2.PetStagram.configuration.JwtAuthenticationProvider;
+import B4F2.PetStagram.member.util.JwtAuthenticationProvider;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.member.domain.SignInForm;
