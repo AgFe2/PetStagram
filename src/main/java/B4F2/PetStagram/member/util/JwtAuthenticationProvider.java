@@ -1,4 +1,4 @@
-package B4F2.PetStagram.configuration;
+package B4F2.PetStagram.member.util;
 
 import B4F2.PetStagram.member.util.Aes256Util;
 import B4F2.PetStagram.member.domain.MemberVo;
@@ -15,9 +15,33 @@ public class JwtAuthenticationProvider {
 
     private long tokenValidTime = 1000L * 60 * 60 * 24; //1일
 
+
+    //방법1 테스트
+//    public String getUserEmail(String token){
+//        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+//
+//        return new String(Objects.toString(Aes256Util.decrypt(c.getId())));
+//        return new String(Objects.toString(Aes256Util.decrypt(c.getSubject())));
+//    }
+
+    //방법2 테스트
+//    public String getUserEmail(String token){
+//        return this.parseClaims(token).getSubject();
+//    }
+//
+//    private Claims parseClaims(String token) {
+//        try {
+//            return Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
+//        } catch (ExpiredJwtException e) {
+//            return e.getClaims();
+//        }
+//    }
+
     public String createToken(String userPk, Long id){
         Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(userPk)).setId(Aes256Util.encrypt(id.toString()));
         Date now = new Date();
+        claims.put("email",userPk);
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -25,6 +49,7 @@ public class JwtAuthenticationProvider {
                 .signWith(SignatureAlgorithm.HS256,secretKey)
                 .compact();
     }
+
     //=====토큰에 대한 validation 체크=====
     public boolean validateToken(String jwtToken){
         try{
@@ -40,3 +65,4 @@ public class JwtAuthenticationProvider {
         return new MemberVo(Long.valueOf(Objects.requireNonNull(Aes256Util.decrypt(c.getId()))) ,Aes256Util.decrypt(c.getSubject()));
     }
 }
+
