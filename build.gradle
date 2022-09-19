@@ -6,7 +6,7 @@ plugins {
 
 group = 'B4F2'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "10"
 
 configurations {
 	compileOnly {
@@ -35,8 +35,11 @@ dependencies {
 	annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jpa'
 	annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 	annotationProcessor 'jakarta.persistence:jakarta.annotation-api'
+
+	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.3'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+targetCompatibility = JavaVersion.VERSION_10

@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="build: 002-BASIC-BUILD-TEST&#10;- .gitignore 추가&#10;- board -&gt; feed로 이름변경&#10;- picture -&gt; feed_photo로 이름변경&#10;- hashtag, comment 폴더 추가" />
+    <list default="true" id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - SEARCH SERVICE">
+      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SearchConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/Hashtag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/HashtagRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/FCtest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/MemberParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/SearchParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/FRtest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/FStest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +39,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PetStagram" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -33,6 +54,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,10 +67,29 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Ee6vXSVgdalDrvrNSmN6Ra8DNB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,10 +98,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/yuna/Downloads/PetStagram/src/main/java/B4F2/PetStagram/picture",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "spring.configuration.checksum": "3e402c84301f5a4e7d95090aab51a5d4"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -73,8 +120,12 @@
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="B4F2.PetStagram.feed.repository" />
+      <recent name="B4F2.PetStagram.feed.model" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="애플리케이션.PetStagramApplication">
     <configuration name="PetStagramApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="B4F2.PetStagram.PetStagramApplication" />
       <module name="PetStagram.main" />
@@ -88,21 +139,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.PetStagramApplication" />
-        <item itemvalue="Application.PetStagramApplication" />
-      </list>
-    </recent_temporary>
+    <configuration name="PetStagramApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PetStagram.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="B4F2.PetStagram.PetStagramApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3511684b-49a8-4dd7-ba00-93682833a3e6" name="Changes" comment="" />
+      <changelist id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - SEARCH SERVICE" />
       <created>1662943934104</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662943934104</updated>
+      <workItem from="1663559380212" duration="5034000" />
     </task>
     <task id="LOCAL-00001" summary="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트">
       <created>1662944915675</created>
@@ -113,6 +166,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
