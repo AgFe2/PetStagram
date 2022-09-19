@@ -28,4 +28,5 @@ public class Member {
     public void emailVerifiedSuccess() {
         this.emailAuthYn = true;
     }
+
 }
