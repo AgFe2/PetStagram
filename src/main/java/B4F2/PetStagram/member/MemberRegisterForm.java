@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class MemberRegisterForm {
 
     @NotEmpty(message = "아이디를 입력해주세요.")
-    private String memberId;
+    private String email;
 
     @NotEmpty(message = "이름을 입력해주세요.")
     private String name;

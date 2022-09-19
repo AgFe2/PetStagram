@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @Controller
-public class MemberController {
+public class RegisterController {
 
     private final MemberService memberService;
     private final EmailConfirmTokenService emailConfirmTokenService;
@@ -40,11 +40,11 @@ public class MemberController {
         }
 
         if (memberService.register(
-                memberRegisterForm.getMemberId(),
+                memberRegisterForm.getEmail(),
                 memberRegisterForm.getName(),
                 memberRegisterForm.getPassword1(),
                 memberRegisterForm.getPhone())) {
-            emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getMemberId(), memberRegisterForm.getMemberId());
+            emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getEmail(), memberRegisterForm.getEmail());
         }
 
         return "redirect:/";

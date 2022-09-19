@@ -4,8 +4,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,22 +32,15 @@ public class EmailConfirmToken  {
 
     //일부러 FK 사용 안함
     @Column
-    private String memberId;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
+    private String email;
 
     /**
      * 이메일 인증 토큰 생성
      */
-    public static EmailConfirmToken createEmailConfirmationToken(String memberId){
+    public static EmailConfirmToken createEmailConfirmationToken(String email){
         EmailConfirmToken emailConfirmToken = new EmailConfirmToken();
         emailConfirmToken.expirationDate = LocalDateTime.now().plusMinutes(EMAIL_TOKEN_EXPIRATION_TIME_VALUE); // 5분후 만료
-        emailConfirmToken.memberId = memberId;
+        emailConfirmToken.email = email;
         emailConfirmToken.expired = false;
         return emailConfirmToken;
     }

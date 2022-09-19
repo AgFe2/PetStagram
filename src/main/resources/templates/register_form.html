@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
@@ -7,7 +7,7 @@
 <body>
 <form th:action="@{/member/register}" th:object="${memberRegisterForm}" method="post">
     <div>
-        <input type="email" name="memberId" placeholder="아이디(이메일) 입력" required/>
+        <input type="email" name="email" placeholder="아이디(이메일) 입력" required/>
     </div>
     <div>
         <input type="text" name="name" placeholder="이름 입력" required/>

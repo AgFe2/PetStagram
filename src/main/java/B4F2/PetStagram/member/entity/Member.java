@@ -1,32 +1,28 @@
 package B4F2.PetStagram.member.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 @Entity
+@Getter
+@Setter
+@Table(name = "member")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String memberId;
     private String name;
     private String password;
+    private String email;
     private String phone;
-
-    private LocalDate regDt;
-
+    private LocalDateTime regDt;
     private boolean emailAuthYn;
 
     public void emailVerifiedSuccess() {
