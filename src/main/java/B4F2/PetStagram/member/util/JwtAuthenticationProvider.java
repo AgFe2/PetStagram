@@ -16,7 +16,7 @@ public class JwtAuthenticationProvider {
     private long tokenValidTime = 1000L * 60 * 60 * 24; //1일
 
 
-    //todo========= 방법1 테스트
+    //방법1 테스트
 //    public String getUserEmail(String token){
 //        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
 //
@@ -24,7 +24,7 @@ public class JwtAuthenticationProvider {
 //        return new String(Objects.toString(Aes256Util.decrypt(c.getSubject())));
 //    }
 
-    //todo========= 방법2 테스트
+    //방법2 테스트
 //    public String getUserEmail(String token){
 //        return this.parseClaims(token).getSubject();
 //    }

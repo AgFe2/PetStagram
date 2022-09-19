@@ -31,7 +31,7 @@ public class SignInController {
         return ResponseEntity.ok(signInApplication.SignInToken(form));
     }
 
-    @ApiOperation(value = "jwt토큰 테스트")
+    @ApiOperation(value = "jwt토큰으로 이메일 불러오기 테스트")
     @PostMapping("/sign-in-tokenTest")
     public ResponseEntity<MemberDto> signInTokenTest(@RequestHeader(name = "X-AUTH-TOKEN") String token){
 
@@ -42,5 +42,15 @@ public class SignInController {
 
         return ResponseEntity.ok(MemberDto.of(m));
     }
+
+//    public String getEmail(String token){
+//        MemberVo vo = provider.getMemberVo(token);
+//        Member m = memberService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
+//                () -> new CustomException(ErrorCode.USER_NOT_FOUND)
+//        );
+//
+//        String email = String.valueOf(MemberDto.of(m));
+//        return email;
+//    }
 
 }
