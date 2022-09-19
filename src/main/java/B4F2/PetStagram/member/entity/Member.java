@@ -21,7 +21,12 @@ public class Member {
     private String name;
     private String password;
     private String email;
-    private String following_list;
-    private String follower_list;
-    private LocalDateTime reg_dt;
+    private String phone;
+    private LocalDateTime regDt;
+    private boolean emailAuthYn;
+
+    public void emailVerifiedSuccess() {
+        this.emailAuthYn = true;
+    }
+
 }

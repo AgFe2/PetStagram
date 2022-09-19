@@ -28,5 +28,6 @@ out/
 
 ### VS Code ###
 .vscode/
-
+/src/main/resources/application.properties
 /src/main/resources/application-local.yml
+
