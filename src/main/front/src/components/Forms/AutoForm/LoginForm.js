@@ -1,47 +1,51 @@
-import React, { useCallback, useId, useState } from 'react';
+import React, { useCallback } from 'react';
 import Button from '../../Button/Button';
 import styles from './AuthForm.module.css'
 import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../../../hooks/useInput';
-import { useDispatchContext,useStateContext } from '../../../context/auth_context';
-const LoginForm = () => {
-    const [id, onChangeId, setId] = useInput("")
+import { useDispatchContext, useStateContext } from '../../../context/auth_context';
+const LoginForm = ({history}) => {
+    const [email, onChangeEmail, setEmail] = useInput("")
     const [pwd, onChangePwd, setPwd] = useInput("")
 
-    const navigate = useNavigate()
+    const onReset= useCallback(()=>{
+        setEmail('');
+        setPwd('');
+    },[email,pwd]);
+    const navigate = useNavigate();
 
-    const {userList} = useStateContext();
+    const { userList } = useStateContext();
     const dispatch = useDispatchContext();
-
     console.log({userList})
-    const handleSubmit = () => {
-        if (!id || !pwd) {
+    const handleSubmit = async () => {
+        if (!email || !pwd) {
             alert('모든값을 정확하게 입력하시오')
             return;
         }
         dispatch({
-            type:"LOGIN",
-            userId:id,
-            userPw:pwd
+            type: "LOGIN",
+            userId: email,
+            userPw: pwd
         })
 
+        // onReset();
+        navigate('/')
         alert('로그인 성공')
-        navigate('/home')
     }
 
 
-    
+
     return (
         <>
             <section className={styles.Container}>
                 <h1 className={styles.title}>LOGIN</h1>
                 <form className={styles.authForm} onSubmit={handleSubmit}>
-                    <input className={styles.input}
+                    <input
+                        className={styles.input}
                         type="text"
-                        value={id.data}
-                        name="id"
-                        placeholder="아이디를 입력하세요"
-                        onChange={onChangeId}
+                        placeholder="이메일을 입력하세요"
+                        value={email.data}
+                        onChange={onChangeEmail}
                     />
                     <input
                         className={styles.input}

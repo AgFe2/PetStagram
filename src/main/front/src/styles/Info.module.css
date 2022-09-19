@@ -14,12 +14,11 @@
     /* justify-content: center; */
     align-items: center;
     width: 60%;
-    height: 100%;
-    min-height: 200px;
+    max-width: 900px;
 }
 .pictureConatiner{
-    width: 50%;
-    /* background-color: blue; */
+    width: 240px;
+    height: 240px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -34,15 +33,24 @@
 
 .profilePicture {
     position: absolute;
-    margin: 20px;
-    width: 30%;
-    height: 30%;
+    margin: 40px;
+    width: 60%;
+    height: 60%;
     border:3px solid white;
     border-radius: 50%;
     background-color: inherit;
+    cursor: pointer;
 }
 
-
+.picture{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.profilePicture > input {
+    display: none;
+}
 .userInfoContainer{
     margin-left: 20px;
     display: flex;
@@ -70,11 +78,12 @@
     margin-right: 10px;
     box-sizing: border-box;
 }
-/* 슬라이더 부분 */
+/* 스위치 부분 */
 
-.slider{
+.switchContainer{
     margin: auto;
-    width: 70%;
+    width: 100%;
+    max-width: 900px;
     height: 50px;
     background: #f7ce37;;
     display: flex;
@@ -88,19 +97,14 @@
     padding: 0;
 }
 
-.sliderlist{
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
+
+.switch{
+    font-size: 20px;
     color: #000;
-    font-size: 18px;
-    margin-right:10px;
-    padding: 10px;
-    align-items: center;
-    text-align: center;
-    height: 30px;
+    text-decoration: none;
+    margin: 5px 20px;
 }
 
-.sliderlist > span {
-    margin-left: 3px;
+.icon{
+    margin-right:5px ;
 }

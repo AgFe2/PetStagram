@@ -13,10 +13,10 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <>
         <div>{user.userId}님 환영합니다.</div>
         <button onClick={onLogOut}>로그아웃</button>
-      </div>
+      </>
     );
 };
 
