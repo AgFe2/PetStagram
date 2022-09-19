@@ -3,6 +3,7 @@ package B4F2.PetStagram.member.service;
 
 import B4F2.PetStagram.email.entity.EmailConfirmToken;
 import B4F2.PetStagram.email.service.EmailConfirmTokenService;
+import B4F2.PetStagram.feed.service.SearchService;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
 import B4F2.PetStagram.member.util.domainChanger;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final SearchService searchService;
     private final EmailConfirmTokenService emailConfirmTokenService;
 
 
@@ -52,6 +54,8 @@ public class MemberService {
         member.setRegDt(LocalDateTime.now());
 
         memberRepository.save(member);
+
+        this.searchService.addAutocompleteKeyword(member.getEmail());
 
         return true;
     }

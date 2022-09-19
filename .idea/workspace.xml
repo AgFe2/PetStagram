@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - SEARCH SERVICE">
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SearchConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/Hashtag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/Member.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/HashtagRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/MemberRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/configuration/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/FCtest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/MemberParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/SearchParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/FRtest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/FStest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/HashtagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/HashtagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/repository/MemberRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +101,7 @@
     "project.structure.last.edited": "프로젝트",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "spring.configuration.checksum": "3e402c84301f5a4e7d95090aab51a5d4"
   }
 }]]></component>
@@ -125,8 +120,10 @@
       <recent name="B4F2.PetStagram.feed.model" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.PetStagramApplication">
-    <configuration name="PetStagramApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="애플리케이션.B4F2.PetStagram.PetStagramApplication">
+    <configuration name="B4F2.PetStagram.PetStagramApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="B4F2.PetStagram.PetStagramApplication" />
       <module name="PetStagram.main" />
       <extension name="coverage">
@@ -146,6 +143,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.PetStagramApplication" />
+      <item itemvalue="애플리케이션.B4F2.PetStagram.PetStagramApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="애플리케이션.B4F2.PetStagram.PetStagramApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -155,7 +161,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662943934104</updated>
-      <workItem from="1663559380212" duration="5034000" />
+      <workItem from="1663559380212" duration="8706000" />
     </task>
     <task id="LOCAL-00001" summary="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트">
       <created>1662944915675</created>
@@ -164,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662944915675</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="002 - SEARCH SERVICE">
+      <created>1663597230608</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663597230608</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +196,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트" />
+    <MESSAGE value="002 - SEARCH SERVICE" />
+    <option name="LAST_COMMIT_MESSAGE" value="002 - SEARCH SERVICE" />
   </component>
 </project>
