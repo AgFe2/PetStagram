@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
 import Contents from "../../components/Contents";
-import "../../styles/etcContent.css";
 
 function Top(props) {
   return (

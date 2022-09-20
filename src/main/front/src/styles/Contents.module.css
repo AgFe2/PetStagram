@@ -1,4 +1,4 @@
-.contents-group {
+.contentsGroup {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,54 +6,63 @@
   padding: 30px 0;
 }
 
-.contents-item {
+.contentsItem {
   margin-bottom: 30px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 7px;
 }
 
-.item-user {
+/* itemUser*/
+.itemUser {
   padding: 0 12px;
   display: flex;
   align-items: center;
   padding: 8px 16px;
 }
 
-.item-user .user-profile {
+.itemUser .userProfile {
   width: 50px;
   height: 50px;
   background-color: antiquewhite;
   border-radius: 50%;
 }
 
-.item-user .user-name {
+.itemUser .userName {
   margin-left: 12px;
 }
 
-.item-info {
+/*itemInfo*/
+.itemInfo {
   padding: 8px 16px;
 }
-.info-liked {
+
+/*liked*/
+.infoLiked {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-height: 32px;
 }
+.likedBtn {
+  font-size: 24px;
+  cursor: pointer;
+}
 
-.info-paragraph {
+/*paragraph*/
+.infoParagraph {
   display: flex;
   align-items: center;
 }
 
-.paragraph-desc {
+.paragraphDesc {
   padding-left: 12px;
 }
 
-.paragraph-desc span {
+.paragraphDesc span {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.all-comments {
+.allComments {
   color: rgba(0, 0, 0, 0.5);
 }

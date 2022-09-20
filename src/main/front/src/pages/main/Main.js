@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "../../components/Header";
 
-import MainContent from "./MainContent";
-import "../../styles/mainContent.css";
-
+import Contents from "../../components/Contents";
+import styles from "../../styles/Contents.module.css";
 export default function Main() {
   const datas = [
     {
@@ -24,17 +23,18 @@ export default function Main() {
   ];
 
   const contentsItem = datas.map((data) => (
-    <MainContent
+    <Contents
       userId={data.userId}
       liked={data.liked}
       comments={data.comments}
-    ></MainContent>
+    ></Contents>
   ));
+
   return (
     <>
       <Header />
       <div className="container">
-        <div className="contents-group">
+        <div className={styles.contentsGroup}>
           <div>{contentsItem}</div>
         </div>
       </div>
