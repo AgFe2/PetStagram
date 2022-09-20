@@ -36,7 +36,7 @@ header {
   position: relative;
 }
 
-.searchBar .searchBarInput {
+.searchBarInput {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 12px 8px;
   border-radius: 8px;
@@ -66,12 +66,17 @@ header {
   left: -25px;
   background-color: #fff;
   min-width: 280px;
+  min-height: 280px;
   margin-top: 16px;
   padding: 12px 8px;
   border-top: 0;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   z-index: 9;
+  display: none;
+}
+
+.focusActive {
   display: block;
 }
 
@@ -93,6 +98,20 @@ header {
   padding: 12px 8px;
 }
 
+.resultNothing {
+  min-width: inherit;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #999;
+  display: none;
+}
+
+.nothingActive {
+  display: flex;
+}
 .hashtagBg {
   width: 40px;
   height: 40px;

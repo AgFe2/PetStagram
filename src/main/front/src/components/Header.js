@@ -43,9 +43,11 @@ export default function Header() {
     },
   ];
 
-  // searchBar
+  // searchBar filter n resultNothing
   const [search, setSearch] = useState("");
+  const [resultNothing, setResultNothing] = useState(true);
   const onChange = (e) => {
+    setResultNothing(false); // value값을 입력했다가 지우는 경우("" or null?)에 다시 true로 전환해야함
     setSearch(e.target.value);
   };
 
@@ -63,19 +65,32 @@ export default function Header() {
     return null; // 마지막 return을 안넣어주면 '화살표 함수에 마지막에는 리턴 밸류해줘야한다'는 에러가 뜸 why?
   });
 
+  //searchBar Focus n Blur
+  const [activeSearch, setActiveSearch] = useState(false);
+
+  const handleFocusSearch = () => {
+    setActiveSearch(true);
+  };
+  const handleBlurSearch = () => {
+    setActiveSearch(false);
+  };
+
   return (
     <header>
       <div className="container">
         <div className={styles.header}>
           <h1 style={{ color: "#2e2d30" }}>PetStagram</h1>
-          <div className={styles.searchBar}>
-            <SearchBar
-              search={search}
-              onChange={onChange}
-              onFocus={() => console.log("Focus on input")}
-              onBlur={() => console.log("blur on input")}
-            ></SearchBar>
-            <SearchResult filterTag={filterTag} />
+          <div
+            className={styles.searchBar}
+            onFocus={() => handleFocusSearch("searchFocus")}
+            onBlur={() => handleBlurSearch("searchFocus")}
+          >
+            <SearchBar search={search} onChange={onChange}></SearchBar>
+            <SearchResult
+              filterTag={filterTag}
+              activeSearch={activeSearch}
+              resultNothing={resultNothing}
+            />
           </div>
           <nav className={styles.nav}>
             <Link to="/" className={styles.navItem}>

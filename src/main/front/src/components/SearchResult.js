@@ -3,10 +3,14 @@ import React from "react";
 import styles from "../styles/Header.module.css";
 import { FaHashtag } from "react-icons/fa";
 
-function SearchResult({ filterTag }) {
+function SearchResult({ filterTag, activeSearch, resultNothing }) {
   return (
     <>
-      <div className={styles.searchResult}>
+      <div
+        className={`${styles.searchResult} ${
+          activeSearch ? `${styles.focusActive}` : ""
+        }`}
+      >
         {filterTag.map((hashtag) => (
           <div className={styles.resultItem}>
             <div className={styles.hashtagBg}>
@@ -25,6 +29,13 @@ function SearchResult({ filterTag }) {
             </div>
           </div>
         ))}
+        <div
+          className={`${styles.resultNothing} ${
+            resultNothing ? `${styles.nothingActive}` : ""
+          }`}
+        >
+          <span>검색 결과가 없습니다.</span>
+        </div>
       </div>
     </>
   );

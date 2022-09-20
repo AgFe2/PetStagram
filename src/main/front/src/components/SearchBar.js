@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/Header.module.css";
 
-function SearchBar({ search, onChange, onFocus, onBlur }) {
+function SearchBar({ search, onChange }) {
   return (
     <>
       <input
@@ -11,8 +11,6 @@ function SearchBar({ search, onChange, onFocus, onBlur }) {
         placeholder={"검색"}
         onChange={onChange}
         value={search}
-        onFocus={onFocus}
-        onBlur={onBlur}
       ></input>
     </>
   );
