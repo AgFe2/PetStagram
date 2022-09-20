@@ -50,14 +50,17 @@ export default function Header() {
   };
 
   const filterTag = hashtag.filter((tag) => {
-    if (search === "") return null;
-    else if (
+    if (search === "") {
+      return null;
+    } else if (
       tag.hashtag_context
         .replace(" ", "")
         .toLocaleLowerCase()
         .includes(search.toLocaleLowerCase())
-    )
+    ) {
       return tag;
+    }
+    return null; // 마지막 return을 안넣어주면 '화살표 함수에 마지막에는 리턴 밸류해줘야한다'는 에러가 뜸 why?
   });
 
   return (
