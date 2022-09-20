@@ -29,6 +29,16 @@ public class FeedService {
         return new WriteFeed.Response(userId, writeFeed.getMainText());
     }
 
+    public boolean deleteFeed(Long feedId, String name) {
+
+        feedRepository.findById(feedId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
+
+        feedRepository.deleteById(feedId);
+
+        return true;
+    }
+
     public boolean likeFeed(Long feedId) {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));

@@ -23,10 +23,22 @@ public class FeedController {
 
     }
 
+    @DeleteMapping("/delete")
+    public boolean deleteFeed(@RequestParam Long feedId, Authentication auth) {
+
+        return feedService.deleteFeed(feedId, auth.getName());
+    }
+
     @GetMapping("/like")
     public boolean likeFeed(@RequestParam Long feedId) {
 
         return feedService.likeFeed(feedId);
+    }
+
+    @GetMapping("/unlike")
+    public boolean unLikeFeed(@RequestParam Long feedId) {
+
+        return feedService.unLikeFeed(feedId);
     }
 
 }
