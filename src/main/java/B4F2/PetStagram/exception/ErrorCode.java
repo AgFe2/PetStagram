@@ -14,7 +14,12 @@ public enum ErrorCode {
     INVALID_EMAIL(HttpStatus.BAD_REQUEST,"잘못된 아이디(이메일)입니다"),
     INVALID_PASSWORD(HttpStatus.BAD_REQUEST,"잘못된 패스워드입니다"),
 
-    USER_NOT_FOUND(HttpStatus.BAD_REQUEST,"해당 유저를 찾을 수 없습니다")
+    USER_NOT_FOUND(HttpStatus.BAD_REQUEST,"해당 유저를 찾을 수 없습니다"),
+
+
+    //Feed 돤련 오류
+    NOT_FOUND_BOARD(HttpStatus.BAD_REQUEST, "해당 게시물을 찾을 수 없습니다."),
+    WRONG_APPROACH(HttpStatus.BAD_REQUEST,"잘못된 접근 방법입니다.")
 
 
     ;
