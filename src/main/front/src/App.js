@@ -4,7 +4,10 @@ import Top from "./pages/top/Top";
 import Explore from "./pages/explore/Explore";
 import My from "./pages/my/My";
 // import Header from "./components/Header";
+
+// CSS & ICON
 import "./styles/common.css";
+import "./styles/reset.css";
 
 function App() {
   return (
