@@ -19,6 +19,8 @@ public enum ErrorCode {
     REGISTER_FAIL(HttpStatus.BAD_REQUEST,"아이디나 패스워드를 확인해 주세요."),
     PASSWORD_INCORRECT(HttpStatus.BAD_REQUEST,"비밀번호가 일치하지 않습니다."),
     DUPLICATE_MEMBER(HttpStatus.BAD_REQUEST,"이미 가입된 회원입니다."),
+
+    EMAIL_AUTH_FAIL(HttpStatus.BAD_REQUEST,"이메일 인증에 실패 했습니다."),
     ;
 
     private final HttpStatus httpStatus;

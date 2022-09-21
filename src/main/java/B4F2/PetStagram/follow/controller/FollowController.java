@@ -17,12 +17,10 @@ public class FollowController {
 
     private final FollowService followService;
 
-    // 팔로우 버튼
+    // 팔로우 실행
     @PostMapping("/follow")
-    public ResponseEntity<Follow> follow(@RequestBody Follow follow) {
-        followService.addAndDeleteFollow(follow.getEmail(), follow.getFollowEmail());
-
-        return ResponseEntity.ok(follow);
+    public ResponseEntity<String> follow(@RequestBody Follow follow) {
+        return ResponseEntity.ok(followService.doFollow(follow));
     }
 
     // 팔로잉 확인

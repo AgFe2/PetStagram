@@ -4,7 +4,7 @@ import B4F2.PetStagram.email.service.EmailConfirmTokenService;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.member.entity.Member;
-import B4F2.PetStagram.member.entity.MemberRegisterForm;
+import B4F2.PetStagram.member.domain.MemberRegisterForm;
 import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +45,7 @@ public class RegisterController {
                 .phone(memberRegisterForm.getPhone())
                 .build();
 
-        if (memberService.isEmailDuplicate(member.getEmail())) {
+        if (memberService.isMember(member.getEmail())) {
             throw new CustomException(ErrorCode.DUPLICATE_MEMBER);
         }
 
