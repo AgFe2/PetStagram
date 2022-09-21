@@ -25,18 +25,18 @@ public class RegisterController {
 
     @PostMapping("/member/register")
     public ResponseEntity<Member> register(@RequestBody MemberRegisterForm memberRegisterForm) {
-//            ,BindingResult bindingResult) {
 
-//        if (bindingResult.hasErrors()) {
-//            throw new CustomException(ErrorCode.REGISTER_FAIL);
-//        }
-//
-//        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
-//            bindingResult.rejectValue("password2",
-//                    "passwordInCorrect",
-//                    "2개의 패스워드가 일치하지 않습니다.");
-//            throw new CustomException(ErrorCode.PASSWORD_INCORRECT);
-//        }
+        if (memberRegisterForm.getEmail() == null ||
+                memberRegisterForm.getName() == null ||
+                memberRegisterForm.getPassword1() == null ||
+                memberRegisterForm.getPassword2() == null ||
+                memberRegisterForm.getPhone() == null) {
+            throw new CustomException(ErrorCode.REGISTER_FAIL);
+        }
+
+        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
+            throw new CustomException(ErrorCode.PASSWORD_INCORRECT);
+        }
 
         Member member = Member.builder()
                 .email(memberRegisterForm.getEmail())
