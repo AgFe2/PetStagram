@@ -2,6 +2,8 @@ package B4F2.PetStagram.email.service;
 
 import B4F2.PetStagram.email.entity.EmailConfirmToken;
 import B4F2.PetStagram.email.repository.EmailConfirmTokenRepository;
+import B4F2.PetStagram.exception.CustomException;
+import B4F2.PetStagram.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -39,9 +41,14 @@ public class EmailConfirmTokenService {
      * 유효한 토큰 가져오기
      */
     public EmailConfirmToken findByIdAndExpirationDateAfterAndExpired(String confirmationTokenId) {
-        Optional<EmailConfirmToken> emailConfirmToken =
+        Optional<EmailConfirmToken> optionalEmailConfirmToken =
                 emailConfirmTokenRepository.findByIdAndExpirationDateAfterAndExpired(confirmationTokenId, LocalDateTime.now(), false);
-        return emailConfirmToken.orElseThrow(RuntimeException::new);
+        if (!optionalEmailConfirmToken.isPresent()) {
+            throw new CustomException(ErrorCode.EMAIL_AUTH_FAIL);
+        }
+        
+        return optionalEmailConfirmToken.get();
+        
     }
 
 

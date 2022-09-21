@@ -1,4 +1,4 @@
-package B4F2.PetStagram.member.entity;
+package B4F2.PetStagram.member.domain;
 
 import lombok.Getter;
 import lombok.Setter;
