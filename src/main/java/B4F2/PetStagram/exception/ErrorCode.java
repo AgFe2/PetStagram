@@ -16,6 +16,10 @@ public enum ErrorCode {
 
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST,"해당 유저를 찾을 수 없습니다"),
 
+    //Feed 돤련 오류
+    NOT_FOUND_BOARD(HttpStatus.BAD_REQUEST, "해당 게시물을 찾을 수 없습니다."),
+    WRONG_APPROACH(HttpStatus.BAD_REQUEST,"잘못된 접근 방법입니다."),
+
     REGISTER_FAIL(HttpStatus.BAD_REQUEST,"아이디나 패스워드를 확인해 주세요."),
     PASSWORD_INCORRECT(HttpStatus.BAD_REQUEST,"비밀번호가 일치하지 않습니다."),
     DUPLICATE_MEMBER(HttpStatus.BAD_REQUEST,"이미 가입된 회원입니다."),
