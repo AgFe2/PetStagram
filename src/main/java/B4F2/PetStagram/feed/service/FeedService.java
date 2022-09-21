@@ -7,6 +7,7 @@ import B4F2.PetStagram.feed.entity.FeedEntity;
 import B4F2.PetStagram.feed.repository.FeedRepository;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
+import B4F2.PetStagram.tag.service.TagService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,17 @@ public class FeedService {
     private final FeedRepository feedRepository;
 
     private final MemberRepository memberRepository;
+
+    private final TagService tagService;
+
     public WriteFeed.Response writeFeed(WriteFeed.Request writeFeed, String userId) {
 
         Member member = memberRepository.findByEmail(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
-        feedRepository.save(writeFeed.toEntity(userId));
+        FeedEntity feed = feedRepository.save(writeFeed.toEntity(userId));
+
+        tagService.regisTag(feed);
 
         return new WriteFeed.Response(userId, writeFeed.getMainText());
     }
