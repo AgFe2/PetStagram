@@ -1,16 +1,16 @@
 package B4F2.PetStagram.member.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Getter
-@Setter
 @Table(name = "member")
 public class Member {
 
