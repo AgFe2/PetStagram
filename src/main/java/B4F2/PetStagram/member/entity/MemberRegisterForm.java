@@ -1,4 +1,4 @@
-package B4F2.PetStagram.member;
+package B4F2.PetStagram.member.entity;
 
 import lombok.Getter;
 import lombok.Setter;

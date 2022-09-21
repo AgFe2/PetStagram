@@ -1,13 +1,17 @@
 package B4F2.PetStagram.member.controller;
 
 import B4F2.PetStagram.email.service.EmailConfirmTokenService;
-import B4F2.PetStagram.member.MemberRegisterForm;
+import B4F2.PetStagram.exception.CustomException;
+import B4F2.PetStagram.exception.ErrorCode;
+import B4F2.PetStagram.member.entity.Member;
+import B4F2.PetStagram.member.entity.MemberRegisterForm;
 import B4F2.PetStagram.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
@@ -19,35 +23,37 @@ public class RegisterController {
     private final MemberService memberService;
     private final EmailConfirmTokenService emailConfirmTokenService;
 
-    @GetMapping("/member/register")
-    public String register(MemberRegisterForm memberRegisterForm) {
-        return "register_form";
-    }
-
     @PostMapping("/member/register")
-    public String register(@Valid MemberRegisterForm memberRegisterForm,
-                           BindingResult bindingResult) {
+    public ResponseEntity<Member> register(@RequestBody MemberRegisterForm memberRegisterForm) {
+//            ,BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            return "register_form";
+//        if (bindingResult.hasErrors()) {
+//            throw new CustomException(ErrorCode.REGISTER_FAIL);
+//        }
+//
+//        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
+//            bindingResult.rejectValue("password2",
+//                    "passwordInCorrect",
+//                    "2개의 패스워드가 일치하지 않습니다.");
+//            throw new CustomException(ErrorCode.PASSWORD_INCORRECT);
+//        }
+
+        Member member = Member.builder()
+                .email(memberRegisterForm.getEmail())
+                .name(memberRegisterForm.getName())
+                .password(memberRegisterForm.getPassword1())
+                .phone(memberRegisterForm.getPhone())
+                .build();
+
+        if (memberService.isEmailDuplicate(member.getEmail())) {
+            throw new CustomException(ErrorCode.DUPLICATE_MEMBER);
         }
 
-        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
-            bindingResult.rejectValue("password2",
-                    "passwordInCorrect",
-                    "2개의 패스워드가 일치하지 않습니다.");
-            return "register_form";
-        }
+        memberService.register(member);
 
-        if (memberService.register(
-                memberRegisterForm.getEmail(),
-                memberRegisterForm.getName(),
-                memberRegisterForm.getPassword1(),
-                memberRegisterForm.getPhone())) {
-            emailConfirmTokenService.createEmailConfirmationToken(memberRegisterForm.getEmail(), memberRegisterForm.getEmail());
-        }
+        emailConfirmTokenService.createEmailConfirmationToken(member.getEmail());
 
-        return "redirect:/";
+        return ResponseEntity.ok(member);
     }
 
     @GetMapping("confirm-email")
