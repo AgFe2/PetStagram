@@ -38,22 +38,12 @@ public class MemberService {
     /**
      * 회원 가입 로직
      */
-    public boolean register(String email, String name, String password, String phone) {
+    public void register(Member member) {
 
-        if (isEmailDuplicate(email)) {
-            return false;
-        }
-
-        Member member = new Member();
-        member.setEmail(email);
-        member.setName(name);
-        member.setPassword(passwordEncoder.encode(password));
-        member.setPhone(phone);
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
         member.setRegDt(LocalDateTime.now());
 
         memberRepository.save(member);
-
-        return true;
     }
 
     /**
