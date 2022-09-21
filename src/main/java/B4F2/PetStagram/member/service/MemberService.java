@@ -3,7 +3,7 @@ package B4F2.PetStagram.member.service;
 
 import B4F2.PetStagram.email.entity.EmailConfirmToken;
 import B4F2.PetStagram.email.service.EmailConfirmTokenService;
-import B4F2.PetStagram.feed.service.SearchService;
+import B4F2.PetStagram.search.service.SearchService;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
 import B4F2.PetStagram.member.util.domainChanger;

@@ -1,4 +1,4 @@
-package B4F2.PetStagram.feed.service;
+package B4F2.PetStagram.search.service;
 
 import B4F2.PetStagram.feed.model.Hashtag;
 import B4F2.PetStagram.feed.repository.HashtagRepository;
@@ -20,8 +20,8 @@ public class SearchService {
     private final MemberRepository memberRepository;
     private final HashtagRepository hashtagRepository;
 
-    public Optional<Member> getByEmail(String email) {
-        return memberRepository.findAllByEmail(email);
+    public List<Member> getByEmail(String email) {
+        return memberRepository.findAllByEmailContains(email);
     }
 
     public Optional<Hashtag> getByHashtagContext(String hashtagContext) {

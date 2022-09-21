@@ -1,4 +1,4 @@
-package B4F2.PetStagram.feed.model;
+package B4F2.PetStagram.search.domain;
 
 public class SearchParam {
 
