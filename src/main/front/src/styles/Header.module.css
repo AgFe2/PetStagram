@@ -65,8 +65,8 @@ header {
   position: absolute;
   left: -25px;
   background-color: #fff;
-  min-width: 280px;
-  min-height: 280px;
+  width: 280px;
+  height: 280px;
   margin-top: 16px;
   padding: 12px 8px;
   border-top: 0;
@@ -74,39 +74,43 @@ header {
   border-radius: 5px;
   z-index: 9;
   display: none;
+  overflow-y: scroll;
+  box-sizing: border-box;
+
+  scrollbar-width: none; /* Firefox*/
+  -ms-overflow-style: none; /* IE and Edge*/
+}
+
+.searchResult::-webkit-scrollbar {
+  width: 8px;
+}
+
+.searchResult::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 8px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
 }
 
 .focusActive {
   display: block;
 }
 
-.searchResult::before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  box-shadow: -1px -1px 12px rgba(0, 0, 0, 0.1);
-}
-
 .resultItem {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   padding: 12px 8px;
 }
 
 .resultNothing {
-  min-width: inherit;
-  min-height: inherit;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   color: #999;
-  display: none;
 }
 
 .nothingActive {

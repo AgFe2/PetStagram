@@ -45,24 +45,15 @@ export default function Header() {
 
   // searchBar filter n resultNothing
   const [search, setSearch] = useState("");
-  const [resultNothing, setResultNothing] = useState(true);
   const onChange = (e) => {
-    setResultNothing(false); // value값을 입력했다가 지우는 경우("" or null?)에 다시 true로 전환해야함
     setSearch(e.target.value);
   };
 
   const filterTag = hashtag.filter((tag) => {
-    if (search === "") {
-      return null;
-    } else if (
-      tag.hashtag_context
-        .replace(" ", "")
-        .toLocaleLowerCase()
-        .includes(search.toLocaleLowerCase())
-    ) {
-      return tag;
-    }
-    return null; // 마지막 return을 안넣어주면 '화살표 함수에 마지막에는 리턴 밸류해줘야한다'는 에러가 뜸 why?
+    return tag.hashtag_context
+      .replace(" ", "")
+      .toLocaleLowerCase()
+      .includes(search.toLocaleLowerCase());
   });
 
   //searchBar Focus n Blur
@@ -89,7 +80,7 @@ export default function Header() {
             <SearchResult
               filterTag={filterTag}
               activeSearch={activeSearch}
-              resultNothing={resultNothing}
+              search={search}
             />
           </div>
           <nav className={styles.nav}>
