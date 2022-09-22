@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - SEARCH SERVICE">
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/FeedController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/FeedService.java" afterDir="false" />
+    <list default="true" id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - ID SEARCH SERVICE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/controller/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/model/SearchParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/domain/SearchParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/feed/service/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/service/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/repository/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +164,8 @@
       <workItem from="1663559380212" duration="8854000" />
       <workItem from="1663671980877" duration="1819000" />
       <workItem from="1663728820783" duration="5350000" />
-      <workItem from="1663754036458" duration="3256000" />
+      <workItem from="1663754036458" duration="4542000" />
+      <workItem from="1663807819705" duration="1231000" />
     </task>
     <task id="LOCAL-00001" summary="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트">
       <created>1662944915675</created>
@@ -195,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663601785588</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="002 - ID SEARCH SERVICE">
+      <created>1663758231967</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663758231967</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +215,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트" />
     <MESSAGE value="002 - SEARCH SERVICE" />
-    <option name="LAST_COMMIT_MESSAGE" value="002 - SEARCH SERVICE" />
+    <MESSAGE value="002 - ID SEARCH SERVICE" />
+    <option name="LAST_COMMIT_MESSAGE" value="002 - ID SEARCH SERVICE" />
   </component>
 </project>
