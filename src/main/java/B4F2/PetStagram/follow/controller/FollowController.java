@@ -23,13 +23,13 @@ public class FollowController {
         return ResponseEntity.ok(followService.doFollow(follow));
     }
 
-    // 팔로잉 확인
+    // 팔로잉 회원 목록
     @GetMapping("/following")
     public List<String> showFollowing(@RequestBody Follow follow) {
         return followService.checkFollowing(follow.getEmail());
     }
 
-    // 팔로워 확인
+    // 팔로워 회원 목록
     @GetMapping("/follower")
     public List<String> showFollower(@RequestBody Follow follow) {
         return followService.checkFollower(follow.getEmail());

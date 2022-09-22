@@ -26,9 +26,6 @@ public class Member {
     private LocalDateTime regDt;
     private boolean emailAuthYn;
 
-    private Integer followerCount;
-    private Integer followingCount;
-
     public void emailVerifiedSuccess() {
         this.emailAuthYn = true;
     }
