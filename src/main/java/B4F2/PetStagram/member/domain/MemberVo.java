@@ -7,7 +7,6 @@ import lombok.Getter;
 @Getter
 public class MemberVo {
 
-    private Long id;
     private String email;
 
 }

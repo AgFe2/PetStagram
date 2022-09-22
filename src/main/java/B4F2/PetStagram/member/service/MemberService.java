@@ -28,8 +28,8 @@ public class MemberService {
                 .findFirst();
     }
 
-    public Optional<Member> findByIdAndEmail(Long id, String email) {
-        return memberRepository.findById(id)
+    public Optional<Member> findByEmail(String email) {
+        return memberRepository.findByEmail(email)
                 .stream().filter(customer -> customer.getEmail().equals(email))
                 .findFirst();
     }
@@ -133,4 +133,5 @@ public class MemberService {
         member.setFollowingCount(member.getFollowingCount() - 1);
         memberRepository.save(member);
     }
+
 }
