@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // components
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
+import ModalTest from "./ModalTest";
 
 // CSS & ICON
 import styles from "../styles/Header.module.css";
@@ -61,6 +62,8 @@ export default function Header() {
     setActiveSearch(false);
   };
 
+  const [modal, setModal] = useState(false);
+
   return (
     <header>
       <div className="container">
@@ -90,17 +93,19 @@ export default function Header() {
               <FaIcons className={styles.navIcon} />
             </Link>
             <div className={styles.navItem}>
+              <p className="sr-only">upload</p>
               <FaCamera
                 className={[styles.navIcon, styles.uploadBtn].join(" ")}
               />
-              <p className="sr-only">upload</p>
             </div>
-            <Link to="/userId" className={styles.navItem}>
+            <div
+              className={`${styles.navItem} ${styles.profile}`}
+              onClick={() => setModal(!modal)}
+            >
               <p className="sr-only">My Page</p>
               <FaRegUserCircle className={styles.navIcon} />
-            </Link>
-            {/* 인스타그램처럼 depth2로 만들어야 할 듯
-                설정 변경(닉네임 등), 로그아웃 ... */}
+              {modal == true ? <ModalTest /> : null}
+            </div>
           </nav>
         </div>
       </div>

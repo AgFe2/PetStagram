@@ -33,7 +33,9 @@ header {
 }
 
 .nav .navItem {
-  padding: 0 12px;
+  padding: 0 4px;
+  margin: 0 8px;
+  cursor: pointer;
 }
 
 .navIcon {
@@ -84,7 +86,7 @@ header {
   margin-top: 16px;
   padding: 12px 8px;
   border-top: 0;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   z-index: 9;
   display: none;
@@ -148,4 +150,31 @@ header {
 .hashtagName {
   display: block;
   font-weight: 600;
+}
+
+/* modal test */
+
+.profile {
+  position: relative;
+}
+.profileDepth {
+  position: absolute;
+  width: 100px;
+  left: -34px;
+  padding: 8px 0;
+  margin-top: 16px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.depthItem {
+  padding: 8px 6px;
+  margin: 4px;
+  text-align: center;
+}
+
+.depthLogout {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
