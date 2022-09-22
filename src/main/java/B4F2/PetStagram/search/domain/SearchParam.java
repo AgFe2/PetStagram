@@ -1,8 +1,11 @@
 package B4F2.PetStagram.search.domain;
 
+import lombok.Data;
+
+@Data
 public class SearchParam {
 
-    public String searchType;
-    public String searchValue;
+    String searchType;
+    String searchValue;
 
 }

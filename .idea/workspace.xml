@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="af178f3d-47f3-4816-9132-649d1bfbd1f8" name="변경" comment="002 - ID SEARCH SERVICE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/tag/domain/TagDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/tag/domain/TagDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/domain/SearchParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B4F2/PetStagram/search/domain/SearchParam.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +167,7 @@
       <workItem from="1663671980877" duration="1819000" />
       <workItem from="1663728820783" duration="5350000" />
       <workItem from="1663754036458" duration="4542000" />
-      <workItem from="1663807819705" duration="1674000" />
+      <workItem from="1663807819705" duration="2767000" />
     </task>
     <task id="LOCAL-00001" summary="build: 001-BASIC-BUILD-TEST&#10;프로젝트 기본 구조 생성 테스트">
       <created>1662944915675</created>
@@ -204,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663814380369</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="002 - ID SEARCH SERVICE">
+      <created>1663814858307</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1663814858307</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

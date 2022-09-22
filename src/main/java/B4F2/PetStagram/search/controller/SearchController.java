@@ -28,10 +28,10 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String list(Model model, @RequestParam SearchParam parameter) {
+    public String list(Model model, SearchParam parameter) {
 
-        String type = parameter.searchType;
-        String value = parameter.searchValue;
+        String type = parameter.getSearchType();
+        String value = parameter.getSearchValue();
 
         if (type.equals("id")) {
             List<Member> context = searchService.getByEmail(value);
