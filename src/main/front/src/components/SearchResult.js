@@ -3,7 +3,8 @@ import React from "react";
 import styles from "../styles/Header.module.css";
 import { FaHashtag } from "react-icons/fa";
 
-function SearchResult({ filterTag, activeSearch, search }) {
+function SearchResult(props) {
+  const { filterTag, activeSearch, search } = props;
   return (
     <>
       <div

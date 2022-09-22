@@ -11,6 +11,20 @@ header {
   padding: 0 12px;
 }
 
+/* logo */
+.logo {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logoTxt {
+  color: #2e2d30;
+}
+
+.logo:hover .logoTxt {
+  color: rgb(240, 183, 76);
+}
+
 /* nav */
 
 .nav {

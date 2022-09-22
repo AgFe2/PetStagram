@@ -65,11 +65,13 @@ export default function Header() {
     <header>
       <div className="container">
         <div className={styles.header}>
-          <h1 style={{ color: "#2e2d30" }}>PetStagram</h1>
+          <Link to="/" className={styles.logo}>
+            <h1 className={styles.logoTxt}>PetStagram</h1>
+          </Link>
           <div
             className={styles.searchBar}
-            onFocus={() => handleFocusSearch("searchFocus")}
-            onBlur={() => handleBlurSearch("searchFocus")}
+            onFocus={handleFocusSearch}
+            onBlur={handleBlurSearch}
           >
             <SearchBar search={search} onChange={onChange}></SearchBar>
             <SearchResult
