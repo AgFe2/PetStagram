@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "member")
 public class Member {
 
@@ -24,6 +25,9 @@ public class Member {
     private String phone;
     private LocalDateTime regDt;
     private boolean emailAuthYn;
+
+    private Integer followerCount;
+    private Integer followingCount;
 
     public void emailVerifiedSuccess() {
         this.emailAuthYn = true;

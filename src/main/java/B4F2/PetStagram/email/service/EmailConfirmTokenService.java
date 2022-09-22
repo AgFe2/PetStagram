@@ -2,6 +2,8 @@ package B4F2.PetStagram.email.service;
 
 import B4F2.PetStagram.email.entity.EmailConfirmToken;
 import B4F2.PetStagram.email.repository.EmailConfirmTokenRepository;
+import B4F2.PetStagram.exception.CustomException;
+import B4F2.PetStagram.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -19,16 +21,15 @@ public class EmailConfirmTokenService {
     /**
      * 이메일 인증 토큰 생성
      */
-    public String createEmailConfirmationToken(String userId, String receiverEmail) {
+    public String createEmailConfirmationToken(String userId) {
 
         Assert.hasText(userId, "userId는 필수 입니다.");
-        Assert.hasText(receiverEmail, "receiverEmail은 필수 입니다.");
 
         EmailConfirmToken emailConfirmToken = EmailConfirmToken.createEmailConfirmationToken(userId);
         emailConfirmTokenRepository.save(emailConfirmToken);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(receiverEmail);
+        mailMessage.setTo(userId);
         mailMessage.setSubject("회원가입 이메일 인증");
         mailMessage.setText("http://localhost:8080/confirm-email?token=" + emailConfirmToken.getId());
         emailService.sendEmail(mailMessage);
@@ -40,9 +41,14 @@ public class EmailConfirmTokenService {
      * 유효한 토큰 가져오기
      */
     public EmailConfirmToken findByIdAndExpirationDateAfterAndExpired(String confirmationTokenId) {
-        Optional<EmailConfirmToken> emailConfirmToken =
+        Optional<EmailConfirmToken> optionalEmailConfirmToken =
                 emailConfirmTokenRepository.findByIdAndExpirationDateAfterAndExpired(confirmationTokenId, LocalDateTime.now(), false);
-        return emailConfirmToken.orElseThrow(RuntimeException::new);
+        if (!optionalEmailConfirmToken.isPresent()) {
+            throw new CustomException(ErrorCode.EMAIL_AUTH_FAIL);
+        }
+        
+        return optionalEmailConfirmToken.get();
+        
     }
 
 

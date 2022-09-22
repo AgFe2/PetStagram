@@ -1,0 +1,15 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
