@@ -27,8 +27,7 @@ public class Member {
     private LocalDateTime regDt;
     private boolean emailAuthYn;
 
-    private Integer followerCount;
-    private Integer followingCount;
+
 
     public Member(SignInForm form) {
         this.email = form.getEmail();
