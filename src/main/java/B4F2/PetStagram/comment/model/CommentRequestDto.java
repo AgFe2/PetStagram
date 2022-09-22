@@ -19,7 +19,7 @@ public class CommentRequestDto {
     private Long id;
     private String context;
     private LocalDateTime createdAt;
-    private Member member;
+    private String email;
     private Feed feed;
 
     public Comment toEntity() {
@@ -27,7 +27,7 @@ public class CommentRequestDto {
                 .id(id)
                 .context(context)
                 .createdAt(LocalDateTime.now())
-                .member(member)
+                .email("email")
                 .feed(feed)
                 .build();
 

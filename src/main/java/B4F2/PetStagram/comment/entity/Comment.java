@@ -26,9 +26,9 @@ public class Comment {
     private String context;
 
     //작성자
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+    private String email; // todo member쪽에서 이메일 땡겨오기?
 
     //SELECT * FROM 'comment' c INNER JOIN 'member' m ON c.mid = m.id WHERE feed_id=?
 //    private String mid;

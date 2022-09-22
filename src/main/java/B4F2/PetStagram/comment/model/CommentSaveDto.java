@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class CommentSaveDto {
 
     private String context;
-    private long memberId;
+    private String email;
     private long feedId;
     private LocalDateTime createdAt;
 
