@@ -15,7 +15,7 @@ public class CommentSaveDto {
     private String context;
 
     private String email;
-    private FeedEntity feedId;
+    private Long feedId;
 
     private LocalDateTime createdAt;
 

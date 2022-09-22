@@ -36,27 +36,27 @@ public class CommentService {
         commentRepository.deleteById(commentId);
     }
 
-    @Transactional
-    public Long saveComment(String email, Long id, CommentRequestDto dto){
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        FeedEntity feed = feedRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시물이 존재하지안습니다"));
+//    @Transactional
+//    public Long saveComment(String email, Long feedId, CommentRequestDto dto){
+//        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+//        Long feedId = feedRepository.findById(feedId).orElseThrow(
+//                () -> new IllegalArgumentException("해당 게시물이 존재하지안습니다"));
+//
+//        dto.setEmail(email);
+//        dto.setFeed(feed);
+//
+//        Comment comment = dto.toEntity();
+//        commentRepository.save(comment);
+//
+//        return dto.getId();
+//    }
 
-        dto.setEmail(email);
-        dto.setFeed(feed);
-
-        Comment comment = dto.toEntity();
-        commentRepository.save(comment);
-
-        return dto.getId();
-    }
-
-    public WriteComment.Response writeComment(WriteComment.Request writeComment, String memberId, String feedId){
-        Member member = memberRepository.findByEmail(memberId)
-                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-
-        commentRepository.save(writeComment.toEntity(memberId, feedId));
-
-        return new WriteComment.Response(memberId, writeComment.getContext());
-    }
+//    public WriteComment.Response writeComment(WriteComment.Request writeComment, String memberId, String feedId){
+//        Member member = memberRepository.findByEmail(memberId)
+//                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+//
+//        commentRepository.save(writeComment.toEntity(memberId, feedId));
+//
+//        return new WriteComment.Response(memberId, writeComment.getContext());
+//    }
 }
