@@ -1,8 +1,7 @@
 package B4F2.PetStagram.comment.entity;
 
 import B4F2.PetStagram.comment.model.CommentSaveDto;
-import B4F2.PetStagram.feed.entity.Feed;
-import B4F2.PetStagram.member.entity.Member;
+import B4F2.PetStagram.feed.entity.FeedEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,17 +35,17 @@ public class Comment {
     //게시물
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id")
-    private Feed feed;
+    private FeedEntity feed;
 
     private LocalDateTime createdAt;
 
 
-//    public static Comment from(CommentSaveDto commentSaveDto){
-//        return Comment.builder()
-//                .context(commentSaveDto.getContext())
+    public static Comment from(CommentSaveDto commentSaveDto){
+        return Comment.builder()
+                .context(commentSaveDto.getContext())
 //                .member(commentSaveDto.getMemberId())
 //                .feed(commentSaveDto.getFeedId())
-//                .createdAt(LocalDateTime.now())
-//                .build();
-//    }
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
 }

@@ -35,3 +35,4 @@ public class FeedEntity{
 
     // 업로드 사진
 }
+
