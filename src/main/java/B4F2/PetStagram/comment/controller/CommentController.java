@@ -21,9 +21,9 @@ public class CommentController {
 
 
     @PostMapping("/{feedId}/create-comment")
-    public ResponseEntity<String> commentSave(@RequestBody CommentSaveDto commentSaveDto){
+    public ResponseEntity<String> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto){
 
-        return ResponseEntity.ok(commentSaveApplication.commentSave(commentSaveDto));
+        return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto));
     }
 
 

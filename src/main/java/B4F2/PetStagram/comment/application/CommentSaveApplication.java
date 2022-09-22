@@ -12,9 +12,9 @@ public class CommentSaveApplication {
 
     private final CommentService commentService;
 
-    public String commentSave(CommentSaveDto commentSaveDto) {
+    public String commentSave(Long feedId, CommentSaveDto commentSaveDto) {
 
-//        Comment c = commentService.saveComment(commentSaveDto);
+        Comment c = commentService.saveComment(feedId, commentSaveDto);
 
         //todo 댓글 getApi(새로고침)
 //        return "redirect:/feed/{feedId}";

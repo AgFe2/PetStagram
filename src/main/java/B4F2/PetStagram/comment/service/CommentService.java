@@ -25,9 +25,9 @@ public class CommentService {
     private final FeedRepository feedRepository;
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Comment saveComment(CommentSaveDto commentSaveDto){
+    public Comment saveComment(Long feedId, CommentSaveDto commentSaveDto){
 
-        return commentRepository.save(Comment.from(commentSaveDto));
+        return commentRepository.save(Comment.from(commentSaveDto, feedId));
     }
 
 

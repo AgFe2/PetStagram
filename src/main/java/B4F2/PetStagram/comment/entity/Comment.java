@@ -27,18 +27,16 @@ public class Comment {
     private String email; //todo member쪽에서 이메일 땡겨오기?
 
     //게시물
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feed_id")
-    private FeedEntity feed;
+    private Long feedId;
 
     private LocalDateTime createdAt;
 
 
-    public static Comment from(CommentSaveDto commentSaveDto){
+    public static Comment from(CommentSaveDto commentSaveDto, Long feedId){
         return Comment.builder()
                 .context(commentSaveDto.getContext())
                 .email(commentSaveDto.getEmail())
-                .feed(commentSaveDto.getFeedId())
+                .feedId(feedId)
                 .createdAt(LocalDateTime.now())
                 .build();
     }
