@@ -31,8 +31,8 @@ public class FeedEntity{
     private Integer like;
 
 //    차후 comment 파트와 함께 merge 되면 추가
-//    @OneToMany
-//    @JsonIgnoreProperties("{feed}")
+//    @JsonIgnoreProperties({"feed"})
+//    @OneToMany(mappedBy = "feed", fetch = FetchType.EAGER)
 //    @OrderBy("id desc")
 //    private List<CommentEntity> comments;
 

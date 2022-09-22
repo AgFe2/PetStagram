@@ -26,6 +26,7 @@ public class CommentController {
         return ResponseEntity.ok(commentSaveApplication.commentSave(commentSaveDto));
     }
 
+
 //    @PostMapping("/{feedId}/create-comment")
 //    public ResponseEntity commentSave(@PathVariable Long id,@RequestBody CommentRequestDto dto){
 //
@@ -38,12 +39,6 @@ public class CommentController {
 //        return ResponseEntity.ok(commentService.writeComment(writeComment, auth.getName()));
 //    }
 
-
-//    @GetMapping("/{feedId}/show-all-comment")
-//    List</*CommentEntity*/> showAllComment(@PathVariable long id){
-//
-//        return null;
-//    }
 
 }
 

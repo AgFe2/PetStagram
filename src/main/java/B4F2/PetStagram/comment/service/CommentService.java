@@ -30,6 +30,12 @@ public class CommentService {
         return commentRepository.save(Comment.from(commentSaveDto));
     }
 
+
+    @Transactional
+    public void commentDelete(Long commentId){
+        commentRepository.deleteById(commentId);
+    }
+
     @Transactional
     public Long saveComment(String email, Long id, CommentRequestDto dto){
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
