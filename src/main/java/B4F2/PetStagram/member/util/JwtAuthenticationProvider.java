@@ -4,10 +4,12 @@ import B4F2.PetStagram.member.util.Aes256Util;
 import B4F2.PetStagram.member.domain.MemberVo;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
 import java.util.Objects;
 
+@Configuration
 public class JwtAuthenticationProvider {
 
     @Value("{spring.jwt.secret}")
@@ -37,10 +39,10 @@ public class JwtAuthenticationProvider {
 //        }
 //    }
 
-    public String createToken(String userPk, Long id){
-        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(userPk)).setId(Aes256Util.encrypt(id.toString()));
+    public String createToken(String email){
+        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
         Date now = new Date();
-        claims.put("email",userPk);
+        claims.put("email",email);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -59,6 +61,12 @@ public class JwtAuthenticationProvider {
             return false;
         }
     }
+
+    //토큰에서 값 추출
+    public String getSubject(String token) {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+
     // 아이디와 이메일 두개를 저장해서 이걸 기반으로 동작
     public MemberVo getMemberVo(String token){
         Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();

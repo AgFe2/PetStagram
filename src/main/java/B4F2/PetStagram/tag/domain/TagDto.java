@@ -8,8 +8,8 @@ public class TagDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    @AllArgsConstructor
-    @RequiredArgsConstructor
+//    @AllArgsConstructor
+//    @RequiredArgsConstructor
     @Builder
     public static class regisTagDto {
 
