@@ -9,6 +9,7 @@ import java.util.List;
 
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +28,7 @@ public class FeedEntity{
 
     private LocalDateTime updateDit;
 
-    private Integer like;
+    private Long like;
 
 //    차후 comment 파트와 함께 merge 되면 추가
 //    @OneToMany
