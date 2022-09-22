@@ -48,7 +48,6 @@ public class JwtAuthenticationProvider {
     public String createToken(String email){
         Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
         Date now = new Date();
-        claims.put("email",email);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -70,10 +69,10 @@ public class JwtAuthenticationProvider {
 
     //토큰에서 값 추출
     public String getSubject(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+        return Aes256Util.decrypt(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject());
     }
 
-    // 아이디와 이메일 두개를 저장해서 이걸 기반으로 동작
+    // 이메일 저장해서 이걸 기반으로 동작
     public MemberVo getMemberVo(String token){
         Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
         return new MemberVo((Aes256Util.decrypt(c.getSubject())));
