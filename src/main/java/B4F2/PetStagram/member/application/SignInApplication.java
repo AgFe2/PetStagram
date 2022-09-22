@@ -38,10 +38,10 @@ public class SignInApplication {
         Member m = memberService.findValidMember(form.getEmail(), form.getPassword())
                 .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAIL));
 
-        return provider.createToken(m.getEmail(),m.getId());
+        return provider.createToken(m.getEmail());
 
 
-        /*=====인크립트 사용시=====*/
+        /* todo =====인크립트 사용시=====*/
 
 //        Member m = this.memberRepository.findByEmail(form.getEmail())
 //                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_EMAIL));
@@ -50,7 +50,7 @@ public class SignInApplication {
 //            throw new CustomException(ErrorCode.INVALID_PASSWORD);
 //        }
 //
-//        return provider.createToken(m.getEmail(),m.getId());
+//        return provider.createToken(m.getEmail());
 
 
     }
