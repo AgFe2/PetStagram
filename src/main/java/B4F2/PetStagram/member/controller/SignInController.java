@@ -9,6 +9,7 @@ import B4F2.PetStagram.member.domain.SignInForm;
 import B4F2.PetStagram.member.domain.TokenResponse;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
+import B4F2.PetStagram.member.service.GetEmail;
 import B4F2.PetStagram.member.service.MemberService;
 import B4F2.PetStagram.member.util.JwtAuthenticationProvider;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SignInController {
 
+    private final GetEmail getEmail;
     private final MemberRepository memberRepository;
     private final JwtAuthenticationProvider provider;
     private final MemberService memberService;
@@ -40,13 +42,15 @@ public class SignInController {
 
 
     //====todo 프론트와 함께 테스트 필요=====
-    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
-    public Object getMemberFromToken(HttpServletRequest request) {
-        String email = (String) request.getAttribute("email");
-        Optional<Member> member = memberRepository.findByEmail(email);
-
-        return member;
-    }
+//    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
+//    public Object getMemberFromToken(HttpServletRequest request) {
+//
+//        String email =(String) getEmail.getEmailFromToken(request);
+//
+//        Optional<Member> member = memberRepository.findByEmail(email);
+//
+//        return member;
+//    }
 
 
     //=====백엔드 단독 테스트용=====
