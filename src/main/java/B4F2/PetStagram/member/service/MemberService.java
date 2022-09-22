@@ -8,7 +8,6 @@ import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
-import B4F2.PetStagram.member.util.domainChanger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -49,7 +48,7 @@ public class MemberService {
     /**
      * 회원 가입 로직
      */
-    public void register(Member member) {
+    public boolean register(Member member) {
 
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         member.setRegDt(LocalDateTime.now());
