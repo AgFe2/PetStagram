@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Router, Link } from "react-router-dom";
 
 // components
 import SearchBar from "./SearchBar";
@@ -12,38 +12,33 @@ import { FaHome, FaIcons, FaCamera, FaRegUserCircle } from "react-icons/fa";
 export default function Header() {
   const hashtag = [
     {
-      hashtag_id: "userId1",
       hashtag_feed_id: "userId99",
       hashtag_context: "abc",
       hashtag_feed_count: 1512,
     },
     {
-      hashtag_id: "userId2",
       hashtag_feed_id: "userId98",
       hashtag_context: "abd",
       hashtag_feed_count: 12328,
     },
     {
-      hashtag_id: "userId3",
       hashtag_feed_id: "userId97",
       hashtag_context: "acd",
       hashtag_feed_count: 1112,
     },
     {
-      hashtag_id: "userId4",
       hashtag_feed_id: "userId96",
       hashtag_context: "ade",
       hashtag_feed_count: 1867759,
     },
     {
-      hashtag_id: "userId5",
       hashtag_feed_id: "userId95",
       hashtag_context: "adf",
       hashtag_feed_count: 17238,
     },
   ];
 
-  // searchBar filter n resultNothing
+  // searchBar filter
   const [search, setSearch] = useState("");
   const onChange = (e) => {
     setSearch(e.target.value);
@@ -84,24 +79,26 @@ export default function Header() {
             />
           </div>
           <nav className={styles.nav}>
-            <Link to="/" className={styles.navItem}>
-              <p className="sr-only">Home</p>
-              <FaHome className={styles.navIcon} />
-            </Link>
-            <Link to="/top" className={styles.navItem}>
-              <p className="sr-only">Top</p>
-              <FaIcons className={styles.navIcon} />
-            </Link>
-            <div className={styles.navItem}>
-              <FaCamera
-                className={[styles.navIcon, styles.uploadBtn].join(" ")}
-              />
-              <p className="sr-only">upload</p>
-            </div>
-            <Link to="/userId" className={styles.navItem}>
-              <p className="sr-only">My Page</p>
-              <FaRegUserCircle className={styles.navIcon} />
-            </Link>
+            <Router>
+              <Link to="/" className={styles.navItem}>
+                <p className="sr-only">Home</p>
+                <FaHome className={styles.navIcon} />
+              </Link>
+              <Link to="/top" className={styles.navItem}>
+                <p className="sr-only">Top</p>
+                <FaIcons className={styles.navIcon} />
+              </Link>
+              <div className={styles.navItem}>
+                <FaCamera
+                  className={[styles.navIcon, styles.uploadBtn].join(" ")}
+                />
+                <p className="sr-only">upload</p>
+              </div>
+              <Link to="/userId" className={styles.navItem}>
+                <p className="sr-only">My Page</p>
+                <FaRegUserCircle className={styles.navIcon} />
+              </Link>
+            </Router>
             {/* 인스타그램처럼 depth2로 만들어야 할 듯
                 설정 변경(닉네임 등), 로그아웃 ... */}
           </nav>
