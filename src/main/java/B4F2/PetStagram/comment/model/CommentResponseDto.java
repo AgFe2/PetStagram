@@ -12,13 +12,13 @@ public class CommentResponseDto {
     private String context;
     private LocalDateTime createdAt;
     private String email;
-    private FeedEntity feedId;
+    private Long feedId;
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
         this.context = comment.getContext();
         this.createdAt = comment.getCreatedAt();
         this.email = comment.getEmail();
-        this.feedId = comment.getFeed();
+        this.feedId = comment.getFeedId();
     }
 }

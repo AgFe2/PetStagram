@@ -27,7 +27,7 @@ public class CommentRequestDto {
                 .context(context)
                 .createdAt(LocalDateTime.now())
                 .email("email") //todo 댓글작성자 이메일 뽑아오기
-                .feed(feed)
+                .feedId(feed.getFeedId())
                 .build();
 
         return comment;
