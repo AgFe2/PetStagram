@@ -31,12 +31,12 @@ public class WriteComment {
     @Builder
     public static class Response {
 
-        private String memberId;
+        private String email;
         private String context;
 
-        public Response form( /*String feedId,*/String memberId, String context){
+        public Response form( /*String feedId,*/String email, String context){
             return Response.builder()
-                    .memberId(memberId)
+                    .email(email)
 //                    .feedId(feedId)
                     .context(context)
                     .build();

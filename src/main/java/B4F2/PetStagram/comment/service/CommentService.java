@@ -20,7 +20,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
-
     private final CommentRepository commentRepository;
     private final MemberRepository memberRepository;
     private final FeedRepository feedRepository;
@@ -37,8 +36,8 @@ public class CommentService {
         FeedEntity feed = feedRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시물이 존재하지안습니다"));
 
-//        dto.setEmail(email);
-//        dto.setFeed(feed);
+        dto.setEmail(email);
+        dto.setFeed(feed);
 
         Comment comment = dto.toEntity();
         commentRepository.save(comment);

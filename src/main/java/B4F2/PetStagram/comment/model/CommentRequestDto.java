@@ -1,6 +1,7 @@
 package B4F2.PetStagram.comment.model;
 
 import B4F2.PetStagram.comment.entity.Comment;
+import B4F2.PetStagram.feed.entity.FeedEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,17 +18,18 @@ public class CommentRequestDto {
     private String context;
     private LocalDateTime createdAt;
     private String email;
-    private Feed feed;
+    private FeedEntity feed;
 
     public Comment toEntity() {
-        Comment comments = Comment.builder()
+
+        Comment comment = Comment.builder()
                 .id(id)
                 .context(context)
                 .createdAt(LocalDateTime.now())
-                .email("email")
+                .email("email") //todo 댓글작성자 이메일 뽑아오기
                 .feed(feed)
                 .build();
 
-        return comments;
+        return comment;
     }
 }

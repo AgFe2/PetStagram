@@ -1,5 +1,6 @@
 package B4F2.PetStagram.feed.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,8 @@ public class FeedEntity{
 
 //    차후 comment 파트와 함께 merge 되면 추가
 //    @OneToMany
+//    @JsonIgnoreProperties("{feed}")
+//    @OrderBy("id desc")
 //    private List<CommentEntity> comments;
 
     // 업로드 사진
