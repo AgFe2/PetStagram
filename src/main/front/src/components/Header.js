@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 // components
 import SearchBar from "./SearchBar";
-import SearchResult from "./SearchResult";
-import ModalTest from "./ModalTest";
+import ProfileModal from "./ProfileModal";
 
 // CSS & ICON
 import styles from "../styles/Header.module.css";
@@ -41,7 +40,7 @@ export default function Header() {
 
   // searchBar filter
   const [search, setSearch] = useState("");
-  const onChange = (e) => {
+  const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
 
@@ -52,16 +51,6 @@ export default function Header() {
       .includes(search.toLocaleLowerCase());
   });
 
-  //searchBar Focus n Blur
-  const [activeSearch, setActiveSearch] = useState(false);
-
-  const handleFocusSearch = () => {
-    setActiveSearch(true);
-  };
-  const handleBlurSearch = () => {
-    setActiveSearch(false);
-  };
-
   const [modal, setModal] = useState(false);
 
   return (
@@ -71,18 +60,11 @@ export default function Header() {
           <Link to="/" className={styles.logo}>
             <h1 className={styles.logoTxt}>PetStagram</h1>
           </Link>
-          <div
-            className={styles.searchBar}
-            onFocus={handleFocusSearch}
-            onBlur={handleBlurSearch}
-          >
-            <SearchBar search={search} onChange={onChange}></SearchBar>
-            <SearchResult
-              filterTag={filterTag}
-              activeSearch={activeSearch}
-              search={search}
-            />
-          </div>
+          <SearchBar
+            search={search}
+            onChange={handleSearchChange}
+            filterTag={filterTag}
+          ></SearchBar>
           <nav className={styles.nav}>
             <Link to="/" className={styles.navItem}>
               <p className="sr-only">Home</p>
@@ -104,7 +86,7 @@ export default function Header() {
             >
               <p className="sr-only">My Page</p>
               <FaRegUserCircle className={styles.navIcon} />
-              {modal == true ? <ModalTest /> : null}
+              {modal == true ? <ProfileModal /> : null}
             </div>
           </nav>
         </div>

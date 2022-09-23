@@ -1,18 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "../styles/Header.module.css";
+
+//components
+import SearchResult from "./SearchResult";
+
+//CSS
+import styles from "../styles/SearchBar.module.css";
 
 function SearchBar(props) {
-  const { search, onChange } = props;
+  const { search, onChange, filterTag } = props;
+
+  //searchBar Focus n Blur
+  const [activeSearch, setActiveSearch] = useState(false);
+
+  const handleFocusSearch = () => {
+    setActiveSearch(true);
+  };
+  const handleBlurSearch = () => {
+    setActiveSearch(false);
+  };
   return (
     <>
-      <input
-        className={styles.searchBarInput}
-        type="text"
-        placeholder={"검색"}
-        onChange={onChange}
-        value={search}
-      ></input>
+      <div
+        className={styles.searchBar}
+        onFocus={handleFocusSearch}
+        onBlur={handleBlurSearch}
+      >
+        <input
+          className={styles.searchBarInput}
+          type="text"
+          placeholder={"검색"}
+          onChange={onChange}
+          value={search}
+        ></input>
+        <SearchResult
+          activeSearch={activeSearch}
+          filterTag={filterTag}
+          search={search}
+        />
+      </div>
     </>
   );
 }
