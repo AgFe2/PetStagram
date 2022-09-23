@@ -4,18 +4,23 @@ import Register from './pages/register/Register'
 import Home from './pages/Home'
 import My from "./pages/my/My";
 import Taged from "./pages/tag";
-import { useStateContext } from "./context/auth_context";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient()
+
+
+
 function App() {
-  const { user } = useStateContext()
+
   return (
-    <>
-    <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path="/my" element={<My />} />
-        <Route path="/taged" element={<Taged />} />
-      </Routes>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path="/my" element={<My />} />
+          <Route path="/taged" element={<Taged />} />
+        </Routes>
+    </QueryClientProvider>
   );
 }
 

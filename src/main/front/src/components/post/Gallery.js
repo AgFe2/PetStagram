@@ -9,7 +9,7 @@ export default function Gallery() {
             <div className={styles.postlist}>
                 {data.length > 1 ?
                 data.map((item,idx)=>(
-                    <GalleryItem imagepath={item.imagepath} id={idx}/>
+                    <GalleryItem imagepath={item.imagepath} key={idx} />
                 ))
                 :<div>No Post</div>
                 }

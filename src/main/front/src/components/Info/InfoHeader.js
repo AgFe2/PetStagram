@@ -1,9 +1,12 @@
 import React, { useState,useRef } from 'react';
-import styles from '../../styles/Info.module.css'
+import { useStateContext } from '../../context/auth_context';
+import styles from '../../styles/InfoHeader.module.css'
 
 const InfoHeader = () => {
     const [img, setImg] = useState('')
     const fileInput = useRef(null)
+
+
     const handleImgChange = (e) => {
         if (e.target.files[0]) {
             setImg(e.target.files[0])
@@ -22,10 +25,14 @@ const InfoHeader = () => {
     reader.readAsDataURL(e.target.files[0])
     }
 
+    const handleClick = () =>{
+        fileInput.current.click()
+    }
+
     return (
         <haeder className={styles.InfoContainer}>
         <div className={styles.pictureConatiner}>
-            <div className={styles.profilePicture} onClick={()=>{fileInput.current.click()}}>
+            <div className={styles.profilePicture} onClick={handleClick}>
                 <img className={styles.picture} src={img} size={200}/>
                 <input 
                 type="file"
@@ -53,8 +60,10 @@ const InfoHeader = () => {
                 <span>bio, description</span>
             </div>
         </section>
+   
     </haeder>
     );
 };
 
 export default InfoHeader;
+

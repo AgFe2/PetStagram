@@ -17,5 +17,17 @@ export const data = [
     {
         imagepath: "/images/dog.jpeg",
     },
+    {
+        imagepath: "/images/dog.jpeg",
+    },
+    {
+        imagepath: "/images/dog.jpeg",
+    },
+    {
+        imagepath: "/images/dog.jpeg",
+    },
+    {
+        imagepath: "/images/dog.jpeg",
+    },
 
 ];

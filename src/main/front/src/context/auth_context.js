@@ -35,6 +35,7 @@ const useAuthReducer = (state,action) =>{
 const UserStateContext = createContext(null);
 const UserDispatchContext = createContext(null);
 
+
 export const UserContext = ({children}) => {
     const [state,dispatch] = useReducer(useAuthReducer,initialUser)
     return (
