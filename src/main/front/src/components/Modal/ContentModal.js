@@ -1,11 +1,11 @@
 import React from "react";
 
-import ItemUser from "./ItemUser";
-import InfoParagraph from "./InfoParagraph";
+import ItemUser from "../Contents/ItemUser";
+import InfoParagraph from "../ContentsInfo/InfoParagraph";
 
-import styles from "../styles/ContentDetail.module.css";
+import styles from "../../styles/ContentDetail.module.css";
 
-function ContentDetail(props) {
+function ContentModal(props) {
   const { onClick } = props;
   return (
     <div className={styles.bg} onClick={onClick}>
@@ -23,4 +23,4 @@ function ContentDetail(props) {
   );
 }
 
-export default ContentDetail;
+export default ContentModal;

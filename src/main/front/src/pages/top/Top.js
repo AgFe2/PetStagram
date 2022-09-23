@@ -1,5 +1,5 @@
 import React from "react";
-import Contents from "../../components/Contents";
+import Contents from "../../components/Contents/Contents";
 
 function Top(props) {
   return (

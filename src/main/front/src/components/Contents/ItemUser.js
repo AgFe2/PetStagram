@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../styles/Contents.module.css";
+import styles from "../../styles/Contents.module.css";
 
 function ItemUser(props) {
   return (

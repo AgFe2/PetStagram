@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 // components
 import ItemUser from "./ItemUser";
-import InfoParagraph from "./InfoParagraph";
+import InfoLiked from "../ContentsInfo/InfoLiked";
+import InfoParagraph from "../ContentsInfo/InfoParagraph";
+import InfoComments from "../ContentsInfo/InfoComments";
 
 // CSS
-import styles from "../styles/Contents.module.css";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import styles from "../../styles/Contents.module.css";
 
 export default function Contents(props) {
   return (
@@ -24,11 +25,11 @@ export default function Contents(props) {
             width="500px"
           />
         </div>
-        <InfoParagraph
-          comments={props.comments}
-          userId={props.userId}
-          liked={props.liked}
-        />
+        <div className={styles.itemInfo}>
+          <InfoLiked liked={props.liked} />
+          <InfoParagraph userId={props.userId} />
+          <InfoComments comments={props.comments} />
+        </div>
       </div>
     </>
   );
