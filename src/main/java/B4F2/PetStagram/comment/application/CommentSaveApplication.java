@@ -1,6 +1,6 @@
 package B4F2.PetStagram.comment.application;
 
-import B4F2.PetStagram.comment.entity.Comment;
+import B4F2.PetStagram.comment.entity.CommentEntity;
 import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class CommentSaveApplication {
 
     public String commentSave(Long feedId, CommentSaveDto commentSaveDto) {
 
-        Comment c = commentService.saveComment(feedId, commentSaveDto);
+        CommentEntity c = commentService.saveComment(feedId, commentSaveDto);
 
         //todo 댓글 getApi(새로고침)
 //        return "redirect:/feed/{feedId}";

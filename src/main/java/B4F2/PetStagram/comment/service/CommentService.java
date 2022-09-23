@@ -1,21 +1,14 @@
 package B4F2.PetStagram.comment.service;
 
-import B4F2.PetStagram.comment.entity.Comment;
-import B4F2.PetStagram.comment.model.CommentRequestDto;
+import B4F2.PetStagram.comment.entity.CommentEntity;
 import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.repository.CommentRepository;
-import B4F2.PetStagram.exception.CustomException;
-import B4F2.PetStagram.exception.ErrorCode;
-import B4F2.PetStagram.feed.entity.FeedEntity;
 import B4F2.PetStagram.feed.repository.FeedRepository;
-import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +18,9 @@ public class CommentService {
     private final FeedRepository feedRepository;
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Comment saveComment(Long feedId, CommentSaveDto commentSaveDto){
+    public CommentEntity saveComment(Long feedId, CommentSaveDto commentSaveDto){
 
-        return commentRepository.save(Comment.from(commentSaveDto, feedId));
+        return commentRepository.save(CommentEntity.from(commentSaveDto, feedId));
     }
 
 

@@ -1,7 +1,6 @@
 package B4F2.PetStagram.comment.model;
 
-import B4F2.PetStagram.comment.entity.Comment;
-import B4F2.PetStagram.feed.entity.FeedEntity;
+import B4F2.PetStagram.comment.entity.CommentEntity;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -14,11 +13,11 @@ public class CommentResponseDto {
     private String email;
     private Long feedId;
 
-    public CommentResponseDto(Comment comment) {
-        this.id = comment.getId();
-        this.context = comment.getContext();
-        this.createdAt = comment.getCreatedAt();
-        this.email = comment.getEmail();
-        this.feedId = comment.getFeedId();
+    public CommentResponseDto(CommentEntity commentEntity) {
+        this.id = commentEntity.getCommentId();
+        this.context = commentEntity.getContext();
+        this.createdAt = commentEntity.getCreatedAt();
+        this.email = commentEntity.getEmail();
+        this.feedId = commentEntity.getFeedId();
     }
 }

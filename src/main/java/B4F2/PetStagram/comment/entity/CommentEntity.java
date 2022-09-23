@@ -1,7 +1,6 @@
 package B4F2.PetStagram.comment.entity;
 
 import B4F2.PetStagram.comment.model.CommentSaveDto;
-import B4F2.PetStagram.feed.entity.FeedEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,12 +14,12 @@ import java.time.LocalDateTime;
 @Builder
 @Table(name = "comment")
 @Entity
-public class Comment {
+public class CommentEntity {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long commentId;
 
     private String context;
 
@@ -32,8 +31,8 @@ public class Comment {
     private LocalDateTime createdAt;
 
 
-    public static Comment from(CommentSaveDto commentSaveDto, Long feedId){
-        return Comment.builder()
+    public static CommentEntity from(CommentSaveDto commentSaveDto, Long feedId){
+        return CommentEntity.builder()
                 .context(commentSaveDto.getContext())
                 .email(commentSaveDto.getEmail())
                 .feedId(feedId)
