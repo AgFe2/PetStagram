@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+
+import ContentDetail from "./ContentDetail";
+
+// CSS
 import styles from "../styles/Contents.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export default function Contents(props) {
   const [likedBtn, setLikedBtn] = useState(false);
   const toggleLiked = () => setLikedBtn(!likedBtn);
+
+  const [openDetail, setOpenDetail] = useState(false);
+  const handleOpenDetail = () => {
+    setOpenDetail(true);
+  };
+  const handleCloseDetail = () => {
+    setOpenDetail(false);
+  };
 
   return (
     <>
@@ -37,9 +49,12 @@ export default function Contents(props) {
               description <span>...더보기</span>
             </p>
           </div>
-          <p className={styles.allComments}>
+          <button className={styles.allComments} onClick={handleOpenDetail}>
             {props.comments} view all comments
-          </p>
+          </button>
+          {openDetail == true ? (
+            <ContentDetail onClick={handleCloseDetail} />
+          ) : null}
         </div>
       </div>
     </>
