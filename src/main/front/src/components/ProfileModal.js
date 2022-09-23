@@ -12,8 +12,13 @@ function ProfileModal(props) {
             프로필
           </Link>
         </li>
-        <li className={styles.depthItem}>설정</li>
-        <li className={`${styles.depthItem} ${styles.depthLogout}`}>
+        <li className={styles.depthItem} onClick={(e) => e.stopPropagation()}>
+          설정
+        </li>
+        <li
+          className={`${styles.depthItem} ${styles.depthLogout}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           로그아웃
         </li>
       </ul>
