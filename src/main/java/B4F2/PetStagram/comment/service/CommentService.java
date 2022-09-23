@@ -32,8 +32,8 @@ public class CommentService {
 
 
     @Transactional
-    public void commentDelete(Long commentId){
-        commentRepository.deleteById(commentId);
+    public void commentDelete(Long id){
+        commentRepository.deleteById(id);
     }
 
 //    @Transactional

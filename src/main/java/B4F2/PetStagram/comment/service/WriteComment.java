@@ -14,7 +14,7 @@ public class WriteComment {
     public static class Request {
         private String context;
 
-        public Comment toEntity(String memberId, String feedId) {
+        public Comment toEntity(String email, String feedId) {
             return Comment.builder()
 //                    .memberId(memberId)
 //                    .feedId(feedId)
