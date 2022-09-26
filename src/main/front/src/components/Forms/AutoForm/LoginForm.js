@@ -16,15 +16,20 @@ const LoginForm = () => {
         email: Yup.string()
             .email().required(VALIDATE_TEXT.require),
         password: Yup.string()
-            .min(4, VALIDATE_TEXT.password)
-            .max(30, VALIDATE_TEXT.password)
             .required(VALIDATE_TEXT.require),
     })
+
+
+
     const handleSubmit = async (values,{ setSubmitting }) => {
-        const {email,password} = values;
+    
+        const data = {
+            email : values.email,
+            password:values.password
+        }
         try{
-            await API.post(`/member/login`,
-                JSON.stringify({ email:email, password:password})
+            await API.post('/member/login',
+                JSON.stringify(data),
             ).then(response =>{
                 response.json()
                 console.log('login')

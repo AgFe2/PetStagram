@@ -34,7 +34,7 @@ const SignUpForm = () => {
             password2:values.password2
         }
         try{
-            await axios.post(`${BASE_URL}/member/register`,
+            await axios.post('/member/register',
                 JSON.stringify(data),{
                     headers: { "Content-Type": `application/json`}
                     }
