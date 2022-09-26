@@ -49,7 +49,7 @@ public class FeedService {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
-       feed.setLike(feed.getLike() + 1L);
+       feed.setLikeCnt(feed.getLikeCnt() + 1L);
 
         feedRepository.save(feed);
 
@@ -63,10 +63,10 @@ public class FeedService {
 
         Long likeCnt;
 
-        if (feed.getLike() < 0) {
+        if (feed.getLikeCnt() < 0) {
             throw  new CustomException(ErrorCode.WRONG_APPROACH);
         } else {
-            feed.setLike(feed.getLike() - 1L);
+            feed.setLikeCnt(feed.getLikeCnt() - 1L);
         }
 
        feedRepository.save(feed);

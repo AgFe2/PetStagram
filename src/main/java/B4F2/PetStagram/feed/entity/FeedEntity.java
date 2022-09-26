@@ -28,7 +28,7 @@ public class FeedEntity{
 
     private LocalDateTime updateDit;
 
-    private Long like;
+    private Long likeCnt;
 
 //    차후 comment 파트와 함께 merge 되면 추가
 //    @OneToMany
