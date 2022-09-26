@@ -24,6 +24,10 @@ public class Comment {
 
     private String email;
 
+//    @ManyToOne
+//    @JoinColumn(name = "feed_id")
+//    private FeedEntity feedEntity;
+
     private Long feedId;
 
     private LocalDateTime createdAt;

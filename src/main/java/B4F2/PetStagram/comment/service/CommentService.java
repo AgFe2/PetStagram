@@ -5,16 +5,12 @@ import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.repository.CommentRepository;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
-import B4F2.PetStagram.feed.entity.FeedEntity;
 import B4F2.PetStagram.feed.repository.FeedRepository;
-import B4F2.PetStagram.member.entity.Member;
-import B4F2.PetStagram.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +28,18 @@ public class CommentService {
 
 
     @Transactional
-    public boolean commentDelete(Long commentId, String email) {
+    public boolean commentDelete(Long feedId, Long commentId, String email) {
+
+        feedRepository.findById(feedId).orElseThrow(
+                () -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
         commentRepository.findById(commentId).orElseThrow(
-                () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND)).getEmail().equals(email);
+                () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
+
+        //todo 작성자 동일인 비교
+        if (!email.equals(commentRepository.findByEmailAndCommentId(email,commentId).get().getEmail())) {
+            throw new CustomException(ErrorCode.COMMENT_DELETE_UNAUTHORIZED);
+        }
 
         commentRepository.deleteById(commentId);
 

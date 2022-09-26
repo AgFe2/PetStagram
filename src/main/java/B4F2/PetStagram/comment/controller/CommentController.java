@@ -20,18 +20,17 @@ public class CommentController {
     private final CommentService commentService;
 
 
-    @PostMapping("/create-comment")
+    @PostMapping("{feedId}/save-comment")
     public ResponseEntity<String> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
         return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
     }
 
 
+    @DeleteMapping("{feedId}/delete/{commentId}")
+    public boolean deleteFeed(@RequestParam Long feedId, Long commentId, HttpServletRequest request) {
 
-    @DeleteMapping("/delete/{commentId}")
-    public boolean deleteFeed(@RequestParam Long commentId, HttpServletRequest request) {
-
-        return commentService.commentDelete(commentId, (String) request.getAttribute("email"));
+        return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
 }
 

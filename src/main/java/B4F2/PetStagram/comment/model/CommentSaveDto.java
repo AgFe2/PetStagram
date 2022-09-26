@@ -16,9 +16,6 @@ public class CommentSaveDto {
 
     private String email;
 
-    //삭제?
-    //private Long feedId;
-
     private LocalDateTime createdAt;
 
 }
