@@ -30,7 +30,7 @@ const InfoHeader = () => {
     }
 
     return (
-        <haeder className={styles.InfoContainer}>
+        <div className={styles.InfoContainer}>
         <div className={styles.pictureConatiner}>
             <div className={styles.profilePicture} onClick={handleClick}>
                 <img className={styles.picture} src={img} size={200}/>
@@ -61,7 +61,7 @@ const InfoHeader = () => {
             </div>
         </section>
    
-    </haeder>
+    </div>
     );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../Button/Button';
 import styles from './AuthForm.module.css'
 import { Link, useNavigate } from 'react-router-dom';
-import {API} from '../../../utils/api';
+import {BASE_URL} from '../../../utils/api';
 import axios from 'axios'
 import { useQuery } from 'react-query';
 import {  Formik, Form } from 'formik'
@@ -13,20 +13,12 @@ const SignUpForm = () => {
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
-            .email('이메일 형식이 옳지 않습니다.')
             .required('이메일을 입력하세요'),
         name: Yup.string()
-            .min(3, '이름은 최소 3글자 이상입니다.')
             .required('이름을 입력해주세요'),
-        // phone: Yup.string()
-        //     .min(9, '핸드폰 번호가 너무 짧아요')
-        //     .max(15, '핸드폰 번호가 너무 길어요')
-        //     .phone('IN', false, '전화번호 형식이 옳지 않습니다.')
-        //     .required('전화번호를 입력하세요'),
+        phone: Yup.string()
+            .required('전화번호를 입력하세요'),
         password: Yup.string()
-            .matches(
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                '패스워드는 소문자,숫자,특수문자 혼용으로 최소 8자 이상 입력하세요')
             .required('비밀번호를 입력하세요'),
         password2: Yup.string()
             .oneOf([Yup.ref('password'), null],
@@ -34,11 +26,20 @@ const SignUpForm = () => {
     })
     const navigate =  useNavigate()
     const submit = async (values) => {
-        const {name,phone,email,password,password2} = values;
+        const data = {
+            name:values.name,
+            phone:values.phone,
+            email:values.email,
+            password:values.password,
+            password2:values.password2
+        }
         try{
-            await API.post('user/register',{
-            name,phone,email,password,password2
-            }).then((res) =>{
+            await axios.post(`${BASE_URL}/member/register`,
+                JSON.stringify(data),{
+                    headers: { "Content-Type": `application/json`}
+                    }
+            ).then((res) =>{
+                console.log( JSON.stringify(data))
                 console.log(res)
                 if(validationSchema){
                     alert(JSON.stringify(values,null,2))
@@ -50,6 +51,7 @@ const SignUpForm = () => {
             console.log(e)
         }
 
+        console.log(data)
     }
     return (
 

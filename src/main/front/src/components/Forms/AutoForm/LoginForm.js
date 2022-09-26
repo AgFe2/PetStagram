@@ -4,6 +4,7 @@ import styles from './AuthForm.module.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import { API } from '../../../utils/api';
 import axios from 'axios';
 import { BASE_URL } from '../../../utils/api';
 
@@ -22,16 +23,19 @@ const LoginForm = () => {
     const handleSubmit = async (values,{ setSubmitting }) => {
         const {email,password} = values;
         try{
-            await axios.post(`${BASE_URL}/login`,
-                {
-                    email:email,
-                    password:password
-                }
+            await API.post(`/member/login`,
+                JSON.stringify({ email:email, password:password})
             ).then(response =>{
+                response.json()
                 console.log('login')
                 console.log(response)
                 console.log(values.email)
-            })
+            }).then(
+                (token) => {
+                    localStorage.setItem("JWT", token.accessToken)
+                    alert('로그인되었습니다.')
+                }
+            )
             setTimeout(() =>{
                 navigate('/home')
             },2000)
