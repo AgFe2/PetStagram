@@ -25,6 +25,8 @@ public enum ErrorCode {
     DUPLICATE_MEMBER(HttpStatus.BAD_REQUEST,"이미 가입된 회원입니다."),
 
     EMAIL_AUTH_FAIL(HttpStatus.BAD_REQUEST,"이메일 인증에 실패 했습니다."),
+
+    COMMENT_NOT_FOUND(HttpStatus.BAD_REQUEST,"해당 댓글을 찾을 수 없습니다.")
     ;
 
     private final HttpStatus httpStatus;

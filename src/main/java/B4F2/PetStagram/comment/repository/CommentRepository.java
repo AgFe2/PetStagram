@@ -1,9 +1,22 @@
 package B4F2.PetStagram.comment.repository;
 
-import B4F2.PetStagram.comment.entity.CommentEntity;
+import B4F2.PetStagram.comment.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
+import java.util.List;
 
-    //피드아이디 기준으로 피드에딸려있는 코멘트 리스트 불러오는 쿼리문
+@Repository
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+
+    //todo feed에 넘겨줄 리스트..에러 & 댓글 조회시 사용
+//    @Query(value = "select comment c from c where c.feed_id = :id")
+//    List<Comment> findCommentsFeedId(@Param("id") Long feedId);
+
+//    @Query("select c from comment c where c.email = :email")
+//    String findCommentsEmail(@Param("email") String email);
+
+
 }

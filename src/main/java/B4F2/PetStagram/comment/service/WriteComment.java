@@ -1,6 +1,6 @@
 package B4F2.PetStagram.comment.service;
 
-import B4F2.PetStagram.comment.entity.CommentEntity;
+import B4F2.PetStagram.comment.entity.Comment;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,10 +14,10 @@ public class WriteComment {
     public static class Request {
         private String context;
 
-        public CommentEntity toEntity(String email, Long feedId) {
-            return CommentEntity.builder()
-                    .email(email)
-                    .feedId(feedId)
+        public Comment toEntity(String email, String feedId) {
+            return Comment.builder()
+//                    .memberId(memberId)
+//                    .feedId(feedId)
                     .context(context)
                     .createdAt(LocalDateTime.now())
                     .build();
@@ -33,12 +33,11 @@ public class WriteComment {
 
         private String email;
         private String context;
-        private Long feedId;
 
-        public Response form(String email, String context, Long feedId){
+        public Response form( /*String feedId,*/String email, String context){
             return Response.builder()
                     .email(email)
-                    .feedId(feedId)
+//                    .feedId(feedId)
                     .context(context)
                     .build();
         }
