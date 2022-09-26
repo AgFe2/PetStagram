@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +18,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     //todo feed에 넘겨줄 리스트 & 댓글 조회시 사용..에러
 //    @Query(value = "select comment c from c where c.feed_id = :id")
 //    List<Comment> findCommentsByFeedId(@Param("id") Long feedId);
-
-
-//    @Query("select c from comment c where c.email = :email")
-//    String findCommentsEmail(@Param("email") String email);
 
 
 }

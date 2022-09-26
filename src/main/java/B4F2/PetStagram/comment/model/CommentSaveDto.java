@@ -1,6 +1,5 @@
 package B4F2.PetStagram.comment.model;
 
-import B4F2.PetStagram.feed.entity.FeedEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

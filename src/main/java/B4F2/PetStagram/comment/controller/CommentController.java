@@ -21,9 +21,10 @@ public class CommentController {
 
 
     @PostMapping("{feedId}/save-comment")
-    public ResponseEntity<String> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
+    public ResponseEntity<?> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
         return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
+//        return ResponseEntity.ok(commentService.saveComment(feedId, commentSaveDto, (String) request.getAttribute("email")));
     }
 
 
