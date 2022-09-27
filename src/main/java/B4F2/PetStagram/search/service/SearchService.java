@@ -20,8 +20,8 @@ public class SearchService {
     private final MemberRepository memberRepository;
     private final TagRepository hashtagRepository;
 
-    public List<Member> getByEmail(String email) {
-        return memberRepository.findAllByEmailContains(email);
+    public List<Member> searchByEmail(String email) {
+        return memberRepository.searchByEmail(email);
     }
 
     public List<TagEntity> getByTagTitle(String hashtagContext) {

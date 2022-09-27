@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long>, MemberRepositoryCustom {
 
     Optional<Member> findByEmail(String email);
 
@@ -30,6 +30,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 
     List<Member> findAllByEmailContains(String email);
+
+    List<Member> searchByEmail(String keyword);
 
 
 }
