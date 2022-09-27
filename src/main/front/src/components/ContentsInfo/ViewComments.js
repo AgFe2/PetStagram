@@ -4,7 +4,7 @@ import ContentModal from "../Modal/ContentModal";
 
 import styles from "../../styles/Contents.module.css";
 
-function InfoComments(props) {
+function ViewComments(props) {
   const [openDetail, setOpenDetail] = useState(false);
   const handleOpenDetail = () => {
     setOpenDetail(true);
@@ -22,4 +22,4 @@ function InfoComments(props) {
   );
 }
 
-export default InfoComments;
+export default ViewComments;

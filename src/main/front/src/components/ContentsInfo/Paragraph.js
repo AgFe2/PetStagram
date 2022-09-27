@@ -3,17 +3,15 @@ import React, { useState } from "react";
 // CSS
 import styles from "../../styles/Contents.module.css";
 
-function InfoParagraph(props) {
+function Paragraph(props) {
   return (
     <>
       <div className={styles.infoParagraph}>
         <h4 className={styles.paragraphName}>{props.userId}</h4>
-        <p className={styles.paragraphDesc}>
-          description <span>...더보기</span>
-        </p>
+        <p className={styles.paragraphDesc}>description</p>
       </div>
     </>
   );
 }
 
-export default InfoParagraph;
+export default Paragraph;

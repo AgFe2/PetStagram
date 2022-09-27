@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../../styles/Contents.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-function InfoLiked(props) {
+function Liked(props) {
   const [likedBtn, setLikedBtn] = useState(false);
   const toggleLiked = () => setLikedBtn(!likedBtn);
 
@@ -17,4 +17,4 @@ function InfoLiked(props) {
   );
 }
 
-export default InfoLiked;
+export default Liked;

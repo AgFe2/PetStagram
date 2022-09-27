@@ -2,9 +2,9 @@ import React from "react";
 
 // components
 import ItemUser from "./ItemUser";
-import InfoLiked from "../ContentsInfo/InfoLiked";
-import InfoParagraph from "../ContentsInfo/InfoParagraph";
-import InfoComments from "../ContentsInfo/InfoComments";
+import Liked from "../ContentsInfo/Liked";
+import Paragraph from "../ContentsInfo/Paragraph";
+import ViewComments from "../ContentsInfo/ViewComments";
 
 // CSS
 import styles from "../../styles/Contents.module.css";
@@ -14,7 +14,7 @@ export default function Contents(props) {
     <>
       {/* array.map(item => ( <li> ... </li>))
       몇 개 load할지 정한 뒤, 그 이상 스크롤할 경우 게시글 추가업로드 */}
-      <div className={styles.contentsItem}>
+      <div className={styles.Item}>
         <ItemUser userId={props.userId} />
         <div>
           <img
@@ -26,9 +26,9 @@ export default function Contents(props) {
           />
         </div>
         <div className={styles.itemInfo}>
-          <InfoLiked liked={props.liked} />
-          <InfoParagraph userId={props.userId} />
-          <InfoComments comments={props.comments} />
+          <Liked liked={props.liked} />
+          <Paragraph userId={props.userId} />
+          <ViewComments comments={props.comments} />
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // components
 import SearchBar from "./SearchBar";
-import ProfileModal from "./ProfileModal";
+import ProfileModal from "./Modal/ProfileModal";
 
 // CSS & ICON
 import styles from "../styles/Header.module.css";
