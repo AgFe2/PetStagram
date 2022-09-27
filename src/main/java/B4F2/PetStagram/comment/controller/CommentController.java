@@ -41,7 +41,7 @@ public class CommentController {
 
 
     @GetMapping("/{feedId}/comments")
-    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 10) Pageable pageable) {
+    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 20) Pageable pageable) {
 
         return commentService.findAll(pageable, feedId);
     }
