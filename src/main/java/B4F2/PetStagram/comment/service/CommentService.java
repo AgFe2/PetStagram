@@ -8,6 +8,9 @@ import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.feed.repository.FeedRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,12 +53,10 @@ public class CommentService {
         return true;
     }
 
-    @Transactional(readOnly = true)
-    public List<CommentDto> getComments(Long feedId) {
-        List<Comment> comments = commentRepository.findAllByFeedId(feedId);
-        List<CommentDto> commentDtos = new ArrayList<>();
 
-        comments.forEach(s -> commentDtos.add(CommentDto.toDto(s)));
-        return commentDtos;
+
+    public Slice<Comment> findAll(Pageable pageable, Long feedId) {
+
+     return commentRepository.findAllByFeedIdOrderByCommentIdDesc(feedId,pageable);
     }
 }

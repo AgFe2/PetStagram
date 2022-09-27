@@ -1,9 +1,14 @@
 package B4F2.PetStagram.comment.controller;
 
 import B4F2.PetStagram.comment.application.CommentSaveApplication;
+import B4F2.PetStagram.comment.entity.Comment;
 import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +41,11 @@ public class CommentController {
 
 
     @GetMapping("/{feedId}/comments")
-    public ResponseEntity<?> getComments(@RequestParam Long feedId) {
+    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 10) Pageable pageable) {
 
-        return ResponseEntity.ok(commentService.getComments(feedId));
+        return commentService.findAll(pageable, feedId);
     }
+
 
 }
 
