@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Slf4j
 @RestController
 @RequestMapping("/feed")
@@ -20,16 +22,16 @@ public class FeedController {
 
 
     @PostMapping("/write")
-    public ResponseEntity<?> writeFeed(@RequestBody WriteFeed.Request writeFeed, Authentication auth){
+    public ResponseEntity<?> writeFeed(@RequestBody WriteFeed.Request writeFeed, HttpServletRequest request){
 
-        return ResponseEntity.ok(feedService.writeFeed(writeFeed, auth.getName()));
+        return ResponseEntity.ok(feedService.writeFeed(writeFeed,(String)request.getAttribute("email")));
 
     }
 
     @DeleteMapping("/delete")
-    public boolean deleteFeed(@RequestParam Long feedId, Authentication auth) {
+    public boolean deleteFeed(@RequestParam Long feedId, HttpServletRequest request) {
 
-        return feedService.deleteFeed(feedId, auth.getName());
+        return feedService.deleteFeed(feedId, (String)request.getAttribute("email"));
     }
 
     @GetMapping("/like")

@@ -4,10 +4,14 @@ import B4F2.PetStagram.member.util.Aes256Util;
 import B4F2.PetStagram.member.domain.MemberVo;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Objects;
 
+@Configuration
 public class JwtAuthenticationProvider {
 
     @Value("{spring.jwt.secret}")
@@ -15,6 +19,10 @@ public class JwtAuthenticationProvider {
 
     private long tokenValidTime = 1000L * 60 * 60 * 24; //1일
 
+    @PostConstruct
+    protected void init() {
+        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+    }
 
     //방법1 테스트
 //    public String getUserEmail(String token){
@@ -37,10 +45,9 @@ public class JwtAuthenticationProvider {
 //        }
 //    }
 
-    public String createToken(String userPk, Long id){
-        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(userPk)).setId(Aes256Util.encrypt(id.toString()));
+    public String createToken(String email){
+        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
         Date now = new Date();
-        claims.put("email",userPk);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -59,10 +66,16 @@ public class JwtAuthenticationProvider {
             return false;
         }
     }
-    // 아이디와 이메일 두개를 저장해서 이걸 기반으로 동작
+
+    //토큰에서 값 추출
+    public String getSubject(String token) {
+        return Aes256Util.decrypt(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject());
+    }
+
+    // 이메일 저장해서 이걸 기반으로 동작
     public MemberVo getMemberVo(String token){
         Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-        return new MemberVo(Long.valueOf(Objects.requireNonNull(Aes256Util.decrypt(c.getId()))) ,Aes256Util.decrypt(c.getSubject()));
+        return new MemberVo((Aes256Util.decrypt(c.getSubject())));
     }
 }
 

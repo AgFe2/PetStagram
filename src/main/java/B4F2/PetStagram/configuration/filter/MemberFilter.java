@@ -24,7 +24,7 @@ public class MemberFilter implements Filter {
         }
 
         MemberVo vo = jwtAuthenticationProvider.getMemberVo(token);
-        memberService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
+        memberService.findByEmail(vo.getEmail()).orElseThrow(
 
                 ()->new ServletException("Invalid User")
         );

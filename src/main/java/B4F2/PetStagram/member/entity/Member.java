@@ -1,5 +1,6 @@
 package B4F2.PetStagram.member.entity;
 
+import B4F2.PetStagram.member.domain.SignInForm;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,8 +27,17 @@ public class Member {
     private LocalDateTime regDt;
     private boolean emailAuthYn;
 
-    private Integer followerCount;
-    private Integer followingCount;
+
+
+    public Member(SignInForm form) {
+        this.email = form.getEmail();
+        this.password = form.getPassword();
+    }
+
+    public Member(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public void emailVerifiedSuccess() {
         this.emailAuthYn = true;

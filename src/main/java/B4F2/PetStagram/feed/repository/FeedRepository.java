@@ -8,12 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeedRepository extends JpaRepository<FeedEntity, Long> {
-
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE Feed f set f.like = :likeCnt where f.id = :feedId")
-    void likeFeed(Long likeCnt, Long feedId);
-
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE Feed f set f.like = :likeCnt where f.id = :feedId")
-    void unLikeFeed(Long likeCnt, Long feedId);
 }
