@@ -1,9 +1,9 @@
 package B4F2.PetStagram.search.service;
 
-import B4F2.PetStagram.feed.model.Hashtag;
-import B4F2.PetStagram.feed.repository.HashtagRepository;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
+import B4F2.PetStagram.tag.entity.TagEntity;
+import B4F2.PetStagram.tag.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.Trie;
 import org.springframework.stereotype.Service;
@@ -18,14 +18,14 @@ public class SearchService {
 
     private final Trie trie;
     private final MemberRepository memberRepository;
-    private final HashtagRepository hashtagRepository;
+    private final TagRepository hashtagRepository;
 
     public List<Member> getByEmail(String email) {
         return memberRepository.findAllByEmailContains(email);
     }
 
-    public Optional<Hashtag> getByHashtagContext(String hashtagContext) {
-        return hashtagRepository.findAllByHashtagContext(hashtagContext);
+    public List<TagEntity> getByTagTitle(String hashtagContext) {
+        return hashtagRepository.findAllByTagTitleContains(hashtagContext);
     }
 
     public void addAutocompleteKeyword(String keyword) {

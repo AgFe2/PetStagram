@@ -1,12 +1,11 @@
 package B4F2.PetStagram.search.controller;
 
-import B4F2.PetStagram.feed.model.Hashtag;
 import B4F2.PetStagram.search.domain.SearchParam;
 import B4F2.PetStagram.search.service.SearchService;
 import B4F2.PetStagram.member.entity.Member;
+import B4F2.PetStagram.tag.entity.TagEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +37,8 @@ public class SearchController {
             model.addAttribute("list", context);
 
         } else if (type.equals("tag")) {
-            Optional<Hashtag> context = searchService.getByHashtagContext(value);
+            List<TagEntity> context = searchService.getByTagTitle(value);
+            System.out.println(context);
             model.addAttribute("list", context);
 
         }
