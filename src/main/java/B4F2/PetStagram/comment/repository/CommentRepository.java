@@ -13,11 +13,12 @@ import java.util.Optional;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    Optional<Member> findByEmailAndCommentId(String email, long commentId);
+    Optional<Member> findByEmailAndCommentId(String email, Long commentId);
 
     //todo feed에 넘겨줄 리스트 & 댓글 조회시 사용..에러
 //    @Query(value = "select comment c from c where c.feed_id = :id")
 //    List<Comment> findCommentsByFeedId(@Param("id") Long feedId);
 
+    List<Comment> findAllByFeedId(Long feedId);
 
 }

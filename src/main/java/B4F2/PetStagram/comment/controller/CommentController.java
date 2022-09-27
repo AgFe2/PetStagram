@@ -33,6 +33,14 @@ public class CommentController {
 
         return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
+
+
+    @GetMapping("/{feedId}/comments")
+    public ResponseEntity<?> getComments(@RequestParam Long feedId) {
+
+        return ResponseEntity.ok(commentService.getComments(feedId));
+    }
+
 }
 
 

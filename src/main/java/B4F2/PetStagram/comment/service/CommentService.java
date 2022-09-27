@@ -1,6 +1,7 @@
 package B4F2.PetStagram.comment.service;
 
 import B4F2.PetStagram.comment.entity.Comment;
+import B4F2.PetStagram.comment.model.CommentDto;
 import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.repository.CommentRepository;
 import B4F2.PetStagram.exception.CustomException;
@@ -10,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -46,4 +50,12 @@ public class CommentService {
         return true;
     }
 
+    @Transactional(readOnly = true)
+    public List<CommentDto> getComments(Long feedId) {
+        List<Comment> comments = commentRepository.findAllByFeedId(feedId);
+        List<CommentDto> commentDtos = new ArrayList<>();
+
+        comments.forEach(s -> commentDtos.add(CommentDto.toDto(s)));
+        return commentDtos;
+    }
 }

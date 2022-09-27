@@ -2,6 +2,7 @@ package B4F2.PetStagram.comment.entity;
 
 import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.feed.entity.FeedEntity;
+import B4F2.PetStagram.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,11 +25,15 @@ public class Comment {
 
     private String email;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    private Long feedId;
+
 //    @ManyToOne
 //    @JoinColumn(name = "feed_id")
 //    private FeedEntity feedEntity;
-
-    private Long feedId;
 
     private LocalDateTime createdAt;
 
