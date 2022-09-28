@@ -4,19 +4,18 @@ import styles from './AuthForm.module.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
-import { API } from '../../../utils/api';
 import axios from 'axios';
-import { BASE_URL } from '../../../utils/api';
+
+
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const VALIDATE_TEXT = '빈칸이 없게 입력하세요'
 
     const LoginValidSchema = Yup.object().shape({
         email: Yup.string()
-            .email().required(VALIDATE_TEXT.require),
-        password: Yup.string()
-            .required(VALIDATE_TEXT.require),
+            .email().required('이메일을 입력하세요'),
+        password1: Yup.string()
+            .required('비밀번호를 채워주세요'),
     })
 
 
@@ -25,29 +24,31 @@ const LoginForm = () => {
     
         const data = {
             email : values.email,
-            password:values.password
+            password1:values.password1
         }
         try{
-            await API.post('/member/login',
-                JSON.stringify(data),
+            await axios.post(`user/member/login`,
+                JSON.stringify(data),{headers:{'Content-Type':'application/json'}}
             ).then(response =>{
-                response.json()
-                console.log('login')
-                console.log(response)
-                console.log(values.email)
-            }).then(
+                axios.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${response.data.accessToken}`;
+                return response.data
+            })
+            .then(
                 (token) => {
                     localStorage.setItem("JWT", token.accessToken)
                     alert('로그인되었습니다.')
                 }
             )
-            setTimeout(() =>{
-                navigate('/home')
-            },2000)
+            // setTimeout(() =>{
+            //     navigate('/my')
+            // },2000)
         }
         catch(e){
-            console.log(e);
-            setSubmitting(true)
+            console.log(e.response.data);
+            alert('아이디가 존재하지않습니다.')
+            setSubmitting(true);
         }
     }
 
@@ -56,7 +57,7 @@ const LoginForm = () => {
             initialValues={
                 {
                     email: '',
-                    password: ''
+                    password1: ''
                 }
             }
             validationSchema={LoginValidSchema}
@@ -76,18 +77,18 @@ const LoginForm = () => {
                             value={values.email}
                             onChange={handleChange}
                         />
-
+                        <span>{errors.email}</span>
                         <input
                             className={styles.input}
                             type="password"
                             id='password'
-                            name='password'
+                            name='password1'
                             placeholder="패스워드를 입력하세요"
-                            value={values.password}
+                            value={values.password1}
                             onChange={handleChange}
                         />
-
-                        <Button disabled ={isSubmitting || !isValid}type="submit">로그인</Button>
+                        <span>{errors.password1}</span>
+                        <Button className={styles.button}  disabled ={isSubmitting || !isValid}type="submit">로그인</Button>
                         <div className={styles.signUp}>
                             <h4>아직도 회원이 아니신가요? &nbsp;</h4>
                             <Link to="/register"><span>Sign Up</span></Link>

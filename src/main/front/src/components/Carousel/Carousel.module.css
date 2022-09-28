@@ -1,0 +1,68 @@
+/* Stories 부분 */
+
+.StoryList{
+    width: 90%;
+    max-width: 100rem;
+    height: 6rem;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.1rem;
+    padding-left: 1.5rem;
+    overflow-x: scroll;
+    overflow-y:hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background-color: #f7ce37;
+}
+.StoryList::-webkit-scrollbar{
+    display: none;
+}
+.followerItem{
+    width: 70px;
+    height: 70px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:none;
+}
+.followerImg{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #fefefe;
+}
+.followerName{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    border: 1px solid #000;
+    margin: 5px 100px;
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+}
+.scrollArrow{
+    cursor: pointer;
+    filter:drop-shadow(0 0 0 #fff);
+    width: 30px;
+    height: 30px;
+}
+
+.showLeft{
+    display: none;
+}

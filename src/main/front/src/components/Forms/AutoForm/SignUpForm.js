@@ -9,6 +9,7 @@ import {  Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 
+
 const SignUpForm = () => {
 
     const validationSchema = Yup.object().shape({
@@ -125,7 +126,7 @@ const SignUpForm = () => {
                         />
                         <span role="alert">
                             {errors.password2}</span>
-                        <Button type="submit">입력완료</Button>
+                        <Button className={styles.button}  type="submit">입력완료</Button>
                         <div className={styles.backToLogin}>
                             <h4>이미 회원이신가요?</h4>
                             <Link to='/' className={styles.back}>LOGIN 페이지로</Link>
