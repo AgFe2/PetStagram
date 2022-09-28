@@ -35,6 +35,8 @@ dependencies {
 	//파일 업로드 관련
 	implementation 'commons-io:commons-io:2.11.0'
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	// redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'

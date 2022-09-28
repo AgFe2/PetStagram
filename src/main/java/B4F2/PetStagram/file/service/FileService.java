@@ -3,6 +3,7 @@ package B4F2.PetStagram.file.service;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.file.domain.FileDto;
+import B4F2.PetStagram.file.domain.ResultDto;
 import B4F2.PetStagram.file.entity.FileEntity;
 import B4F2.PetStagram.file.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.apache.catalina.util.ToStringUtil;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -84,12 +88,14 @@ public class FileService {
     }
 
     @Transactional
-    public void uploadFile(Long feedId, MultipartFile file) {
+    public ResponseEntity<List<ResultDto>> uploadFile(Long feedId, MultipartFile file) {
 
         if(!file.getContentType().startsWith("image")) {
             log.warn("this file is not image type");
-            return;
+            return  new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+
+        List<ResultDto> resultDTOList = new ArrayList<>();
 
         //파일명 (경로포함)
         String originalName = file.getOriginalFilename();
@@ -108,14 +114,16 @@ public class FileService {
         Path savePath = Paths.get(saveName);
         //Paths.get() 메서드는 특정 경로의 파일 정보를 가져옵니다.(경로 정의하기)
 
-        fileRepository.save(new FileDto.fileDto().form(feedId, fileName, uploadPath));
+        fileRepository.save(new FileDto.fileDto().form(feedId, saveName, uploadPath));
 
         try{
-            //uploadFile에 파일을 업로드 하
             file.transferTo(savePath);
+            resultDTOList.add(new ResultDto(fileName,feedId,uuid,folderPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
 
     }
     private String makeFolder(){
@@ -136,7 +144,7 @@ public class FileService {
 
     public ResponseEntity<byte[]> getFile(Long feedId) {
 
-        ResponseEntity<byte[]> result = null;
+        ResponseEntity<byte[]> result;
 
         FileEntity fileEntity = fileRepository.findByFeedId(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.WRONG_APPROACH));
@@ -144,16 +152,17 @@ public class FileService {
         try{
             String srcFileName = URLDecoder.decode(fileEntity.getFilename(),"UTF-8");
             log.info("filename : "+srcFileName);
-            File file = new File(uploadPath + File.separator + srcFileName);
+            File file = new File(File.separator + srcFileName);
             log.info("file : "+file);
             HttpHeaders header = new HttpHeaders();
 
             //MIME 타입 처리
             header.add("Content-Type", Files.probeContentType(file.toPath()));
 
-            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header, HttpStatus.OK);
+//            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),HttpStatus.OK);
 
-        }catch (Exception e){
+        }catch (IOException e){
             log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

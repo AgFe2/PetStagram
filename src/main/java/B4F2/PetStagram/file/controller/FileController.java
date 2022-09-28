@@ -1,8 +1,10 @@
 package B4F2.PetStagram.file.controller;
 
+import B4F2.PetStagram.file.domain.ResultDto;
 import B4F2.PetStagram.file.service.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -20,11 +23,9 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam Long feedId , MultipartFile file) throws IOException{
+    public ResponseEntity<List<ResultDto>> uploadFile(@RequestParam Long feedId , MultipartFile file){
 
-        fileService.uploadFile(feedId, file);
-
-        return null;
+        return fileService.uploadFile(feedId, file);
     }
 
     @GetMapping("/list")
