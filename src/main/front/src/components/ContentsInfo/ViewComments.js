@@ -17,7 +17,9 @@ function ViewComments(props) {
       <button className={styles.allComments} onClick={handleOpenDetail}>
         {props.comments} view all comments
       </button>
-      {openDetail == true ? <ContentModal onClick={handleCloseDetail} /> : null}
+      {openDetail === true ? (
+        <ContentModal handleCloseDetail={handleCloseDetail} />
+      ) : null}
     </>
   );
 }
