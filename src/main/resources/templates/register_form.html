@@ -5,7 +5,7 @@
     <title>회원가입</title>
 </head>
 <body>
-<form th:action="@{/member/register}" th:object="${memberRegisterForm}" method="post">
+<form th:action="${/member/register}" th:object="${memberRegisterForm}" method="post">
     <div>
         <input type="email" name="email" placeholder="아이디(이메일) 입력" required/>
     </div>
