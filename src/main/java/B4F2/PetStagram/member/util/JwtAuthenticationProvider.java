@@ -24,27 +24,6 @@ public class JwtAuthenticationProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    //방법1 테스트
-//    public String getUserEmail(String token){
-//        Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-//
-//        return new String(Objects.toString(Aes256Util.decrypt(c.getId())));
-//        return new String(Objects.toString(Aes256Util.decrypt(c.getSubject())));
-//    }
-
-    //방법2 테스트
-//    public String getUserEmail(String token){
-//        return this.parseClaims(token).getSubject();
-//    }
-//
-//    private Claims parseClaims(String token) {
-//        try {
-//            return Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
-//        } catch (ExpiredJwtException e) {
-//            return e.getClaims();
-//        }
-//    }
-
     public String createToken(String email){
         Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
         Date now = new Date();
