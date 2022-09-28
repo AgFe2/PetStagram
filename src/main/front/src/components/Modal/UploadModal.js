@@ -1,4 +1,4 @@
-import React, { useEffect, useState, uesRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import ItemUser from "../Contents/ItemUser";
@@ -9,12 +9,12 @@ function UploadModal(props) {
   const { handleCloseUpload } = props;
 
   // 업로드 이미지 읽기
-  const [files, setFiles] = useState("");
-  const onLoadFile = (e) => {
-    const file = e.target.files;
-    console.log(file);
-    setFiles(file);
-  };
+  // const [files, setFiles] = useState("");
+  // const onLoadFile = (e) => {
+  //   const file = e.target.files;
+  //   console.log(file);
+  //   setFiles(file);
+  // };
 
   // 이미지 서버로 전송 : 최종으로 컨텐츠 등록하는 버튼에 심어주기
   const handleClick = (e) => {
@@ -31,28 +31,18 @@ function UploadModal(props) {
   };
 
   // 이미지 미리보기
-  useEffect(() => {
-    preview();
+  const [imgSrc, setImgSrc] = useState("");
 
-    return () => preview();
-  });
-
-  const preview = () => {
-    if (!files) return false;
-
-    const imgEL = document.querySelector(`.imgBox`);
-
+  const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
 
-    reader.onload = () =>
-      (imgEL.style.backgroundImage = `url(${reader.result})`);
-
-    reader.readAsDataURL(files[0]);
-  };
-
-  const StyleImgBox = {
-    width: "100%",
-    height: "auto",
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImgSrc(reader.result);
+        resolve();
+      };
+    });
   };
 
   // textarea
@@ -73,7 +63,7 @@ function UploadModal(props) {
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
         <div className={styles.top}>
-          <h4 className={styles.title}>create and post</h4>
+          <h4 className={styles.title}>Create and Post</h4>
           <button type="submit" className={styles.shareBtn}>
             share
           </button>
@@ -81,15 +71,18 @@ function UploadModal(props) {
         <div className={styles.main}>
           <div className={styles.imgWrapper}>
             <div className={styles.customImg}>
-              <strong>업로드된 이미지</strong>
-              <div className="imgBox" style={StyleImgBox} />
+              <div className={styles.imgPreview}>
+                {imgSrc && <img src={imgSrc} alt="preview-image"></img>}
+              </div>
             </div>
             <form className={styles.form}>
               <input
                 type="file"
                 accept="image/*"
                 id="image"
-                onChange={onLoadFile}
+                onChange={(e) => {
+                  encodeFileToBase64(e.target.files[0]);
+                }}
               ></input>
               <label htmlFor="image"></label>
             </form>
