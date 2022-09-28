@@ -54,6 +54,13 @@ function UploadModal(props) {
     width: "100%",
     height: "auto",
   };
+
+  // textarea
+  const [textarea, setTextarea] = useState("");
+  const handleTextareaValue = (e) => {
+    setTextarea(e.target.value);
+  };
+
   return (
     <div
       className={styles.bg}
@@ -92,6 +99,8 @@ function UploadModal(props) {
             <input
               type="textarea"
               placeholder="본문 작성 부문"
+              value={textarea}
+              onChange={(e) => handleTextareaValue(e)}
               className={styles.infoTxt}
             ></input>
           </div>

@@ -83,4 +83,5 @@
 .infoTxt {
   padding: 16px 8px;
   height: 60%;
+  resize: none;
 }

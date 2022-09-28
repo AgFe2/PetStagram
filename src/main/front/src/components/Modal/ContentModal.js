@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
@@ -22,6 +22,12 @@ function ContentModal(props) {
       window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     };
   }, []);
+
+  // commentValue
+  const [commentValue, setCommentValue] = useState("");
+  const onChangeComment = (e) => {
+    setCommentValue(e.target.value);
+  };
 
   const { handleCloseDetail } = props;
   return (
@@ -48,6 +54,8 @@ function ContentModal(props) {
                 type="text"
                 placeholder="댓글 달기..."
                 className={styles.inputComment}
+                value={commentValue}
+                onChange={onChangeComment}
               />
               <button type="button" className={styles.inputButton}>
                 게시
