@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import ItemUser from "../Contents/ItemUser";
 
@@ -9,7 +9,7 @@ function UploadModal(props) {
   const { handleCloseUpload } = props;
 
   // 업로드 이미지 읽기
-  const [files, setFiles] = useState("");
+  // const [files, setFiles] = useState("");
   // const onLoadFile = (e) => {
   //   const file = e.target.files;
   //   console.log(file);
@@ -17,18 +17,18 @@ function UploadModal(props) {
   // };
 
   // 이미지 서버로 전송 : 최종으로 컨텐츠 등록하는 버튼에 심어주기
-  const handleClick = (e) => {
-    const formdata = new FormData();
-    formdata.append("uploadImage", files[0]);
+  // const handleClick = (e) => {
+  //   const formdata = new FormData();
+  //   formdata.append("uploadImage", files[0]);
 
-    const config = {
-      Headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
+  //   const config = {
+  //     Headers: {
+  //       "content-type": "multipart/form-data",
+  //     },
+  //   };
 
-    axios.post(`api`, formdata, config);
-  };
+  //   axios.post(`api`, formdata, config);
+  // };
 
   // 이미지 미리보기
   const [imgSrc, setImgSrc] = useState("");
@@ -72,7 +72,7 @@ function UploadModal(props) {
           <div className={styles.imgWrapper}>
             <div className={styles.customImg}>
               <div className={styles.imgPreview}>
-                {imgSrc && <img src={imgSrc} alt="preview-image"></img>}
+                {imgSrc && <img src={imgSrc} alt="preview-img"></img>}
               </div>
             </div>
             <form className={styles.form}>
