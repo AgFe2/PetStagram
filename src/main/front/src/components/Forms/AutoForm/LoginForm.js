@@ -7,7 +7,6 @@ import * as Yup from 'yup'
 import axios from 'axios';
 
 
-
 const LoginForm = () => {
     const navigate = useNavigate();
 
@@ -27,8 +26,9 @@ const LoginForm = () => {
             password1:values.password1
         }
         try{
-            await axios.post(`user/member/login`,
-                JSON.stringify(data),{headers:{'Content-Type':'application/json'}}
+            await axios.post('/member/login',
+                JSON.stringify(data),
+                {headers:{'Content-Type':'application/json'}}
             ).then(response =>{
                 axios.defaults.headers.common[
                     "Authorization"
@@ -41,9 +41,9 @@ const LoginForm = () => {
                     alert('로그인되었습니다.')
                 }
             )
-            // setTimeout(() =>{
-            //     navigate('/my')
-            // },2000)
+            setTimeout(() =>{
+                navigate('/my')
+            },2000)
         }
         catch(e){
             console.log(e.response.data);
@@ -51,13 +51,12 @@ const LoginForm = () => {
             setSubmitting(true);
         }
     }
-
     return (
         <Formik
             initialValues={
                 {
                     email: '',
-                    password1: ''
+                    password: ''
                 }
             }
             validationSchema={LoginValidSchema}
@@ -84,7 +83,7 @@ const LoginForm = () => {
                             id='password'
                             name='password1'
                             placeholder="패스워드를 입력하세요"
-                            value={values.password1}
+                            value={values.password}
                             onChange={handleChange}
                         />
                         <span>{errors.password1}</span>
