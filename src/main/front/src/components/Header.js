@@ -54,9 +54,9 @@ export default function Header() {
 
   // uploadModal
   const [uploadModal, setUploadModal] = useState(false);
-  const handleOpenUpload = () => {
-    setUploadModal(true);
-  };
+  // const handleOpenUpload = () => {
+  //  setUploadModal(true);
+  // };
   const handleCloseUpload = () => {
     setUploadModal(false);
   };
