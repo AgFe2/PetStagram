@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // components
 import SearchBar from "./SearchBar";
 import ProfileModal from "./Modal/ProfileModal";
+import UploadModal from "./Modal/UploadModal";
 
 // CSS & ICON
 import styles from "../styles/Header.module.css";
@@ -51,7 +52,17 @@ export default function Header() {
       .includes(search.toLocaleLowerCase());
   });
 
-  const [modal, setModal] = useState(false);
+  // uploadModal
+  const [uploadModal, setUploadModal] = useState(false);
+  const handleOpenUpload = () => {
+    setUploadModal(true);
+  };
+  const handleCloseUpload = () => {
+    setUploadModal(false);
+  };
+
+  // profileModal
+  const [profileDepth, setProfileDepth] = useState(false);
 
   return (
     <header>
@@ -74,19 +85,25 @@ export default function Header() {
               <p className="sr-only">Top</p>
               <FaIcons className={styles.navIcon} />
             </Link>
-            <div className={styles.navItem}>
+            <div
+              className={styles.navItem}
+              onClick={() => setUploadModal(!uploadModal)}
+            >
               <p className="sr-only">upload</p>
               <FaCamera
                 className={[styles.navIcon, styles.uploadBtn].join(" ")}
               />
+              {uploadModal === true ? (
+                <UploadModal handleCloseUpload={handleCloseUpload} />
+              ) : null}
             </div>
             <div
               className={`${styles.navItem} ${styles.profile}`}
-              onClick={() => setModal(!modal)}
+              onClick={() => setProfileDepth(!profileDepth)}
             >
               <p className="sr-only">My Page</p>
               <FaRegUserCircle className={styles.navIcon} />
-              {modal == true ? <ProfileModal /> : null}
+              {profileDepth === true ? <ProfileModal /> : null}
             </div>
           </nav>
         </div>
