@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/member")
+//@RequestMapping("/member")
 @RequiredArgsConstructor
 public class SignInController {
 
@@ -30,7 +30,7 @@ public class SignInController {
     private final SignInApplication signInApplication;
 
     @ApiOperation(value = "로그인", notes = "로그인 성공시 body에 로그인 유저의 email을 지닌 access token반환")
-    @PostMapping("/sign-in")
+    @PostMapping("/member/sign-in")
     public ResponseEntity<TokenResponse> signIn(@RequestBody SignInForm form){
 
         String token = signInApplication.SignInToken(form);
@@ -56,15 +56,13 @@ public class SignInController {
 //        return email;
 //    }
 
-
-
     //=====백엔드 단독 테스트용=====
-    @GetMapping("/api/profile")
-    public Object getMemberFromToken(String email) {
-        Optional<Member> member = memberRepository.findByEmail(email);
-
-        return member;
-    }
+//    @GetMapping("/api/profile")
+//    public Object getMemberFromToken(String email) {
+//        Optional<Member> member = memberRepository.findByEmail(email);
+//
+//        return member;
+//    }
 
 
     //=====리팩토링 전 구현=====

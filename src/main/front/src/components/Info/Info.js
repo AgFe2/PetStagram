@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../../styles/Info.module.css'
 import { BsGrid3X3 } from 'react-icons/bs'
 import { MdTag } from 'react-icons/md'
-import Skeletion from 'react-loading-skeleton';
+//import Skeletion from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import InfoHeader from './InfoHeader';
 import ProfileStories from '../ProfileStories';

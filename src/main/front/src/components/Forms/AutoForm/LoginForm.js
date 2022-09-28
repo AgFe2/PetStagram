@@ -14,7 +14,7 @@ const LoginForm = () => {
     const LoginValidSchema = Yup.object().shape({
         email: Yup.string()
             .email().required('이메일을 입력하세요'),
-        password1: Yup.string()
+        password: Yup.string()
             .required('비밀번호를 채워주세요'),
     })
 
@@ -24,12 +24,13 @@ const LoginForm = () => {
     
         const data = {
             email : values.email,
-            password1:values.password1
+            password:values.password
         }
         try{
-            await axios.post(`user/member/login`,
+            await axios.post('http://localhost:8080/member/sign-in',
                 JSON.stringify(data),{headers:{'Content-Type':'application/json'}}
             ).then(response =>{
+            console.log("success")
                 axios.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${response.data.accessToken}`;
@@ -41,9 +42,9 @@ const LoginForm = () => {
                     alert('로그인되었습니다.')
                 }
             )
-            // setTimeout(() =>{
-            //     navigate('/my')
-            // },2000)
+             setTimeout(() =>{
+                 navigate('/my')
+             },2000)
         }
         catch(e){
             console.log(e.response.data);
@@ -57,7 +58,7 @@ const LoginForm = () => {
             initialValues={
                 {
                     email: '',
-                    password1: ''
+                    password: ''
                 }
             }
             validationSchema={LoginValidSchema}
@@ -82,12 +83,12 @@ const LoginForm = () => {
                             className={styles.input}
                             type="password"
                             id='password'
-                            name='password1'
+                            name='password'
                             placeholder="패스워드를 입력하세요"
-                            value={values.password1}
+                            value={values.password}
                             onChange={handleChange}
                         />
-                        <span>{errors.password1}</span>
+                        <span>{errors.password}</span>
                         <Button className={styles.button}  disabled ={isSubmitting || !isValid}type="submit">로그인</Button>
                         <div className={styles.signUp}>
                             <h4>아직도 회원이 아니신가요? &nbsp;</h4>
