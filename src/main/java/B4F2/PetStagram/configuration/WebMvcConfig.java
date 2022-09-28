@@ -16,6 +16,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
         System.out.println(">>> 인터셉터 등록");
         // todo url설정
         registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/api/profile");
-        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/api/boards");
     }
 }

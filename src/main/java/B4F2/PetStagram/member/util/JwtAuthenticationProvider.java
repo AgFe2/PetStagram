@@ -25,7 +25,7 @@ public class JwtAuthenticationProvider {
     }
 
     public String createToken(String email){
-        Claims claims = Jwts.claims().setSubject(Aes256Util.encrypt(email));
+        Claims claims = Jwts.claims().setSubject(email);
         Date now = new Date();
 
         return Jwts.builder()
@@ -48,13 +48,13 @@ public class JwtAuthenticationProvider {
 
     //토큰에서 값 추출
     public String getSubject(String token) {
-        return Aes256Util.decrypt(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject());
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     // 이메일 저장해서 이걸 기반으로 동작
     public MemberVo getMemberVo(String token){
         Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-        return new MemberVo((Aes256Util.decrypt(c.getSubject())));
+        return new MemberVo(c.getSubject());
     }
 }
 

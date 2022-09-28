@@ -40,13 +40,22 @@ public class SignInController {
 
 
     //====todo 프론트와 함께 테스트 필요=====
-//    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
+    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
+    public Object getMemberFromToken(HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        Optional<Member> member = memberRepository.findByEmail(email);
+
+        return member;
+//        return member.get().getEmail();
+    }
+
+    //    @GetMapping("/api/profile")  //todo 이메일 꺼낼 url로
 //    public Object getMemberFromToken(HttpServletRequest request) {
 //        String email = (String) request.getAttribute("email");
-//        Optional<Member> member = memberRepository.findByEmail(email);
-//
-//        return member;
+
+//        return email;
 //    }
+
 
 
     //=====백엔드 단독 테스트용=====
