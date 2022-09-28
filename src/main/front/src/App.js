@@ -1,26 +1,26 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./pages/main/Main";
-import Top from "./pages/top/Top";
-import Explore from "./pages/explore/Explore";
+import { Routes, Route } from "react-router-dom";
+import Login from './pages/login/Login'
+import Register from './pages/register/Register'
+import Home from './pages/Home'
 import My from "./pages/my/My";
-// import Header from "./components/Header";
+import Taged from "./pages/tag";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-// CSS & ICON
-import "./styles/common.css";
-import "./styles/reset.css";
+const queryClient = new QueryClient()
+
+
 
 function App() {
+
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<Main />}></Route>
-          <Route path={"top"} element={<Top />}></Route>
-          <Route path={"explore"} element={<Explore />}></Route>
-          <Route path={"userId"} element={<My />}></Route>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path="/my" element={<My />} />
+          <Route path="/taged" element={<Taged />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+    </QueryClientProvider>
   );
 }
 

@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.followList{
+    max-width: 350px;
+    flex-shrink: 1;
+    display: flex;
+}
+
+.followItem{
+    font-size: 15px;
+    font-weight: 300;
+    list-style: none;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+/* 친구 목록 리스트 */
+
+
+
+/* 스위치 부분 */
+
+.switchContainer{
+    margin: auto;
+    width: 100%;
+    max-width: 900px;
+    background: #f7ce37;;
+    display: flex;
+    flex-direction: row;
+    letter-spacing: 1px;
+    justify-content: center;
+    flex-shrink: 0;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); */
+    border-top: 2px solid #000;
+    vertical-align: baseline;
+    padding: 0;
+}
+
+
+.switch{
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    margin: 3px 20px 
+}
+.switch:focus{
+    position: relative;
+    top: -4px;
+    border-top: 3px solid black;
+}
+
+.icon{
+    margin-right:5px ;
+}
+
+
+.storyContainer{
+    position: relative;
+    width: 100%;
+}

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/member")
+//@RequestMapping("/member")
 @RequiredArgsConstructor
 public class SignInController {
 
@@ -30,7 +30,7 @@ public class SignInController {
     private final SignInApplication signInApplication;
 
     @ApiOperation(value = "로그인", notes = "로그인 성공시 body에 로그인 유저의 email을 지닌 access token반환")
-    @PostMapping("/sign-in")
+    @PostMapping("/member/sign-in")
     public ResponseEntity<TokenResponse> signIn(@RequestBody SignInForm form){
 
         String token = signInApplication.SignInToken(form);
@@ -40,22 +40,29 @@ public class SignInController {
 
 
     //====todo 프론트와 함께 테스트 필요=====
-//    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
+    @GetMapping("/api/profile")  //todo 회원정보 꺼낼 url로
+    public Object getMemberFromToken(HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        Optional<Member> member = memberRepository.findByEmail(email);
+
+        return member;
+//        return member.get().getEmail();
+    }
+
+    //    @GetMapping("/api/profile")  //todo 이메일 꺼낼 url로
 //    public Object getMemberFromToken(HttpServletRequest request) {
 //        String email = (String) request.getAttribute("email");
+
+//        return email;
+//    }
+
+    //=====백엔드 단독 테스트용=====
+//    @GetMapping("/api/profile")
+//    public Object getMemberFromToken(String email) {
 //        Optional<Member> member = memberRepository.findByEmail(email);
 //
 //        return member;
 //    }
-
-
-    //=====백엔드 단독 테스트용=====
-    @GetMapping("/api/profile")
-    public Object getMemberFromToken(String email) {
-        Optional<Member> member = memberRepository.findByEmail(email);
-
-        return member;
-    }
 
 
     //=====리팩토링 전 구현=====

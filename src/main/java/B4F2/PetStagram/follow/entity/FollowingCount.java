@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Builder
 @AllArgsConstructor
 public class FollowingCount {
