@@ -34,7 +34,7 @@ public class CommentController {
 
 
     @DeleteMapping("{feedId}/delete/{commentId}")
-    public boolean deleteFeed(@RequestParam Long feedId, Long commentId, HttpServletRequest request) {
+    public boolean deleteFeed(@RequestParam Long feedId, @RequestParam Long commentId, HttpServletRequest request) {
 
         return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
