@@ -46,13 +46,18 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
+.title {
+  font-size: 22px;
+  padding: 16px 0;
+}
 
 .shareBtn {
   position: absolute;
-  top: 0;
+  top: 16px;
   right: 16px;
   color: #f0bc63;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .main {
@@ -69,6 +74,13 @@
 .imgWrapper {
   width: 50%;
   height: 100%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.imgPreview img {
+  width: 100%;
+  height: auto;
 }
 
 /* infoWrapper */
