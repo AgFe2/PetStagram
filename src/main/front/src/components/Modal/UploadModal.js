@@ -9,7 +9,7 @@ function UploadModal(props) {
   const { handleCloseUpload } = props;
 
   // 업로드 이미지 읽기
-  // const [files, setFiles] = useState("");
+  const [files, setFiles] = useState("");
   // const onLoadFile = (e) => {
   //   const file = e.target.files;
   //   console.log(file);
