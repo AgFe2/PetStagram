@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, uesRef } from "react";
+import axios from "axios";
+
+import ItemUser from "../Contents/ItemUser";
 
 import styles from "../../styles/UploadModal.module.css";
 
@@ -13,7 +16,7 @@ function UploadModal(props) {
     setFiles(file);
   };
 
-  // 이미지 전송
+  // 이미지 서버로 전송 : 최종으로 컨텐츠 등록하는 버튼에 심어주기
   const handleClick = (e) => {
     const formdata = new FormData();
     formdata.append("uploadImage", files[0]);
@@ -27,6 +30,30 @@ function UploadModal(props) {
     axios.post(`api`, formdata, config);
   };
 
+  // 이미지 미리보기
+  useEffect(() => {
+    preview();
+
+    return () => preview();
+  });
+
+  const preview = () => {
+    if (!files) return false;
+
+    const imgEL = document.querySelector(`.imgBox`);
+
+    const reader = new FileReader();
+
+    reader.onload = () =>
+      (imgEL.style.backgroundImage = `url(${reader.result})`);
+
+    reader.readAsDataURL(files[0]);
+  };
+
+  const StyleImgBox = {
+    width: "100%",
+    height: "auto",
+  };
   return (
     <div
       className={styles.bg}
@@ -38,22 +65,36 @@ function UploadModal(props) {
         ✖
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.wrapper}>
-          <div className={styles.customImg}>
-            <strong>업로드된 이미지</strong>
-            <div className={styles.imgWrap}>
-              <img src="" alt="" />
+        <div className={styles.top}>
+          <h4 className={styles.title}>create and post</h4>
+          <button type="submit" className={styles.shareBtn}>
+            share
+          </button>
+        </div>
+        <div className={styles.main}>
+          <div className={styles.imgWrapper}>
+            <div className={styles.customImg}>
+              <strong>업로드된 이미지</strong>
+              <div className="imgBox" style={StyleImgBox} />
             </div>
+            <form className={styles.form}>
+              <input
+                type="file"
+                accept="image/*"
+                id="image"
+                onChange={onLoadFile}
+              ></input>
+              <label htmlFor="image"></label>
+            </form>
           </div>
-          <form className={styles.form}>
+          <div className={styles.infoWrapper}>
+            <ItemUser userId={"user01"} />
             <input
-              type="file"
-              accept="image/*"
-              id="image"
-              onChange={onLoadFile}
+              type="textarea"
+              placeholder="본문 작성 부문"
+              className={styles.infoTxt}
             ></input>
-            <label htmlFor="image"></label>
-          </form>
+          </div>
         </div>
       </div>
     </div>
