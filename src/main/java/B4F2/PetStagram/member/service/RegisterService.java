@@ -31,14 +31,14 @@ public class RegisterService {
         // 필수항목
         if (memberRegisterForm.getEmail() == null ||
                 memberRegisterForm.getName() == null ||
-                memberRegisterForm.getPassword1() == null ||
+                memberRegisterForm.getPassword() == null ||
                 memberRegisterForm.getPassword2() == null ||
                 memberRegisterForm.getPhone() == null) {
             throw new CustomException(ErrorCode.REGISTER_FAIL);
         }
 
         // 비밀번호, 비밀번호확인 일치하는지 체크
-        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
+        if (!memberRegisterForm.getPassword().equals(memberRegisterForm.getPassword2())) {
             throw new CustomException(ErrorCode.PASSWORD_INCORRECT);
         }
 
@@ -56,7 +56,7 @@ public class RegisterService {
         Member member = Member.builder()
                 .email(memberRegisterForm.getEmail())
                 .name(memberRegisterForm.getName())
-                .password(passwordEncoder.encode(memberRegisterForm.getPassword1()))
+                .password(passwordEncoder.encode(memberRegisterForm.getPassword()))
                 .phone(memberRegisterForm.getPhone())
                 .emailAuthYn(false)
                 .build();
