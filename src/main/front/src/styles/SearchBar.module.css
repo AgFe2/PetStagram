@@ -1,0 +1,105 @@
+/* search*/
+
+.searchBar {
+  position: relative;
+}
+
+.searchBarInput {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 12px 8px;
+  border-radius: 8px;
+  min-width: 230px;
+}
+
+/* searchRecent - 보류*/
+.searchRecentTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchRecentTitle .recentTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+.searchRecentTitle .recentClearBtn {
+  padding: 0 6px;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+/* searchResult */
+
+.searchResult {
+  position: absolute;
+  left: -25px;
+  background-color: #fff;
+  width: 280px;
+  height: 280px;
+  margin-top: 16px;
+  padding: 12px 8px;
+  border-top: 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 9;
+  display: none;
+  overflow-y: scroll;
+  box-sizing: border-box;
+
+  scrollbar-width: none; /* Firefox*/
+  -ms-overflow-style: none; /* IE and Edge*/
+}
+
+.searchResult::-webkit-scrollbar {
+  width: 8px;
+}
+
+.searchResult::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 8px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+.focusActive {
+  display: block;
+}
+
+.resultItem {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 12px 8px;
+}
+
+.resultNothing {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.nothingActive {
+  display: flex;
+}
+.hashtagBg {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.hashtagIcon {
+  font-size: 14px;
+}
+
+.hashtagName {
+  display: block;
+  font-weight: 600;
+}
