@@ -1,11 +1,7 @@
 package B4F2.PetStagram.feed.domain;
 
-import B4F2.PetStagram.feed.entity.FeedEntity;
 import lombok.*;
-
-import java.time.LocalDateTime;
-
-public class WriteFeed {
+public class DetailFeed {
 
     @Getter
     @Setter
@@ -14,7 +10,7 @@ public class WriteFeed {
     @Builder
     public static class Request {
 
-        private String mainText;
+        private Long feedId;
 
     }
 
@@ -25,17 +21,18 @@ public class WriteFeed {
     @Builder
     public static class Response {
 
+        private Long feedId;
         private String userId;
         private String mainText;
-        private LocalDateTime updateDit;
+        //private String[] comment 차후 댓글 기능
 
-        public static Response form(FeedDto feedDto){
-            return Response.builder()
+        public static DetailFeed.Response form(FeedDto feedDto) {
+            return DetailFeed.Response.builder()
+                    .feedId(feedDto.getFeedId())
                     .userId(feedDto.getUserId())
                     .mainText(feedDto.getMainText())
-                    .updateDit(feedDto.getUpdateDit())
                     .build();
         }
-    }
 
+    }
 }

@@ -1,5 +1,6 @@
 package B4F2.PetStagram.tag.service;
 
+import B4F2.PetStagram.feed.domain.FeedDto;
 import B4F2.PetStagram.feed.entity.FeedEntity;
 import B4F2.PetStagram.tag.domain.TagDto;
 import B4F2.PetStagram.tag.repository.TagRepository;
@@ -18,13 +19,13 @@ public class TagService {
 
     private final Character tagChar = '#';
 
-    public void regisTag(FeedEntity feed) {
+    public void regisTag(FeedDto feedDto) {
 
-        String[] tagList = feed.getMainText().split(" ");
+        String[] tagList = feedDto.getMainText().split(" ");
 
         for(String a : tagList) {
             if (a.charAt(0) == tagChar) {
-                tagRepository.save(new TagDto.regisTagDto().toEntity(a.substring(1), feed.getFeedId()));
+                tagRepository.save(new TagDto.regisTagDto().toEntity(a.substring(1), feedDto.getFeedId()));
             }
         }
 
