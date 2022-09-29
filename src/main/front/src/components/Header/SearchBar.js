@@ -21,23 +21,23 @@ function SearchBar(props) {
   };
   return (
     <>
-      <div
-        className={styles.searchBar}
-        onFocus={handleFocusSearch}
-        onBlur={handleBlurSearch}
-      >
+      <div className={styles.body}>
         <select className={styles.options}>
-          <option value="태그" selected>
+          <option value="태그" selected className={styles.option}>
             태그
           </option>
-          <option value="아이디">아이디</option>
+          <option value="아이디" className={styles.option}>
+            아이디
+          </option>
         </select>
         <input
-          className={styles.searchBarInput}
+          className={styles.input}
           type="text"
           placeholder={"검색"}
           onChange={onChange}
           value={search}
+          onFocus={handleFocusSearch}
+          onBlur={handleBlurSearch}
         ></input>
         <SearchResult
           activeSearch={activeSearch}

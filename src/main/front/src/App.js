@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Main />} />
           <Route path={"top"} element={<Top />} />
-          <Route path={"explore"} element={<Explore />} />
+          <Route path={"explore/tagName"} element={<Explore />} />
           <Route path={"userId"} element={<My />} />
           <Route path={"/taged"} element={<Taged />} />
           <Route path={"/login"} element={<Login />} />
