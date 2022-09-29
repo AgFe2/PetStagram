@@ -1,10 +1,13 @@
 import React from "react";
 
+import Header from "../../components/Header/Header";
+
 function Explore(props) {
   return (
-    <div>
+    <>
+      <Header />
       <h1>SearchPage</h1>
-    </div>
+    </>
   );
 }
 

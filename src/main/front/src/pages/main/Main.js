@@ -1,5 +1,6 @@
 import React from "react";
 
+import Header from "../../components/Header/Header";
 import Contents from "../../components/Contents/Contents";
 import styles from "../../styles/Contents.module.css";
 export default function Main() {
@@ -97,6 +98,7 @@ export default function Main() {
 
   return (
     <>
+      <Header />
       <div className="container">
         <div className={styles.contentsGroup}>
           <div>{contentsItem}</div>

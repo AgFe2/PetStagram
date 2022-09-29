@@ -1,9 +1,11 @@
 import React from "react";
-import Contents from "../../components/Contents/Contents";
+
+import Header from "../../components/Header/Header";
 
 function Top(props) {
   return (
     <>
+      <Header />
       <div className="top-contents-group container"></div>
     </>
   );
