@@ -1,11 +1,9 @@
 package B4F2.PetStagram.member.controller;
 
 import B4F2.PetStagram.email.service.EmailConfirmTokenService;
-import B4F2.PetStagram.exception.CustomException;
-import B4F2.PetStagram.exception.ErrorCode;
-import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.domain.MemberRegisterForm;
-import B4F2.PetStagram.member.service.MemberService;
+import B4F2.PetStagram.member.entity.Member;
+import B4F2.PetStagram.member.service.RegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,46 +18,28 @@ import javax.validation.Valid;
 @Controller
 public class RegisterController {
 
-    private final MemberService memberService;
+    private final RegisterService registerService;
     private final EmailConfirmTokenService emailConfirmTokenService;
 
     @PostMapping("/member/register")
     public ResponseEntity<Member> register(@RequestBody MemberRegisterForm memberRegisterForm) {
 
-        if (memberRegisterForm.getEmail() == null ||
-                memberRegisterForm.getName() == null ||
-                memberRegisterForm.getPassword1() == null ||
-                memberRegisterForm.getPassword2() == null ||
-                memberRegisterForm.getPhone() == null) {
-            throw new CustomException(ErrorCode.REGISTER_FAIL);
-        }
+        // 회원가입양식 유효성 검사
+        registerService.checkValidation(memberRegisterForm);
 
-        if (!memberRegisterForm.getPassword1().equals(memberRegisterForm.getPassword2())) {
-            throw new CustomException(ErrorCode.PASSWORD_INCORRECT);
-        }
+        // 회원가입진행
+        Member member = registerService.register(memberRegisterForm);
 
-        Member member = Member.builder()
-                .email(memberRegisterForm.getEmail())
-                .name(memberRegisterForm.getName())
-                .password(memberRegisterForm.getPassword1())
-                .phone(memberRegisterForm.getPhone())
-                .build();
-
-        if (memberService.isMember(member.getEmail())) {
-            throw new CustomException(ErrorCode.DUPLICATE_MEMBER);
-        }
-
-        memberService.register(member);
-
+        // 인증메일 발송
         emailConfirmTokenService.createEmailConfirmationToken(member.getEmail());
 
         return ResponseEntity.ok(member);
     }
 
-    @GetMapping("confirm-email")
+    @GetMapping("/confirm-email")
     public String viewConfirmEmail(@Valid @RequestParam String token) {
-        memberService.confirmEmail(token);
+        registerService.confirmEmail(token);
 
-        return "redirect:/login";
+        return "redirect:/sign-in";
     }
 }

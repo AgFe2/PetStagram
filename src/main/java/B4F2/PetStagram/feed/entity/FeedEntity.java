@@ -1,5 +1,6 @@
 package B4F2.PetStagram.feed.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,11 +29,14 @@ public class FeedEntity{
 
     private LocalDateTime updateDit;
 
-    private Integer like;
+    private Long like;
 
 //    차후 comment 파트와 함께 merge 되면 추가
-//    @OneToMany
+//    @JsonIgnoreProperties({"feed"})
+//    @OneToMany(mappedBy = "feed", fetch = FetchType.EAGER)
+//    @OrderBy("id desc")
 //    private List<CommentEntity> comments;
 
     // 업로드 사진
 }
+

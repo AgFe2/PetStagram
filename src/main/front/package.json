@@ -1,6 +1,7 @@
 {
   "name": "front",
   "version": "0.1.0",
+  "proxy" : "http://localhost:8080",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -43,6 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://2e9516d3-cb83-4bd8-b45b-48a18014ce50.mock.pstmn.io"
+  }
 }

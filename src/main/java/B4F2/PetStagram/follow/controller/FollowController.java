@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,19 +20,34 @@ public class FollowController {
 
     // 팔로우 실행
     @PostMapping("/follow")
-    public ResponseEntity<String> follow(@RequestBody Follow follow) {
+    public ResponseEntity<String> follow(@RequestBody String followEmail,
+                                         HttpServletRequest request) {
+
+        String email = request.getAttribute("email").toString();
+
+        Follow follow = Follow.builder()
+                .email(email)
+                .followEmail(followEmail)
+                .build();
+
         return ResponseEntity.ok(followService.doFollow(follow));
     }
 
-    // 팔로잉 확인
+    // 팔로잉 회원 목록
     @GetMapping("/following")
-    public List<String> showFollowing(@RequestBody Follow follow) {
-        return followService.checkFollowing(follow.getEmail());
+    public List<String> showFollowing(HttpServletRequest request) {
+
+        String email = request.getAttribute("email").toString();
+
+        return followService.checkFollowing(email);
     }
 
-    // 팔로워 확인
+    // 팔로워 회원 목록
     @GetMapping("/follower")
-    public List<String> showFollower(@RequestBody Follow follow) {
-        return followService.checkFollower(follow.getEmail());
+    public List<String> showFollower(HttpServletRequest request) {
+
+        String email = request.getAttribute("email").toString();
+
+        return followService.checkFollower(email);
     }
 }
