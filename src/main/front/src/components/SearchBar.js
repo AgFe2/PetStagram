@@ -26,6 +26,12 @@ function SearchBar(props) {
         onFocus={handleFocusSearch}
         onBlur={handleBlurSearch}
       >
+        <select className={styles.options}>
+          <option value="태그" selected>
+            태그
+          </option>
+          <option value="아이디">아이디</option>
+        </select>
         <input
           className={styles.searchBarInput}
           type="text"
