@@ -34,22 +34,23 @@ public class CommentController {
 
 
     @DeleteMapping("/delete-comment")
-    public boolean deleteFeed(@RequestParam Long feedId, @RequestParam Long commentId, HttpServletRequest request) {
+    public boolean deleteFeed(@RequestParam(value = "feedId") Long feedId, @RequestParam(value = "commentId") Long commentId, HttpServletRequest request) {
 
         return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
 
 
-//    @GetMapping("/show-comments")
-//    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 20) Pageable pageable) {
-//
-//        return commentService.findAll(pageable, feedId);
-//    }
-
     @GetMapping("/show-comments/{feedId}")
     public Slice<Comment> getComments(@PathVariable(value = "feedId") Long feedId, @PageableDefault(size = 20) Pageable pageable) {
 
         return commentService.findAll(pageable, feedId);
+    }
+
+    @GetMapping("/test")
+    public String getEmail(HttpServletRequest request) {
+
+        return (String) request.getAttribute("email");
+//        return request.getAttribute("email").toString();
     }
 
 }

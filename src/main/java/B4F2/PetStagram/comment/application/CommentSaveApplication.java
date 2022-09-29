@@ -22,13 +22,4 @@ public class CommentSaveApplication {
         return "redirect:/feed/show-comments/" + feedId;
         }
 
-//    public String commentSave(Long feedId, CommentSaveDto commentSaveDto, String email) {
-//
-//        Comment c = commentService.saveComment(feedId, commentSaveDto, email);
-//
-//
-//        //todo 댓글 getApi(새로고침)
-//        return "redirect:/feed/{feedId}";
-//        return "redirect:/";
-//    }
 }
