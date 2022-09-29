@@ -8,7 +8,7 @@ function Paragraph(props) {
     <>
       <div className={styles.infoParagraph}>
         <h4 className={styles.paragraphName}>{props.userId}</h4>
-        <p className={styles.paragraphDesc}>description</p>
+        <p className={styles.paragraphDesc}>{props.text}</p>
       </div>
     </>
   );

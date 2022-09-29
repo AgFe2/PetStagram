@@ -41,11 +41,15 @@
   overflow-y: hidden;
 }
 
-.pic {
+.picWrap {
   height: 100%;
   width: 60%;
   min-width: 30%;
   background-color: pink;
+}
+.pic {
+  width: 100%;
+  height: auto;
 }
 
 .info {
@@ -63,10 +67,11 @@
 .scroll {
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-y: scroll;
   min-height: 0;
 }
 .likedBox {
+  background-color: #fff;
   padding: 20px 16px;
 }
 
