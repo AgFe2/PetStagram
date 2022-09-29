@@ -25,7 +25,7 @@ public class CommentController {
     private final CommentService commentService;
 
 
-    @PostMapping("{feedId}/save-comment")
+    @PostMapping("/save-comment")
     public ResponseEntity<?> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
         return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
@@ -33,19 +33,24 @@ public class CommentController {
     }
 
 
-    @DeleteMapping("{feedId}/delete/{commentId}")
+    @DeleteMapping("/delete-comment")
     public boolean deleteFeed(@RequestParam Long feedId, @RequestParam Long commentId, HttpServletRequest request) {
 
         return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
 
 
-    @GetMapping("/{feedId}/comments")
-    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 20) Pageable pageable) {
+//    @GetMapping("/show-comments")
+//    public Slice<Comment> getComments(@RequestParam Long feedId, @PageableDefault(size = 20) Pageable pageable) {
+//
+//        return commentService.findAll(pageable, feedId);
+//    }
+
+    @GetMapping("/show-comments/{feedId}")
+    public Slice<Comment> getComments(@PathVariable(value = "feedId") Long feedId, @PageableDefault(size = 20) Pageable pageable) {
 
         return commentService.findAll(pageable, feedId);
     }
-
 
 }
 
