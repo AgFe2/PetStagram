@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import SearchResult from "./SearchResult";
 
 //CSS
-import styles from "../styles/SearchBar.module.css";
+import styles from "../../styles/SearchBar.module.css";
 
 function SearchBar(props) {
   const { search, onChange, filterTag } = props;

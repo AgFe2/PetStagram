@@ -1,7 +1,7 @@
 import React from "react";
 
 //CSS
-import styles from "../styles/SearchBar.module.css";
+import styles from "../../styles/SearchBar.module.css";
 import { FaHashtag } from "react-icons/fa";
 
 function SearchResult(props) {

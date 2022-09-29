@@ -4,12 +4,7 @@ import Contents from "../../components/Contents/Contents";
 function Top(props) {
   return (
     <>
-      <div className="top-contents-group container">
-        <Contents />
-        <Contents />
-        <Contents />
-        <Contents />
-      </div>
+      <div className="top-contents-group container"></div>
     </>
   );
 }

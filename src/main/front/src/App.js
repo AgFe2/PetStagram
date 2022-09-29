@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // componets
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 //Page
 import Main from "./pages/main/Main";
@@ -24,7 +24,7 @@ function App() {
           <Route path={"top"} element={<Top />}></Route>
           <Route path={"explore"} element={<Explore />}></Route>
           <Route path={"userId"} element={<My />}></Route>
-          {/* <Route componet={PageNotFound} /> */}
+          {/* <Route component={PageNotFound} /> */}
         </Routes>
       </BrowserRouter>
     </div>

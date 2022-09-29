@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 // components
 import SearchBar from "./SearchBar";
-import ProfileModal from "./Modal/ProfileModal";
-import UploadModal from "./Modal/UploadModal";
+import ProfileModal from "../Modal/ProfileModal";
+import UploadModal from "../Modal/UploadModal";
 
 // CSS & ICON
-import styles from "../styles/Header.module.css";
+import styles from "../../styles/Header.module.css";
 import { FaHome, FaIcons, FaCamera, FaRegUserCircle } from "react-icons/fa";
 
 export default function Header() {
