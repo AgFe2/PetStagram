@@ -69,13 +69,8 @@ function UploadModal(props) {
           </button>
         </div>
         <div className={styles.main}>
-          <div className={styles.imgWrapper}>
-            <div className={styles.customImg}>
-              <div className={styles.imgPreview}>
-                {imgSrc && <img src={imgSrc} alt="preview-img"></img>}
-              </div>
-            </div>
-            <form className={styles.form}>
+          <form className={styles.form}>
+            <div className={styles.imgWrapper}>
               <input
                 type="file"
                 accept="image/*"
@@ -84,19 +79,25 @@ function UploadModal(props) {
                   encodeFileToBase64(e.target.files[0]);
                 }}
               ></input>
-              <label htmlFor="image"></label>
-            </form>
-          </div>
-          <div className={styles.infoWrapper}>
-            <ItemUser userId={"user01"} />
-            <input
-              type="textarea"
-              placeholder="본문 작성 부문"
-              value={textarea}
-              onChange={(e) => handleTextareaValue(e)}
-              className={styles.infoTxt}
-            ></input>
-          </div>
+              <label htmlFor="image" className="sr-only">
+                image
+              </label>
+              <div className={styles.imgPreview}>
+                {imgSrc && <img src={imgSrc} alt="preview-img"></img>}
+              </div>
+            </div>
+
+            <div className={styles.infoWrapper}>
+              <ItemUser userId={"user01"} />
+              <input
+                type="textarea"
+                placeholder="본문 작성 부문"
+                value={textarea}
+                onChange={(e) => handleTextareaValue(e)}
+                className={styles.infoTxt}
+              ></input>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -29,6 +29,16 @@ function ContentModal(props) {
     setCommentValue(e.target.value);
   };
 
+  // POST
+  // async function postComment() {
+  //   try {
+  //     const response = await axios.post("feed/{feedId}/save-comment", {});
+  //     // 성공
+  //   } catch (error) {
+  //     // 실패
+  //   }
+  // }
+
   const { handleCloseDetail } = props;
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
@@ -49,7 +59,7 @@ function ContentModal(props) {
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <div className={styles.inputForm}>
+            <form className={styles.inputForm}>
               <input
                 type="text"
                 placeholder="댓글 달기..."
@@ -57,10 +67,19 @@ function ContentModal(props) {
                 value={commentValue}
                 onChange={onChangeComment}
               />
-              <button type="button" className={styles.inputButton}>
-                게시
-              </button>
-            </div>
+              {commentValue.length > 0 ? (
+                <button
+                  type="submit"
+                  className={`${styles.inputButton} ${styles.btnActive}`}
+                >
+                  게시
+                </button>
+              ) : (
+                <button type="button" className={styles.inputButton}>
+                  게시
+                </button>
+              )}
+            </form>
           </div>
         </div>
       </div>
