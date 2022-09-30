@@ -31,6 +31,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'mysql:mysql-connector-java'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	//파일 업로드 관련
+	implementation 'commons-io:commons-io:2.11.0'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	// redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 	compileOnly group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.6'

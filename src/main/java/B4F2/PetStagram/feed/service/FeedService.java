@@ -49,8 +49,12 @@ public class FeedService {
 
     public boolean deleteFeed(Long feedId, String name) {
 
-        feedRepository.findById(feedId)
+        FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
+
+        if (!name.equals(feed.getUserId())) {
+            throw new CustomException(ErrorCode.UN_MATCH_ID);
+        }
 
         feedRepository.deleteById(feedId);
 
@@ -61,7 +65,8 @@ public class FeedService {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
-        feed.setLike(feed.getLike() + 1L);
+       feed.setLikeCnt(feed.getLikeCnt() + 1L);
+
 
         feedRepository.save(feed);
 
@@ -75,10 +80,11 @@ public class FeedService {
 
         Long likeCnt;
 
-        if (feed.getLike() < 0) {
-            throw new CustomException(ErrorCode.WRONG_APPROACH);
+
+        if (feed.getLikeCnt() < 0) {
+            throw  new CustomException(ErrorCode.WRONG_APPROACH);
         } else {
-            feed.setLike(feed.getLike() - 1L);
+            feed.setLikeCnt(feed.getLikeCnt() - 1L);
         }
 
         feedRepository.save(feed);
