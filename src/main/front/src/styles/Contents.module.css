@@ -1,0 +1,51 @@
+.contentsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 0;
+}
+
+.Item {
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+}
+
+/*itemInfo*/
+.itemInfo {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 8px 16px;
+}
+
+/*liked*/
+.infoLiked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 32px;
+}
+.likedBtn {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/*paragraph*/
+.infoParagraph {
+  display: flex;
+  align-items: center;
+}
+
+.paragraphDesc {
+  padding-left: 12px;
+}
+
+.paragraphDesc span {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.allComments {
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}

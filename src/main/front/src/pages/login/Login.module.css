@@ -1,0 +1,20 @@
+body{
+    background: #f7ce37;
+}
+
+main{
+    display: flex;
+}
+
+.logoContainer{
+    font-size: 150px;
+    font-family: 'Futura';
+    text-shadow: 6px 6px 3px #379c37,10px 10px 5px #cd453c ;
+}
+
+.MovingDog{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top:0px;
+    }

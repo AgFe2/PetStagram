@@ -1,0 +1,25 @@
+.postContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.postlist{
+    width: auto;
+    display: flex;
+}
+
+.postRows{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.post {
+    margin: 5px;
+}
+.post > img {
+    width: 100%;
+}

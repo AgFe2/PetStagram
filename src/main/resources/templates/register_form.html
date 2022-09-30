@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<form th:action="${/member/register}" th:object="${memberRegisterForm}" method="post">
+    <div>
+        <input type="email" name="email" placeholder="아이디(이메일) 입력" required/>
+    </div>
+    <div>
+        <input type="text" name="name" placeholder="이름 입력" required/>
+    </div>
+    <div>
+        <input type="password" name="password1" placeholder="비밀번호 입력" required/>
+    </div>
+    <div>
+        <input type="password" name="password2" placeholder="확인 비밀번호 입력" required/>
+    </div>
+    <div>
+        <input type="tel" name="phone" placeholder="전화번호 입력" required/>
+    </div>
+    <div>
+        <button>회원 가입 하기</button>
+    </div>
+</form>
+</body>
+</html>

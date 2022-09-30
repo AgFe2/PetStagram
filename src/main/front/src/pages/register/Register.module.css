@@ -1,0 +1,8 @@
+main{
+    display: block;
+}
+.logoContainer{
+    font-size: 120px;
+    font-family: 'Futura';
+    text-shadow: 6px 6px 3px #379c37,10px 10px 5px #cd453c ;
+}

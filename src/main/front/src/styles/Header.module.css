@@ -1,0 +1,84 @@
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 90px;
+  background-color: #fff;
+  padding: 0 12px;
+}
+
+/* logo */
+.logo {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logoTxt {
+  color: #2e2d30;
+}
+
+.logo:active .logoTxt {
+  color: rgb(240, 183, 76);
+}
+
+/* nav */
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav .navItem {
+  padding: 0 4px;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.navIcon {
+  color: #2e2d30;
+  font-size: 24px;
+}
+
+.uploadBtn {
+  cursor: pointer;
+}
+
+/* Profile Modal */
+
+.profile {
+  position: relative;
+}
+.profileDepth {
+  position: absolute;
+  width: 100px;
+  left: -34px;
+  padding: 8px 0;
+  margin-top: 16px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.depthItem {
+  padding: 8px 6px;
+  margin: 4px;
+  text-align: center;
+  color: #2e2d30;
+}
+
+.depthLogout {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detphLink {
+  color: #2e2d30;
+}
+
+.detphLink:active {
+  color: #999;
+}
