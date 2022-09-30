@@ -6,8 +6,12 @@ import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
 
 import styles from "../../styles/ContentModal.module.css";
+import axios from "axios";
 
 function ContentModal(props) {
+
+  const {imgpath,postcomment ,comment,setModalIsOpen,handleCloseDetail} = props
+
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
@@ -23,30 +27,55 @@ function ContentModal(props) {
     };
   }, []);
 
-  // commentValue
+  // 댓글 Create
   const [commentValue, setCommentValue] = useState("");
+  const [commentArray, setCommentArray] = useState([]);
+  const [isValid, setIsValid] = useState(false)
+
+
   const onChangeComment = (e) => {
+    console.log(e.target.value)
     setCommentValue(e.target.value);
   };
 
-  // POST
-  // async function postComment() {
-  //   try {
-  //     const response = await axios.post("feed/{feedId}/save-comment", {});
-  //     // 성공
-  //   } catch (error) {
-  //     // 실패
-  //   }
-  // }
+  const handelAddComment = (e) => {
+    e.preventDefault();
+    let token = localStorage.getItem('JWT')||'';
+    
+    const comment = {
+      comment_feed_id:1,//임시
+      email:'test@test.com',//임시
+      comment_context:commentValue
+    }
 
-  const { handleCloseDetail } = props;
+    axios.post('http://localhost:8080/feed/save-comment'
+    ,JSON.stringify(comment),{
+      headers: { "X-AUTH-TOKEN":token, },
+    })
+    .then((res) => res.json())
+    .then(result =>{
+      if(token){
+        setCommentValue(commentValue);
+        setCommentArray(commentArray.concat({
+          content:comment.comment_context,
+          email:comment.email
+        })
+        )
+    }
+    console.log(result)
+    return result.data
+  })
+    
+  }
+
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
       <button className={styles.closeBtn} onClick={handleCloseDetail}>
         ✖
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.pic}>사진</div>
+        <div className={styles.pic}>
+        </div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
             <ItemUser userId={"userId"} />
@@ -59,7 +88,7 @@ function ContentModal(props) {
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <form className={styles.inputForm}>
+            <form className={styles.inputForm} onSubmit={handelAddComment}>
               <input
                 type="text"
                 placeholder="댓글 달기..."
@@ -67,18 +96,12 @@ function ContentModal(props) {
                 value={commentValue}
                 onChange={onChangeComment}
               />
-              {commentValue.length > 0 ? (
-                <button
+              {/* 자체 유효성 검사 */}
+              <button
                   type="submit"
                   className={`${styles.inputButton} ${styles.btnActive}`}
-                >
-                  게시
-                </button>
-              ) : (
-                <button type="button" className={styles.inputButton}>
-                  게시
-                </button>
-              )}
+                  disabled = {isValid ? true : false}
+                >게시</button>
             </form>
           </div>
         </div>

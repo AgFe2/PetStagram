@@ -21,9 +21,11 @@ const LoginForm = () => {
     };
     try {
       await axios
-        .post("/member/login", JSON.stringify(data), {
-          headers: { "Content-Type": "application/json" },
-        })
+        .post("/member/sign-up", JSON.stringify(data), {
+          headers: { "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": `http://localhost:3000`,
+          'Access-Control-Allow-Credentials':"true",},
+          withCredentials:true})
         .then((response) => {
           axios.defaults.headers.common[
             "Authorization"
@@ -35,7 +37,7 @@ const LoginForm = () => {
           alert("로그인되었습니다.");
         });
       setTimeout(() => {
-        navigate("/my");
+        navigate("/");
       }, 2000);
     } catch (e) {
       alert("아이디가 존재하지않습니다.");

@@ -13,7 +13,7 @@ function Comments(props) {
             <span className={`${ItemUser.userName} ${comments.userName}`}>
               userName
             </span>
-            <sapn className={comments.text}>abcdefghijk</sapn>
+            <span className={comments.text}>abcdefghijk</span>
           </div>
         </li>
         <li className={comments.item}>
@@ -22,7 +22,7 @@ function Comments(props) {
             <span className={`${ItemUser.userName} ${comments.userName}`}>
               userName
             </span>
-            <sapn className={comments.text}>abcdefghijk</sapn>
+            <span className={comments.text}>abcdefghijk</span>
           </div>
         </li>
         <li className={comments.item}>
@@ -31,7 +31,7 @@ function Comments(props) {
             <span className={`${ItemUser.userName} ${comments.userName}`}>
               userName
             </span>
-            <sapn className={comments.text}>abcdefghijk</sapn>
+            <span className={comments.text}>abcdefghijk</span>
           </div>
         </li>
         <li className={comments.item}>
@@ -40,7 +40,7 @@ function Comments(props) {
             <span className={`${ItemUser.userName} ${comments.userName}`}>
               userName
             </span>
-            <sapn className={comments.text}>abcdefghijk</sapn>
+            <span className={comments.text}>abcdefghijk</span>
           </div>
         </li>
         <li className={comments.item}>
@@ -49,7 +49,7 @@ function Comments(props) {
             <span className={`${ItemUser.userName} ${comments.userName}`}>
               userName
             </span>
-            <sapn className={comments.text}>abcdefghijk</sapn>
+            <span className={comments.text}>abcdefghijk</span>
           </div>
         </li>
       </ul>

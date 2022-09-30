@@ -7,10 +7,9 @@ import GalleryItem from './GalleryItem';
 
 export default function Gallery() {
     const navigate = useNavigate()
-
+    
     return (
         <section className={styles.postContainer}>
-
             <div className={styles.postlist} >
                 {data.length > 1 ?
                     data.map((item, idx) => (
