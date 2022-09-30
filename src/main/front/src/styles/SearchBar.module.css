@@ -4,9 +4,11 @@
   position: relative;
 }
 
-.options {
-  height: 30px;
-  padding: 5px 8px 5px 4px;
+.radioBox {
+  text-align: center;
+}
+
+.radioLabel {
   margin-right: 12px;
 }
 

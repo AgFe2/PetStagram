@@ -19,17 +19,42 @@ function SearchBar(props) {
   const handleBlurSearch = () => {
     setActiveSearch(false);
   };
+
+  //selectRadio
+  const [select, setSelect] = useState("tag");
+
+  const handleSelectChange = (e) => {
+    console.log(`선택한 값 : ${e.target.value}`);
+    setSelect(e.target.value);
+  };
+
   return (
     <>
       <div className={styles.body}>
-        <select className={styles.options}>
-          <option value="태그" selected className={styles.option}>
+        <form className={styles.radioBox}>
+          <label for="tag" className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="search"
+              value="tag"
+              id="tag"
+              checked={select === "tag"}
+              onChange={handleSelectChange}
+            ></input>
             태그
-          </option>
-          <option value="아이디" className={styles.option}>
+          </label>
+          <label for="id">
+            <input
+              type="radio"
+              name="search"
+              value="id"
+              checked={select === "id"}
+              onChange={handleSelectChange}
+            ></input>
             아이디
-          </option>
-        </select>
+          </label>
+        </form>
+
         <input
           className={styles.input}
           type="text"
