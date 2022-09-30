@@ -2,7 +2,6 @@ package B4F2.PetStagram.feed.controller;
 
 import B4F2.PetStagram.feed.domain.DetailFeed;
 import B4F2.PetStagram.feed.domain.UpdateFeed;
-import org.springframework.web.bind.annotation.GetMapping;
 import B4F2.PetStagram.feed.domain.WriteFeed;
 import B4F2.PetStagram.feed.service.FeedService;
 import B4F2.PetStagram.tag.service.TagService;
@@ -72,24 +71,6 @@ public class FeedController {
     public boolean unLikeFeed(@RequestParam Long feedId) {
 
         return feedService.unLikeFeed(feedId);
-    }
-
-    @GetMapping("/feed/myList")
-    public String myList() {
-
-        return "myList";
-    }
-
-    @GetMapping("/feed/followList")
-    public String followList() {
-
-        return "followList";
-    }
-
-    @GetMapping("/feed/bestList")
-    public String bestList() {
-
-        return "bestList";
     }
 
 }

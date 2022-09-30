@@ -17,20 +17,8 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
 
     boolean existsByEmail(String email);
 
-
-
-/*    String subStringQuery = "DECLARE @str VARCHAR(255) SELECT SUBSTRING(@str, CHARINDEX('@', @str) + 1, LEN(@str)) as email from Member";
-
-    List<String> subStringResult = em.createQuery(subStringQuery, String.class).getResultList();
-
-    for(String s : subStringResult) {
-        System.out.println("s = "+s);
-    }*/
-
-
     List<Member> findByEmailContains(String email);
 
     List<Member> searchByEmail(String keyword);
-
 
 }

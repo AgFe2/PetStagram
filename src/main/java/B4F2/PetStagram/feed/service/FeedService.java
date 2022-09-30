@@ -117,20 +117,4 @@ public class FeedService {
 
         return FeedDto.fromEntity(feed);
     }
-
-    /*    private final FeedRepository feedRepository;
-    private final FollowRepository followRepository;
-
-    public Optional<Feed> myList(String email) {
-        return feedRepository.findByEmail(email);
-    }
-
-    public Optional<Feed> followingList(String email) {
-        Optional<Follow> follows = followRepository.findFollowIdByEmail(email);
-        return feedRepository.findByFollowId(follows);
-    }
-
-    public Optional<Feed> bestList() {
-
-    }*/
 }
