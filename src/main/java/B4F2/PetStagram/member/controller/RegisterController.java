@@ -36,7 +36,7 @@ public class RegisterController {
         return ResponseEntity.ok(member);
     }
 
-    @GetMapping("confirm-email")
+    @GetMapping("/confirm-email")
     public String viewConfirmEmail(@Valid @RequestParam String token) {
         registerService.confirmEmail(token);
 
