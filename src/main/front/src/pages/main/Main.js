@@ -1,6 +1,7 @@
 import React from "react";
 
 import Contents from "../../components/Contents/Contents";
+import Header from "../../components/Header/Header";
 import styles from "../../styles/Contents.module.css";
 export default function Main() {
   const datas = [
@@ -92,11 +93,13 @@ export default function Main() {
       userId={data.feed_id}
       liked={data.total_like_number}
       comments={data.comment.length}
+      key ={data.feed_id}
     />
   ));
 
   return (
     <>
+      <Header />
       <div className="container">
         <div className={styles.contentsGroup}>
           <div>{contentsItem}</div>

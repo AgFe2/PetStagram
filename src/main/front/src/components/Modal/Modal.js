@@ -1,11 +1,14 @@
 import styles from './Modal.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../Button/Button'
 import {MdComment} from 'react-icons/md'
+import axios from 'axios';
+
 const Modal = ({ imgpath,postcomment ,comment,onSubmit,setModalIsOpen }) => {
     const closeModal = () =>{
         setModalIsOpen(false)
     }
+
     return (
         <>
             <section className={styles.ModalWrapper} onClick={closeModal}>
@@ -21,7 +24,7 @@ const Modal = ({ imgpath,postcomment ,comment,onSubmit,setModalIsOpen }) => {
                             <span>{comment}</span>
                             <form onSubmit={onSubmit}>
                                 <input className={styles.input} type="text" />
-                                <Button className={styles.button}type="submit">
+                                <Button className={styles.button}type="submit" onClick={test}>
                                     <MdComment className={styles.AddIcon}></MdComment>
                                 </Button>
                             </form>
