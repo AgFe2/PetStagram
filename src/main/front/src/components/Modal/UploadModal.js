@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 import ItemUser from "../Contents/ItemUser";
 
@@ -9,33 +9,16 @@ function UploadModal(props) {
   const { handleCloseUpload } = props;
 
   // 업로드 이미지 읽기
-  // const [files, setFiles] = useState("");
-  // const onLoadFile = (e) => {
-  //   const file = e.target.files;
-  //   console.log(file);
-  //   setFiles(file);
-  // };
+  const [imgSrc, setImgSrc] = useState(""); // 이미지 미리보기용
+  const [imgFile, setImgFile] = useState(null); // 파일
 
-  // 이미지 서버로 전송 : 최종으로 컨텐츠 등록하는 버튼에 심어주기
-  // const handleClick = (e) => {
-  //   const formdata = new FormData();
-  //   formdata.append("uploadImage", files[0]);
+  const handleChangeFile = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setImgFile(file);
 
-  //   const config = {
-  //     Headers: {
-  //       "content-type": "multipart/form-data",
-  //     },
-  //   };
-
-  //   axios.post(`api`, formdata, config);
-  // };
-
-  // 이미지 미리보기
-  const [imgSrc, setImgSrc] = useState("");
-
-  const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
+    reader.readAsDataURL(file);
 
     return new Promise((resolve) => {
       reader.onload = () => {
@@ -45,6 +28,28 @@ function UploadModal(props) {
     });
   };
 
+  // WriteFeed
+  const WriteFeed = async () => {
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("text", text);
+
+    await axios
+      .post("feed/write", fd, {
+        headers: {
+          "Content-Type": `mulipart/form-data`,
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          history.push("/test1");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   // textarea
   const [textarea, setTextarea] = useState("");
   const handleTextareaValue = (e) => {
@@ -64,20 +69,16 @@ function UploadModal(props) {
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
         <div className={styles.top}>
           <h4 className={styles.title}>Create and Post</h4>
-          <button type="submit" className={styles.shareBtn}>
-            share
-          </button>
         </div>
         <div className={styles.main}>
           <form className={styles.form}>
             <div className={styles.imgWrapper}>
               <input
                 type="file"
+                name="img"
                 accept="image/*"
                 id="image"
-                onChange={(e) => {
-                  encodeFileToBase64(e.target.files[0]);
-                }}
+                onChange={handleChangeFile}
               ></input>
               <label htmlFor="image" className="sr-only">
                 image
@@ -97,6 +98,13 @@ function UploadModal(props) {
                 className={styles.infoTxt}
               ></input>
             </div>
+            <button
+              type="submit"
+              className={styles.shareBtn}
+              onClick={WriteFeed}
+            >
+              share
+            </button>
           </form>
         </div>
       </div>

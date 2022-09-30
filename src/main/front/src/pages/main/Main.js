@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../../components/Header/Header";
 import Contents from "../../components/Contents/Contents";
 import styles from "../../styles/Contents.module.css";
+import axios from "axios";
 export default function Main() {
   const datas = [
     {
@@ -88,20 +89,30 @@ export default function Main() {
     },
   ];
 
-  const contentsItem = datas.map((data) => (
-    <Contents
-      userId={data.feed_id}
-      liked={data.total_like_number}
-      comments={data.comment.length}
-    />
-  ));
+  const [contents, setContens] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("url")
+      .then((res) => {
+        console.log(res.data);
+        setContens(res.data);
+      })
+      .catch((err) => console.log(err));
+  });
 
   return (
     <>
       <Header />
       <div className="container">
         <div className={styles.contentsGroup}>
-          <div>{contentsItem}</div>
+          {datas.map((data) => (
+            <Contents
+              userId={data.feed_id}
+              liked={data.total_like_number}
+              comments={data.comment.length}
+            />
+          ))}
         </div>
       </div>
     </>
