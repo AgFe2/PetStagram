@@ -41,14 +41,16 @@ function ContentModal(props) {
   const handelAddComment = (e) => {
     e.preventDefault();
     let token = localStorage.getItem('JWT')||'';
-    
+
+    const feedId = 1;
+
     const comment = {
-      comment_feed_id:1,//임시
+
       email:'test@test.com',//임시
-      comment_context:commentValue
+      context:commentValue
     }
 
-    axios.post('http://localhost:8080/feed/save-comment'
+    axios.post(`http://localhost:8080/feed/save-comment/${feedId}`
     ,JSON.stringify(comment),{
       headers: { "X-AUTH-TOKEN":token, },
     })

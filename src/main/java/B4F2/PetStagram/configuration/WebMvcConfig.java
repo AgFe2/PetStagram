@@ -25,7 +25,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         System.out.println(">>> 인터셉터 등록");
         // todo 이메일 뽑는 api주소들 추가
-        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/api/profile","/feed/test");
-//        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/api/board");
+        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/");
+        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/feed/save-comment", "/feed/delete-comment");
     }
 }

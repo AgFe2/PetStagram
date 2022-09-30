@@ -8,13 +8,13 @@ const Modal = ({ imgpath,postcomment ,comment,onSubmit,setModalIsOpen }) => {
         setModalIsOpen(false)
     }
     const test = () =>{
-            axios.get('http://localhost:8080/feed/test',{
+            axios.get('http://localhost:8080/',{
                 headers:{
                   'Content-Type':'application/json',
                   'Authorization': 'Bearer ' + localStorage.getItem("JWT"),
                 }
-              }).then(res => console.log(res.Subject))
-              .then(json => alert(json.Subject))
+              }).then(res => console.log(res))
+              .then(json => alert(json))
 
         }
     return (

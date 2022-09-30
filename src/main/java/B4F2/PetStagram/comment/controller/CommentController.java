@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
-@RequestMapping("/feed")
 @RequiredArgsConstructor
 public class CommentController {
 
@@ -25,7 +24,7 @@ public class CommentController {
     private final CommentService commentService;
 
 
-    @PostMapping("/save-comment")
+    @PostMapping("feed/save-comment")
     public ResponseEntity<?> commentSave(@RequestParam(value = "feedId") Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
         return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
@@ -33,22 +32,24 @@ public class CommentController {
     }
 
 
-    @DeleteMapping("/delete-comment")
+    @DeleteMapping("feed/delete-comment")
     public boolean deleteFeed(@RequestParam(value = "feedId") Long feedId, @RequestParam(value = "commentId") Long commentId, HttpServletRequest request) {
 
         return commentService.commentDelete(feedId, commentId, (String) request.getAttribute("email"));
     }
 
 
-    @GetMapping("/show-comments/{feedId}")
+    @GetMapping("feed/show-comments/{feedId}")
     public Slice<Comment> getComments(@PathVariable(value = "feedId") Long feedId, @PageableDefault(size = 20) Pageable pageable) {
 
         return commentService.findAll(pageable, feedId);
     }
 
     // todo EMAIL TEST
-    @GetMapping("/test")
+    @GetMapping("/")
     public String getEmailTest(HttpServletRequest request) {
+
+        System.out.println("controller email test: " + request.getAttribute("email"));
 
         return (String) request.getAttribute("email");
 //        return request.getAttribute("email").toString();

@@ -1,4 +1,5 @@
-import React from "react";
+import React ,{useEffect} from "react";
+import axios from "axios";
 
 import Contents from "../../components/Contents/Contents";
 import Header from "../../components/Header/Header";
@@ -87,6 +88,17 @@ export default function Main() {
       ],
     },
   ];
+
+useEffect(() => {
+        axios.get('http://localhost:8080',{
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem("JWT"),
+            }
+          })
+          .then(res => console.log(res))
+          .then(json => console.log(json))
+    })
 
   const contentsItem = datas.map((data) => (
     <Contents
