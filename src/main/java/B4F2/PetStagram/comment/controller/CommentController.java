@@ -26,7 +26,7 @@ public class CommentController {
 
 
     @PostMapping("/save-comment")
-    public ResponseEntity<?> commentSave(@RequestParam Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
+    public ResponseEntity<?> commentSave(@RequestParam(value = "feedId") Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
         return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
 //        return ResponseEntity.ok(commentService.saveComment(feedId, commentSaveDto, (String) request.getAttribute("email")));
@@ -46,8 +46,9 @@ public class CommentController {
         return commentService.findAll(pageable, feedId);
     }
 
+    // todo TEST
     @GetMapping("/test")
-    public String getEmail(HttpServletRequest request) {
+    public String getEmailTest(HttpServletRequest request) {
 
         return (String) request.getAttribute("email");
 //        return request.getAttribute("email").toString();
