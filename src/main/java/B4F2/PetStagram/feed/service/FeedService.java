@@ -37,7 +37,7 @@ public class FeedService {
                         .userId(userId)
                         .mainText(text)
                         .updateDit(LocalDateTime.now())
-                        .like(0L)
+                        .likeCnt(0L)
                         .build())
         );
 

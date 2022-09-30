@@ -43,7 +43,8 @@ public class SecurityConfig {
                 .antMatchers(
                         // todo 모든 접근 허용 경로
 //                        "/" ,
-                        "/**"
+                        "/**",
+                        "/js/**", "/img/**"
 //                        ,"/member/*"
                 ).permitAll()
                 .and()

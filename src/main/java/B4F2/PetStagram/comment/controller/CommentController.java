@@ -46,7 +46,7 @@ public class CommentController {
         return commentService.findAll(pageable, feedId);
     }
 
-    // todo TEST
+    // todo EMAIL TEST
     @GetMapping("/test")
     public String getEmailTest(HttpServletRequest request) {
 
