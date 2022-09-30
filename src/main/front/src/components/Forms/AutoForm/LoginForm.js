@@ -38,7 +38,6 @@ const LoginForm = () => {
         navigate("/my");
       }, 2000);
     } catch (e) {
-      console.log(e.response.data);
       alert("아이디가 존재하지않습니다.");
       setSubmitting(true);
     }

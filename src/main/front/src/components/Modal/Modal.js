@@ -1,3 +1,4 @@
+import axios from 'axios';
 import styles from './Modal.module.css'
 import React from 'react';
 import Button from '../Button/Button'
@@ -6,6 +7,16 @@ const Modal = ({ imgpath,postcomment ,comment,onSubmit,setModalIsOpen }) => {
     const closeModal = () =>{
         setModalIsOpen(false)
     }
+    const test = () =>{
+            axios.get('http://localhost:8080/feed/test',{
+                headers:{
+                  'Content-Type':'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem("JWT"),
+                }
+              }).then(res => console.log(res.Subject))
+              .then(json => alert(json.Subject))
+
+        }
     return (
         <>
             <section className={styles.ModalWrapper} onClick={closeModal}>
@@ -21,7 +32,7 @@ const Modal = ({ imgpath,postcomment ,comment,onSubmit,setModalIsOpen }) => {
                             <span>{comment}</span>
                             <form onSubmit={onSubmit}>
                                 <input className={styles.input} type="text" />
-                                <Button className={styles.button}type="submit">
+                                <Button className={styles.button}type="submit" onClick={test}>
                                     <MdComment className={styles.AddIcon}></MdComment>
                                 </Button>
                             </form>

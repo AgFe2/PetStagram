@@ -31,7 +31,7 @@ public class FeedDto {
         return  FeedDto.builder()
                 .feedId(feed.getFeedId())
                 .mainText(feed.getMainText())
-                .like(feed.getLike())
+                .like(feed.getLikeCnt())
                 .updateDit(feed.getUpdateDit())
                 .userId(feed.getUserId())
                 .build();
