@@ -18,7 +18,7 @@ public class FeedDto {
 
     private LocalDateTime updateDit;
 
-    private Long like;
+    private Long likeCnt;
 
 //    차후 comment 파트와 함께 merge 되면 추가
 //    @OneToMany
@@ -31,7 +31,7 @@ public class FeedDto {
         return  FeedDto.builder()
                 .feedId(feed.getFeedId())
                 .mainText(feed.getMainText())
-                .like(feed.getLike())
+                .likeCnt(feed.getLikeCnt())
                 .updateDit(feed.getUpdateDit())
                 .userId(feed.getUserId())
                 .build();

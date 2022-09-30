@@ -3,8 +3,7 @@ package B4F2.PetStagram.feed.service;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.feed.domain.FeedDto;
-import B4F2.PetStagram.feed.domain.UpdateFeed;
-import B4F2.PetStagram.feed.domain.WriteFeed;
+import B4F2.PetStagram.feed.domain.UpdateFeedReq;
 import B4F2.PetStagram.feed.entity.FeedEntity;
 import B4F2.PetStagram.feed.repository.FeedRepository;
 import B4F2.PetStagram.member.entity.Member;
@@ -37,7 +36,7 @@ public class FeedService {
                         .userId(userId)
                         .mainText(text)
                         .updateDit(LocalDateTime.now())
-                        .like(0L)
+                        .likeCnt(0L)
                         .build())
         );
 
@@ -52,6 +51,7 @@ public class FeedService {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
+        //validation
         if (!name.equals(feed.getUserId())) {
             throw new CustomException(ErrorCode.UN_MATCH_ID);
         }
@@ -80,7 +80,7 @@ public class FeedService {
 
         Long likeCnt;
 
-
+        //validation
         if (feed.getLikeCnt() < 0) {
             throw  new CustomException(ErrorCode.WRONG_APPROACH);
         } else {
@@ -92,10 +92,14 @@ public class FeedService {
         return true;
     }
 
-    public FeedDto updateFeed(UpdateFeed.Request request, Long feedId, String email) {
+    public FeedDto updateFeed(UpdateFeedReq request, Long feedId, String email) {
 
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
+
+        if (!feed.getUserId().equals(email)) {
+            throw new CustomException(ErrorCode.UN_MATCH_ID);
+        }
 
         feed.setMainText(request.getMainText());
         feed.setUpdateDit(LocalDateTime.now());

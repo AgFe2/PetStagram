@@ -10,5 +10,4 @@ import java.util.Optional;
 @Repository
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
-    Optional<FileEntity> findByFeedId(Long feedId);
 }

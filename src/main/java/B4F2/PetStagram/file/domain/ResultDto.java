@@ -11,10 +11,10 @@ public class ResultDto implements Serializable {
 
     private String fileName;
 
-    private Long feedId;
-
     private String uuid;
 
     private String folderPath;
+
+    private Long fileId;
 
 }
