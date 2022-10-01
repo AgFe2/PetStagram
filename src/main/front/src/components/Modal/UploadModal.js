@@ -44,14 +44,13 @@ function UploadModal(props) {
     console.log(fd);
 
     await axios
-      .post("feed/write", fd, {
+      .post("file/upload", fd, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
         if (response.data) {
-          console.log("responseData");
           console.log(response.data);
           // history.push("/test1");
         }
