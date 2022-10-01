@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import Header from "../../components/Header/Header";
 import Contents from "../../components/Contents/Contents";
@@ -89,17 +89,31 @@ export default function Main() {
     },
   ];
 
-  const [contents, setContens] = useState([]);
+  // const [contents, setContens] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/board/followList")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setContens(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+
+  // });
+
+  // 토큰
   useEffect(() => {
     axios
-      .get("url")
-      .then((res) => {
-        console.log(res.data);
-        setContens(res.data);
+      .get("/board/followList", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
       })
-      .catch((err) => console.log(err));
-  });
+      .then((res) => console.log(res))
+      .then((json) => alert(json));
+  }, []);
 
   return (
     <>
@@ -111,6 +125,7 @@ export default function Main() {
               userId={data.feed_id}
               liked={data.total_like_number}
               comments={data.comment.length}
+              key={data.feed_id}
             />
           ))}
         </div>

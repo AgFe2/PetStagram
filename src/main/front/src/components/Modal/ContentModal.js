@@ -41,7 +41,7 @@ function ContentModal(props) {
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
         <div className={styles.picWrap}>
-          <img src={imgpath} className={styles.pic} />
+          <img src={imgpath} className={styles.pic} alt="contents-img" />
         </div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
