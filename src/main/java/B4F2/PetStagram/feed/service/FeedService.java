@@ -2,6 +2,9 @@ package B4F2.PetStagram.feed.service;
 
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
+import B4F2.PetStagram.feed.Like.Entity.LikeEntity;
+import B4F2.PetStagram.feed.Like.repository.LikeRepository;
+import B4F2.PetStagram.feed.domain.DetailFeedRes;
 import B4F2.PetStagram.feed.domain.FeedDto;
 import B4F2.PetStagram.feed.domain.UpdateFeedReq;
 import B4F2.PetStagram.feed.entity.FeedEntity;
@@ -13,7 +16,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -21,18 +27,19 @@ import java.time.LocalDateTime;
 public class FeedService {
 
     private final FeedRepository feedRepository;
-
+    private final LikeRepository likeRepository;
     private final MemberRepository memberRepository;
 
     private final TagService tagService;
 
-    public FeedDto writeFeed(String text, String userId) {
+    public FeedDto writeFeed(String text, String userId, Long fileId) {
 
         Member member = memberRepository.findByEmail(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
         FeedDto feedDto = FeedDto.fromEntity(
                 feedRepository.save(FeedEntity.builder()
+                        .fileId(fileId)
                         .userId(userId)
                         .mainText(text)
                         .updateDit(LocalDateTime.now())
@@ -61,32 +68,37 @@ public class FeedService {
         return true;
     }
 
-    public boolean likeFeed(Long feedId) {
+    public boolean likeFeed(Long feedId, HttpServletRequest request) {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
-       feed.setLikeCnt(feed.getLikeCnt() + 1L);
-
+        feed.setLikeCnt(feed.getLikeCnt() + 1L);
 
         feedRepository.save(feed);
+        likeRepository.save(LikeEntity.builder()
+                .feedId(feedId)
+                .userId((String) request.getAttribute("email"))
+                .build());
 
         return true;
     }
 
-    public boolean unLikeFeed(Long feedId) {
+    public boolean unLikeFeed(Long feedId, HttpServletRequest request) {
 
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
-        Long likeCnt;
-
+        LikeEntity likeEntity = likeRepository.findByFeedIdAndUserId(feedId,
+                        (String) request.getAttribute("email"))
+                .orElseThrow(() -> new CustomException(ErrorCode.WRONG_APPROACH));
         //validation
         if (feed.getLikeCnt() < 0) {
-            throw  new CustomException(ErrorCode.WRONG_APPROACH);
+            throw new CustomException(ErrorCode.WRONG_APPROACH);
         } else {
             feed.setLikeCnt(feed.getLikeCnt() - 1L);
         }
 
+        likeRepository.delete(likeEntity);
         feedRepository.save(feed);
 
         return true;
@@ -110,11 +122,19 @@ public class FeedService {
 
     }
 
-    public FeedDto detailFeed(Long feedId) {
+    public DetailFeedRes detailFeed(Long feedId, HttpServletRequest request) {
+        boolean likeCheck = false;
 
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD));
 
-        return FeedDto.fromEntity(feed);
+        Optional<LikeEntity> likeEntity = likeRepository.findByFeedIdAndUserId(feedId,
+                (String) request.getAttribute("email"));
+
+        if (likeEntity.isPresent()) {
+            likeCheck = true;
+        }
+
+        return DetailFeedRes.form(FeedDto.fromEntity(feed), likeCheck);
     }
 }
