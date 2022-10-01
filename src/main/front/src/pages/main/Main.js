@@ -89,14 +89,14 @@ export default function Main() {
     },
   ];
 
-  // const [contents, setContens] = useState([]);
+  // const [contents, setContents] = useState([]);
 
   // useEffect(() => {
   //   axios
   //     .get("/board/followList")
   //     .then((res) => {
   //       console.log(res.data);
-  //       setContens(res.data);
+  //       setContents(res.data);
   //     })
   //     .catch((err) => console.log(err));
 
