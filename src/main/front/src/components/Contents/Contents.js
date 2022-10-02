@@ -15,7 +15,11 @@ export default function Contents(props) {
     .get("file/list", { params: { userId: props.userID } })
     .then((res) => {
       console.log(res.data);
-      setImgSrc(res.data.imgSrc);
+      res.arrayBuffer();
+    })
+    .then((buffer) => {
+      const blob = new Blob([buffer]);
+      setImgSrc(URL.createObjectURL(blob));
     })
     .catch((err) => console.log(err));
 
