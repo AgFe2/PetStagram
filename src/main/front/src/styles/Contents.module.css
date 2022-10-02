@@ -48,11 +48,23 @@
 
 .paragraphDesc {
   padding-left: 12px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.paragraphDesc span {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
+.paragraphDesc.active {
+  text-overflow: "";
+  overflow: visible;
+  white-space: normal;
+}
+
+.moreBtn {
+  display: inline;
+  cursor: pointer;
+  color: #777;
+  margin-left: 3px;
 }
 
 .allComments {
