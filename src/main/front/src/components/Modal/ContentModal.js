@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useId, useState } from "react";
+import axios from 'axios'
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
-
+import mock from "../../data/feed.json";
 import styles from "../../styles/ContentModal.module.css";
+import { useMutation } from "react-query";
+
+
 
 function ContentModal(props) {
   useEffect(() => {
@@ -25,19 +28,46 @@ function ContentModal(props) {
 
   // commentValue
   const [commentValue, setCommentValue] = useState("");
+  const [feedComments, setFeedComments] = useState([])//댓글 모음
   const onChangeComment = (e) => {
     setCommentValue(e.target.value);
   };
+  
 
-  // POST
-  // async function postComment() {
-  //   try {
-  //     const response = await axios.post("feed/{feedId}/save-comment", {});
-  //     // 성공
-  //   } catch (error) {
-  //     // 실패
-  //   }
-  // }
+  const mutation = useMutation(newComment => {
+    return axios.post('/comment/save-comment',newComment)
+  })
+
+
+  const addComment = (e) => {
+    e.preventDefault();
+    
+    const variables = {
+      content: commentValue,
+      // email:localStorage.getItem('JWT')
+    };
+
+    axios.post(
+      'http://localhost:8080/feed/save-comments', 
+      JSON.stringify({
+      variables
+      }), 
+      // {
+      //   params: {
+      //     feedId: feed_id
+      //   }
+      // }
+      )
+    .then((res) => {
+      const copyFeedComments = [...variables]
+      copyFeedComments.push(variables)
+      setFeedComments(copyFeedComments)
+      setCommentValue('')
+      console.log(feedComments)
+      console.log('success')
+      res.json()})
+    .catch((error) => console.log(error))
+  }
 
   const { handleCloseDetail } = props;
   return (
@@ -49,7 +79,7 @@ function ContentModal(props) {
         <div className={styles.pic}>사진</div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
-            <ItemUser userId={"userId"} />
+            <ItemUser userId={'user'} />
           </div>
           <div className={styles.main}>
             <div className={styles.scroll}>
@@ -59,7 +89,7 @@ function ContentModal(props) {
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <form className={styles.inputForm}>
+            <form className={styles.inputForm} onSubmit={addComment}>
               <input
                 type="text"
                 placeholder="댓글 달기..."
@@ -70,7 +100,8 @@ function ContentModal(props) {
               {commentValue.length > 0 ? (
                 <button
                   type="submit"
-                  className={`${styles.inputButton} ${styles.btnActive}`}
+                  className={`${styles.inputButton} ${styles.btnActive}`
+                  }
                 >
                   게시
                 </button>

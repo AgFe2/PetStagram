@@ -1,97 +1,34 @@
-import React from "react";
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Contents from "../../components/Contents/Contents";
 import styles from "../../styles/Contents.module.css";
-export default function Main() {
-  const datas = [
-    {
-      feed_id: "user01",
-      total_like_number: 13,
-      comment: [
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-      ],
-    },
-    {
-      feed_id: "user02",
-      total_like_number: 75,
-      comment: [
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-      ],
-    },
-    {
-      feed_id: "user03",
-      total_like_number: 564,
-      comment: [
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-        {
-          comment_id: "user99",
-          comment_feed_id: "user01",
-          comment_context: "blahbalh",
-          commented_date: "20220921",
-          comment_writer: "user99",
-        },
-      ],
-    },
-  ];
+import mock from '../../data/feed.json'
 
-  const contentsItem = datas.map((data) => (
+
+
+
+export default function Main() {
+  const [state,setState] = useState('')
+
+  // useEffect(()=>{
+  //   axios.get('/data/mock_feed.json')
+  //   .then((res) =>res.json())
+  //   .then((res) =>{
+  //     console.log(res +'success');
+  //     setState({
+  //       data:res.data
+  //     })
+  //     console.log(res)
+  //   })
+  // })
+  
+
+  const contentsItem = mock.map((data,idx) => (
     <Contents
       userId={data.feed_id}
       liked={data.total_like_number}
       comments={data.comment.length}
+      key={idx}
     />
   ));
 
