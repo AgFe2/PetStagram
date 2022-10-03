@@ -17,6 +17,13 @@ insert into `member` (`name`, `password`, `email`, `phone`, `email_Auth_Yn`) val
 insert into `member` (`name`, `password`, `email`, `phone`, `email_Auth_Yn`) values ('홍길동', '123123', 'test@test.com', '010gggggggg', true);
 insert into `member` (`name`, `password`, `email`, `phone`, `email_Auth_Yn`) values ('홍길동', '123123', 'test2@test.com', '010gggggggg', true);
 
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글1', 'test@test.com', '1');
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글2', 'test@test.com', '1');
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글3', 'test@test.com', '1');
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글4', 'test@test.com', '1');
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글5', 'test@test.com', '1');
+insert into `comment` (`context`, `email`, `feed_id`) values ('댓글6', 'test@test.com', '1');
+
 insert into `follower_count` (`email`, `follower_count`) values ('a@gmail.com', 0);
 insert into `follower_count` (`email`, `follower_count`) values ('b@gmail.com', 0);
 insert into `follower_count` (`email`, `follower_count`) values ('c@gmail.com', 0);

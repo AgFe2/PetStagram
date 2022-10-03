@@ -11,11 +11,6 @@ const CommentForm = (props) => {
         setCommentValue(e.target.value);
     };
 
-    const refreshFunction = () =>{
-       const array = setLists([...commentValue])
-        
-       return lists.concat(array)
-    }
 
     const addComment = async (e) => {
         e.preventDefault();

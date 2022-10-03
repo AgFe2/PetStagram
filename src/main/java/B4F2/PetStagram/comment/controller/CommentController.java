@@ -44,7 +44,7 @@ public class CommentController {
 
 
     @GetMapping("feed/show-comments")
-    public ResponseEntity<Slice<Comment>> getComments(@RequestParam(value = "feedId") Long feedId, @PageableDefault(size = 3) Pageable pageable) {
+    public ResponseEntity<Slice<Comment>> getComments(@RequestParam(value = "feedId") Long feedId, @PageableDefault(size = 5) Pageable pageable) {
 
         return ResponseEntity.ok(commentRepository.findAllByFeedIdOrderByCommentIdDesc(feedId, pageable));
     }
