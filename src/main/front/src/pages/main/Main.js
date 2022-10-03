@@ -113,6 +113,7 @@ export default function Main() {
       })
       .then((res) => {
         console.log(res);
+        console.log(res.data);
         setContents(res.data);
       })
       .then((json) => alert(json));

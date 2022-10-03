@@ -11,10 +11,10 @@ function Liked(props) {
       params: { userID: "", feedId: "" },
     });
     setLikedBtn(!likedBtn);
-    res(); // ?
+    return res;
   };
 
-  //https://cotak.tistory.com/113
+  //
 
   useEffect(() => {
     const fetchData = async () => {

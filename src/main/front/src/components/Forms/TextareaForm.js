@@ -9,7 +9,6 @@ function TextareaForm(props) {
   const [textarea, setTextarea] = useState("");
   const handleTextareaValue = (e) => {
     setTextarea(e.target.value);
-    console.log(e.target.value);
   };
 
   const submitTextarea = async (e) => {
@@ -20,7 +19,10 @@ function TextareaForm(props) {
     }
 
     const fd = new FormData();
-    fd.append("textarea", textarea);
+    fd.append("textarea", textarea); // FormData 들어가는지 안들어가는지 test
+
+    console.log("textarea fd");
+    console.log(fd);
 
     await axios
       .post("feed/write", fd, {
