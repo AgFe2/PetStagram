@@ -108,13 +108,14 @@ export default function Main() {
       .get("/board/followList", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("JWT"),
+          // Authorization: "Bearer " + localStorage.getItem("JWT"),
         },
       })
       .then((res) => {
-        console.log(res);
         console.log(res.data);
-        setContents(res.data);
+        console.log(JSON.parse(res.data));
+        const data = JSON.parse(res.data);
+        setContents(data);
       })
       .then((json) => alert(json));
   }, []);
