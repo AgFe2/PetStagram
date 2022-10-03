@@ -41,8 +41,6 @@ function SearchBar(props) {
     setSearch(e.target.value);
   };
 
-  //물어볼 거 :
-
   return (
     <>
       <div className={styles.body}>
@@ -54,7 +52,7 @@ function SearchBar(props) {
               value="tag"
               id="tag"
               checked={select === "tag"}
-              onChange={() => handleSelectChange}
+              onChange={handleSelectChange}
             ></input>
             태그
           </label>
@@ -64,7 +62,7 @@ function SearchBar(props) {
               name="search"
               value="id"
               checked={select === "id"}
-              onChange={() => handleSelectChange}
+              onChange={handleSelectChange}
             ></input>
             아이디
           </label>
