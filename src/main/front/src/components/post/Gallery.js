@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/Gallery.module.css";
 
 import GalleryItem from "./GalleryItem";
 
 export default function Gallery(props) {
-  const navigate = useNavigate();
   const { data } = props;
 
   const [imgSrc, setImgSrc] = useState();

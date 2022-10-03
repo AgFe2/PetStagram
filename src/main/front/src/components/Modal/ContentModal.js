@@ -9,7 +9,7 @@ import styles from "../../styles/ContentModal.module.css";
 import { useMutation } from "react-query";
 
 function ContentModal(props) {
-  const { setOpenDetail, imgpath, postcomment } = props;
+  const { handleCloseDetail, imgpath, postcomment } = props;
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
