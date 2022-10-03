@@ -9,6 +9,7 @@ export default function Gallery(props) {
   const { data } = props;
 
   const [imgSrc, setImgSrc] = useState();
+  /*
   axios
     .get("file/list", { params: { userId: data.userID } })
     .then((res) => {
@@ -21,6 +22,7 @@ export default function Gallery(props) {
     })
     .catch((err) => console.log(err));
 
+    */
   return (
     <section className={styles.postContainer}>
       <div className={styles.postlist}>

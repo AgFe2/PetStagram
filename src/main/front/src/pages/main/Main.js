@@ -112,10 +112,10 @@ export default function Main() {
         },
       })
       .then((res) => {
+        console.log("res");
+        console.log(res);
+        console.log("res.data");
         console.log(res.data);
-        console.log(JSON.parse(res.data));
-        const data = JSON.parse(res.data);
-        setContents(data);
       })
       .then((json) => alert(json));
   }, []);
