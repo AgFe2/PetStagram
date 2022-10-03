@@ -41,7 +41,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 	compileOnly group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.6'
-	runtimeOnly 'com.h2database:h2'
+	runtimeOnly group: 'com.h2database:h2', name: 'h2', version: '1.4.200'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
