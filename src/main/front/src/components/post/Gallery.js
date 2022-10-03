@@ -26,12 +26,12 @@ export default function Gallery(props) {
   return (
     <section className={styles.postContainer}>
       <div className={styles.postlist}>
-        {data.length > 1 ? (
-          data.map((item, idx) => (
+        {data.length > 0 ? (
+          data.map((item) => (
             <GalleryItem
               imagepath={imgSrc}
               postcomment={item.postcomment}
-              key={idx}
+              key={data.feedId}
             ></GalleryItem>
           ))
         ) : (

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 
 function Comments() {
   const [comments, setComments] = useState([]);

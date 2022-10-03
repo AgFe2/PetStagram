@@ -108,18 +108,17 @@ export default function Main() {
       .get("/board/followList", {
         headers: {
           "Content-Type": "application/json",
-          // Authorization: "Bearer " + localStorage.getItem("JWT"),
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
         },
       })
       .then((res) => {
-        console.log("res");
-        console.log(res);
         console.log("res.data");
         console.log(res.data);
       })
       .then((json) => alert(json));
   }, []);
 
+  // comments 갯수는 feedId를 통해서 comment에서 가져와야함.......
   return (
     <>
       <Header />
@@ -127,10 +126,10 @@ export default function Main() {
         <div className={styles.contentsGroup}>
           {contents.map((item) => (
             <Contents
-              userId={item.feed_id}
-              liked={item.total_like_number}
+              userId={item.userId}
+              liked={item.likeCnt}
               comments={item.comment.length}
-              key={item.feed_id}
+              key={item.feedId}
             />
           ))}
         </div>

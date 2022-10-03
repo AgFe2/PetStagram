@@ -34,9 +34,13 @@ function SearchBar(props) {
     e.target.value &&
       axios
         .get("/search", {
-          params: { searchType: `${select}`, searchValue: e.target.value },
+          params: { searchType: select, searchValue: e.target.value },
         })
-        .then((res) => setData(res.data))
+        .then((res) => {
+          console.log(res.data);
+          console.log(select);
+          setData(res.data);
+        })
         .catch((err) => console.log(err));
     setSearch(e.target.value);
   };
