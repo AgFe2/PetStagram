@@ -24,7 +24,7 @@ function Comments(props) {
 
   useEffect(() => {
     getComment();
-  }, []);
+  }, [comments]);
 
   console.log(comments);
 
