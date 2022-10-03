@@ -8,6 +8,7 @@ import Liked from "../ContentsInfo/Liked";
 import styles from "../../styles/ContentModal.module.css";
 
 function ContentModal(props) {
+  const { setOpenDetail, imgpath, postcomment } = props;
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
@@ -29,31 +30,26 @@ function ContentModal(props) {
     setCommentValue(e.target.value);
   };
 
-  // POST
-  // async function postComment() {
-  //   try {
-  //     const response = await axios.post("feed/{feedId}/save-comment", {});
-  //     // 성공
-  //   } catch (error) {
-  //     // 실패
-  //   }
-  // }
+  const handleCloseDetail = () => {
+    setOpenDetail(false);
+  };
 
-  const { handleCloseDetail } = props;
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
       <button className={styles.closeBtn} onClick={handleCloseDetail}>
         ✖
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.pic}>사진</div>
+        <div className={styles.picWrap}>
+          <img src={imgpath} className={styles.pic} alt="contents-img" />
+        </div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
             <ItemUser userId={"userId"} />
           </div>
           <div className={styles.main}>
             <div className={styles.scroll}>
-              <Paragraph />
+              <Paragraph text={postcomment} />
               <Comments />
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>

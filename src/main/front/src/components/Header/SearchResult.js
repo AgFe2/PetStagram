@@ -5,7 +5,7 @@ import styles from "../../styles/SearchBar.module.css";
 import { FaHashtag } from "react-icons/fa";
 
 function SearchResult(props) {
-  const { filterTag, activeSearch, search } = props;
+  const { data, activeSearch, search } = props;
   return (
     <>
       <div
@@ -13,18 +13,18 @@ function SearchResult(props) {
           activeSearch ? `${styles.focusActive}` : ""
         }`}
       >
-        {filterTag.length > 0 && search.length > 0 ? (
-          filterTag.map((hashtag) => (
+        {data.length > 0 && search.length > 0 ? (
+          data.map((item) => (
             <div className={styles.resultItem}>
               <div className={styles.hashtagBg}>
                 <FaHashtag className={styles.hashtagIcon} />
               </div>
               <div className={styles.hashtagTxt}>
                 <span className={styles.hashtagName}>
-                  #{hashtag.hashtag_context}
+                  #{item.hashtag_context}
                 </span>
                 <span className={styles.hashtagCount}>
-                  {hashtag.hashtag_feed_count
+                  {item.hashtag_feed_count
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                   posts

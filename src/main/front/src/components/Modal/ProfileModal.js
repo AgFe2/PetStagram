@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, Navigate } from "react-router-dom";
 
 import styles from "../../styles/Header.module.css";
 
 function ProfileModal(props) {
+  const handlerLogOut = () => {
+    axios.get(`/api/users/logout`).then((response) => {
+      if (response.data.success) {
+        Navigate("/login");
+      } else {
+        alert("로그아웃에 실패했습니다.");
+      }
+    });
+  };
   return (
     <>
       <ul className={styles.profileDepth}>
@@ -17,7 +27,7 @@ function ProfileModal(props) {
         </li>
         <li
           className={`${styles.depthItem} ${styles.depthLogout}`}
-          onClick={(e) => e.stopPropagation()}
+          onClick={handlerLogOut}
         >
           로그아웃
         </li>

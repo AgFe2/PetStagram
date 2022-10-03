@@ -1,26 +1,33 @@
-import React, { useState } from 'react';
-import styles from '../../styles/Gallery.module.css'
-import Modal from '../Modal/Modal'
+import React, { useState } from "react";
+import styles from "../../styles/Gallery.module.css";
+import ContentModal from "../Modal/ContentModal";
 
-export default function GalleryItem ({imagepath,postcomment}){
-    const [modalIsOpen,setModalIsOpen] =useState(false)
-    const handleModal = () => {
-        setModalIsOpen(true)
-    }
+export default function GalleryItem({ imagepath, postcomment }) {
+  const [openDetail, setOpenDetail] = useState(false);
+  const handleOpenDetail = () => {
+    setOpenDetail(true);
+  };
 
-    return (
-        <div>
-            <img 
-            className={styles.postImg} 
-            onClick={handleModal} 
-            src={imagepath} 
-            alt="갤러리 사진" 
-            role="button"/>
-            {modalIsOpen === true ? <Modal imgpath={imagepath} postcomment={postcomment} setModalIsOpen={setModalIsOpen}/> : null}
-        </div>
-    );
-};
-
-GalleryItem.defaultProps ={
-    imagepath:'/images/dog.jpeg'
+  return (
+    <div>
+      <img
+        className={styles.postImg}
+        onClick={handleOpenDetail}
+        src={imagepath}
+        alt="갤러리 사진"
+        role="button"
+      />
+      {openDetail === true ? (
+        <ContentModal
+          imgpath={imagepath}
+          postcomment={postcomment}
+          setOpenDetail={setOpenDetail}
+        />
+      ) : null}
+    </div>
+  );
 }
+
+GalleryItem.defaultProps = {
+  imagepath: "/images/dog.jpeg",
+};
