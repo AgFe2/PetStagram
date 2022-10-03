@@ -6,6 +6,8 @@ import B4F2.PetStagram.feed.repository.FeedRepository;
 import B4F2.PetStagram.follow.entity.Follow;
 import B4F2.PetStagram.follow.repository.FollowRepository;
 import B4F2.PetStagram.member.repository.MemberRepository;
+import B4F2.PetStagram.tag.entity.TagEntity;
+import B4F2.PetStagram.tag.repository.TagRepository;
 import B4F2.PetStagram.tag.service.TagService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +32,13 @@ public class BoardService {
 
     private final FollowRepository followRepository;
 
+    private final TagRepository tagRepository;
+
     private final TagService tagService;
 
     public List<FeedEntity> myList(String userId, Pageable pageable) {
         return feedRepository.findByUserId(userId, pageable);
     }
-
-
 
     public List<FeedEntity> followingList(String email, Pageable pageable) {
         List<Follow> follows = followRepository.findByEmail(email, pageable);
@@ -45,14 +47,24 @@ public class BoardService {
         for (int i = 0; i < follows.size(); i++) {
             feeds = feedRepository.findByUserIdAndUpdateDitAfterOrderByUpdateDitDesc(follows.get(i).getFollowEmail(), LocalDateTime.now().minusDays(1));
             result.addAll(feeds);
-            System.out.println(feeds);
         }
         return result;
     }
 
-    public  List<FeedEntity> bestList(Pageable pageable) {
+    public List<FeedEntity> bestList(Pageable pageable) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime threeDays = now.minusDays(4);
-        return feedRepository.findTop10AllByUpdateDitAfterOrderByLikeCntDesc(pageable, now);
+        return feedRepository.findTop10AllByUpdateDitAfterOrderByLikeCntDesc(pageable, threeDays);
+    }
+
+    public List<FeedEntity> tagList(String tagTitle, Pageable pageable) {
+        List<TagEntity> tags = tagRepository.findTagInFeedByTagTitle(tagTitle, pageable);
+        List<FeedEntity> feeds = new ArrayList<>();
+        List<FeedEntity> result = new ArrayList<>();
+        for (int i = 0; i < tags.size(); i++) {
+            feeds = feedRepository.findAllByFeedId(tags.get(i).getTagInFeed(), pageable);
+            result.addAll(feeds);
+        }
+        return result;
     }
 }

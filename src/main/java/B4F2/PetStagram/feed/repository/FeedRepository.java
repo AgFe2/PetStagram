@@ -19,4 +19,6 @@ public interface FeedRepository extends JpaRepository<FeedEntity, Long> {
     List<FeedEntity> findTop10AllByUpdateDitAfterOrderByLikeCntDesc(Pageable pageable, LocalDateTime threeDays);
 
     List<FeedEntity> findByUserIdAndUpdateDitAfterOrderByUpdateDitDesc(String userId,LocalDateTime yesterday);
+
+    List<FeedEntity> findAllByFeedId(Long feedId, Pageable pageable);
 }

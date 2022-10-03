@@ -33,7 +33,6 @@ export default function Contents(props) {
         <div className={styles.itemInfo}>
           <Liked liked={props.liked} />
           <Paragraph userId={props.userId} text={props.text} />
-          <ViewComments comments={props.comments} />
         </div>
       </div>
     </>

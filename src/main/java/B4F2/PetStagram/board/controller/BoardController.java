@@ -47,4 +47,12 @@ public class BoardController {
         return ResponseEntity.ok(feed);
     }
 
+    @GetMapping("/tagList")
+    public ResponseEntity<List<FeedEntity>> tagList(@RequestParam("tagTitle") String tagTitle,
+            @PageableDefault(direction = Sort.Direction.DESC) Pageable pageable) {
+        List<FeedEntity> feed = boardService.tagList(tagTitle, pageable);
+
+        return ResponseEntity.ok(feed);
+    }
+
 }

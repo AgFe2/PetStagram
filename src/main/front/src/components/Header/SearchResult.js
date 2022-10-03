@@ -24,9 +24,7 @@ function SearchResult(props) {
                   #{item.hashtag_context}
                 </span>
                 <span className={styles.hashtagCount}>
-                  {item.hashtag_feed_count
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                  {item.hashtag_feed_count}
                   posts
                 </span>
               </div>

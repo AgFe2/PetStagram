@@ -114,6 +114,7 @@ export default function Main() {
       .then((res) => {
         console.log("res.data");
         console.log(res.data);
+        setContents(res.data);
       })
       .then((json) => alert(json));
   }, []);
@@ -128,7 +129,6 @@ export default function Main() {
             <Contents
               userId={item.userId}
               liked={item.likeCnt}
-              comments={item.comment.length}
               key={item.feedId}
             />
           ))}

@@ -47,6 +47,8 @@ public class SearchController {
 
         return null;
     }
+
+
     @GetMapping("/search/id")
     public ResponseEntity<List<Member>> searchByEmail(@RequestParam String email) {
         return ResponseEntity.ok(
