@@ -17,8 +17,6 @@ public class CommentSaveApplication {
 
         Comment c = commentService.saveComment(feedId, commentSaveDto, email);
 
-        //todo 댓글 getApi(새로고침)
-//        return "redirect:/feed/{feedId}";
         return "redirect:/feed/show-comments/" + feedId;
         }
 

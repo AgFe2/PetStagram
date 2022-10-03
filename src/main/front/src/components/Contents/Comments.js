@@ -11,19 +11,26 @@ function Comments(){
   const [board,setBoard] = useState({})
   const [isLoded, setIsLoded] = useState(false)
   
-  useEffect(()=>{  
-    const getBoard = async () => {
-     const { data } = await axios.get('/comment/sav', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorizaition': 'Bearer' + localStorage.getItem('JWT')
-        },
-      })
-      return data
-    }
-    getBoard .then(res => res.json())
-  },[]) 
-  
+const getComment = async () =>{
+    await axios.get('http://localhost:8080/feed/show-comments',
+    {
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': 'Bearer' + localStorage.getItem('JWT')
+       },
+             params: {
+                               feedId: 1
+                             }
+     })
+     .then(res => console.log(res))
+  }
+
+
+
+  useEffect( ()=>{
+    getComment()
+  },[])
+
   
 
 

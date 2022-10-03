@@ -24,11 +24,12 @@ public class CommentController {
     private final CommentService commentService;
 
 
+//    @PostMapping("feed/save-comment/{feedId}")
     @PostMapping("feed/save-comment")
-    public ResponseEntity<?> commentSave(@RequestParam(value = "feedId") Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
+    public ResponseEntity<?> commentSave(@RequestParam("feedId") Long feedId, @RequestBody CommentSaveDto commentSaveDto, HttpServletRequest request){
 
-        return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
-//        return ResponseEntity.ok(commentService.saveComment(feedId, commentSaveDto, (String) request.getAttribute("email")));
+//        return ResponseEntity.ok(commentSaveApplication.commentSave(feedId, commentSaveDto, (String) request.getAttribute("email")));
+        return ResponseEntity.ok(commentService.saveComment(feedId, commentSaveDto, (String) request.getAttribute("email")));
     }
 
 
@@ -39,8 +40,8 @@ public class CommentController {
     }
 
 
-    @GetMapping("feed/show-comments/{feedId}")
-    public Slice<Comment> getComments(@PathVariable(value = "feedId") Long feedId, @PageableDefault(size = 20) Pageable pageable) {
+    @GetMapping("feed/show-comments")
+    public Slice<Comment> getComments(@RequestParam(value = "feedId") Long feedId, @PageableDefault(size = 3) Pageable pageable) {
 
         return commentService.findAll(pageable, feedId);
     }

@@ -30,6 +30,7 @@ function ContentModal(props) {
   const [commentValue, setCommentValue] = useState("");
   const [feedComments, setFeedComments] = useState([])//댓글 모음
   const onChangeComment = (e) => {
+    console.log(typeof e.target.value)
     setCommentValue(e.target.value);
   };
   
@@ -43,29 +44,38 @@ function ContentModal(props) {
     e.preventDefault();
     
     const variables = {
-      content: commentValue,
+      context: commentValue,
       // email:localStorage.getItem('JWT')
     };
 
     axios.post(
-      'http://localhost:8080/feed/save-comments', 
+      'http://localhost:8080/feed/save-comment',
       JSON.stringify({
-      variables
-      }), 
-      // {
-      //   params: {
-      //     feedId: feed_id
-      //   }
-      // }
+//      variables
+        context: commentValue
+      }),
+//        {},
+        {
+        headers:
+              {'Content-Type': 'application/json',
+               'Authorization': 'Bearer' + localStorage.getItem('JWT')
+               },
+               params: {
+                        feedId: 1
+                      }
+              },
+
+
       )
     .then((res) => {
-      const copyFeedComments = [...variables]
-      copyFeedComments.push(variables)
+    const copyFeedComments = [...commentValue]
+      copyFeedComments.push(commentValue)
       setFeedComments(copyFeedComments)
       setCommentValue('')
       console.log(feedComments)
-      console.log('success')
-      res.json()})
+      console.log(res)
+//      res.json()})
+      })
     .catch((error) => console.log(error))
   }
 
