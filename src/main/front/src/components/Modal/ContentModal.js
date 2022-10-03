@@ -37,7 +37,7 @@ function ContentModal(props) {
     return axios.post("/comment/save-comment", newComment);
   });
 
-  const addComment = (e) => {
+  const addComment = async (e) => {
     e.preventDefault();
 
     const variables = {
@@ -45,14 +45,13 @@ function ContentModal(props) {
       // email:localStorage.getItem('JWT')
     };
 
-    axios
+    await axios
       .post(
         "http://localhost:8080/feed/save-comment",
         JSON.stringify({
-          //      variables
           context: commentValue,
         }),
-        //        {},
+
         {
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +67,6 @@ function ContentModal(props) {
         copyFeedComments.push(commentValue);
         setFeedComments(copyFeedComments);
         setCommentValue("");
-        console.log(feedComments);
         console.log(res);
         //      res.json()})
       })
