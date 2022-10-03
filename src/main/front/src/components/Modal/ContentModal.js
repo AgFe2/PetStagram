@@ -1,12 +1,11 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
-import mock from "../../data/feed.json";
 import styles from "../../styles/ContentModal.module.css";
-import { useMutation } from "react-query";
+// import { useMutation } from "react-query";
 
 
 
@@ -34,13 +33,7 @@ function ContentModal(props) {
     setCommentValue(e.target.value);
   };
   
-
-  const mutation = useMutation(newComment => {
-    return axios.post('/comment/save-comment',newComment)
-  })
-
-
-  const addComment = (e) => {
+  const addComment = async (e) => {
     e.preventDefault();
     
     const variables = {
@@ -48,38 +41,35 @@ function ContentModal(props) {
       // email:localStorage.getItem('JWT')
     };
 
-    axios.post(
+   await axios.post(
       'http://localhost:8080/feed/save-comment',
       JSON.stringify({
-//      variables
         context: commentValue
       }),
-//        {},
+
         {
         headers:
               {'Content-Type': 'application/json',
                'Authorization': 'Bearer' + localStorage.getItem('JWT')
                },
-               params: {
-                        feedId: 1
-                      }
-              },
-
-
+        params: {
+                feedId: 1
+                }
+        },
       )
     .then((res) => {
-    const copyFeedComments = [...commentValue]
+      const copyFeedComments = [...commentValue]
       copyFeedComments.push(commentValue)
       setFeedComments(copyFeedComments)
       setCommentValue('')
-      console.log(feedComments)
       console.log(res)
 //      res.json()})
       })
     .catch((error) => console.log(error))
   }
 
-  const { handleCloseDetail } = props;
+  const { handleCloseDetail, imgpath, postcomment, feedId } = props;
+
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
       <button className={styles.closeBtn} onClick={handleCloseDetail}>
@@ -94,7 +84,7 @@ function ContentModal(props) {
           <div className={styles.main}>
             <div className={styles.scroll}>
               <Paragraph />
-              <Comments />
+              <Comments feedId={feedId}/>
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
