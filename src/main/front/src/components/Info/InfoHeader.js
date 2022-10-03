@@ -1,5 +1,4 @@
 import React, { useState,useRef } from 'react';
-import { useStateContext } from '../../context/auth_context';
 import styles from '../../styles/InfoHeader.module.css'
 
 const InfoHeader = () => {

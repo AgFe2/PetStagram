@@ -2,7 +2,6 @@ package B4F2.PetStagram.configuration;
 
 import B4F2.PetStagram.member.util.JwtAuthenticationProvider;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -21,7 +20,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) {
         System.out.println(">>> interceptor.preHandle 호출");
         String token = authExtractor.extract(request, "Bearer");
-        System.out.println("token:" + token);
+
         if (token == null || token.length() == 0) {
             return true;
         }

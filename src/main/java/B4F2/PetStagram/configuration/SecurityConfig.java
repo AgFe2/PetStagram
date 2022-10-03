@@ -43,7 +43,8 @@ public class SecurityConfig {
                 .antMatchers(
                         // todo 모든 접근 허용 경로
 //                        "/" ,
-                        "/**"
+                        "/**",
+                        "/js/**", "/img/**"
 //                        ,"/member/*"
                 ).permitAll()
                 .and()
@@ -65,5 +66,16 @@ public class SecurityConfig {
                 .addFilterAfter(new MemberFilter(provider, memberService), UsernamePasswordAuthenticationFilter.class)
 
                 .build();
+    }
+
+        @Bean
+        CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "OPTIONS", "PUT","DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

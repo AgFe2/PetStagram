@@ -41,7 +41,7 @@ public class Comment {
     public static Comment from(CommentSaveDto commentSaveDto, Long feedId, String email){
         return Comment.builder()
                 .context(commentSaveDto.getContext())
-                .email(commentSaveDto.getEmail())
+                .email(email)
                 .feedId(feedId)
                 .createdAt(LocalDateTime.now())
                 .build();

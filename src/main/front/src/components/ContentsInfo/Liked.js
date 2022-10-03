@@ -16,8 +16,6 @@ function Liked(props) {
     return res;
   };
 
-  //
-
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get("feed/like", {

@@ -13,7 +13,7 @@ public class CommentSaveDto {
 
     private String context;
 
-    private String email;
+//    private String email;
 
     private LocalDateTime createdAt;
 
