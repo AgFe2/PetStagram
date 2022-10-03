@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 
 //components
@@ -8,8 +9,6 @@ import SearchResult from "./SearchResult";
 import styles from "../../styles/SearchBar.module.css";
 
 function SearchBar(props) {
-  const { search, onChange, filterTag } = props;
-
   //searchBar Focus n Blur
   const [activeSearch, setActiveSearch] = useState(false);
 
@@ -28,6 +27,22 @@ function SearchBar(props) {
     setSelect(e.target.value);
   };
 
+  const [data, setData] = useState([]);
+  // searchBar filter
+  const [search, setSearch] = useState("");
+  const handleSearchChange = (e) => {
+    e.target.value &&
+      axios
+        .get("/search", {
+          params: { searchType: `${select}`, searchValue: e.target.value },
+        })
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    setSearch(e.target.value);
+  };
+
+  //물어볼 거 :
+
   return (
     <>
       <div className={styles.body}>
@@ -39,7 +54,7 @@ function SearchBar(props) {
               value="tag"
               id="tag"
               checked={select === "tag"}
-              onChange={handleSelectChange}
+              onChange={() => handleSelectChange}
             ></input>
             태그
           </label>
@@ -49,7 +64,7 @@ function SearchBar(props) {
               name="search"
               value="id"
               checked={select === "id"}
-              onChange={handleSelectChange}
+              onChange={() => handleSelectChange}
             ></input>
             아이디
           </label>
@@ -59,16 +74,12 @@ function SearchBar(props) {
           className={styles.input}
           type="text"
           placeholder={"검색"}
-          onChange={onChange}
+          onChange={handleSearchChange}
           value={search}
           onFocus={handleFocusSearch}
           onBlur={handleBlurSearch}
         ></input>
-        <SearchResult
-          activeSearch={activeSearch}
-          filterTag={filterTag}
-          search={search}
-        />
+        <SearchResult activeSearch={activeSearch} search={search} data={data} />
       </div>
     </>
   );

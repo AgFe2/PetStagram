@@ -11,13 +11,18 @@ function Top(props) {
 
   useEffect(() => {
     axios
-      .get("/board/bestList")
+      .get("/board/bestList", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
+        console.log(res);
         console.log(res.data);
         setGallery(res.data);
       })
-      .catch((err) => console.log(err));
-  });
+      .then((json) => alert(json));
+  }, []);
 
   return (
     <>

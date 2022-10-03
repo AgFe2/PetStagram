@@ -12,13 +12,19 @@ function My() {
 
   useEffect(() => {
     axios
-      .get("/board/myList")
+      .get("/board/myList", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
+      })
       .then((res) => {
+        console.log(res);
         console.log(res.data);
         setGallery(res.data);
       })
-      .catch((err) => console.log(err));
-  });
+      .then((json) => alert(json));
+  }, []);
   return (
     <>
       <Header />

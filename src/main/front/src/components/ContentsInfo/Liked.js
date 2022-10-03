@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
+// CSS
 import styles from "../../styles/Contents.module.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import axios from "axios";
 
 function Liked(props) {
   const [likedBtn, setLikedBtn] = useState(false);
+
   const toggleLiked = async (e) => {
     const res = await axios.post("feed/like", {
       params: { userID: "", feedId: "" },
