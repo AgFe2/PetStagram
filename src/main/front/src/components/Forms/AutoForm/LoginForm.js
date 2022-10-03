@@ -21,7 +21,7 @@ const LoginForm = () => {
     };
     try {
       await axios
-        .post("/member/login", JSON.stringify(data), {
+        .post("/member/sign-in", JSON.stringify(data), {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
