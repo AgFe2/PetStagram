@@ -19,7 +19,6 @@ function My() {
         },
       })
       .then((res) => {
-        console.log(res);
         console.log(res.data);
         setGallery(res.data);
       })
