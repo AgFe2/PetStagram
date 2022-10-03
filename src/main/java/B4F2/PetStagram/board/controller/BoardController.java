@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,16 +25,16 @@ public class BoardController {
 
 
     @GetMapping("/myList")
-    public ResponseEntity<List<FeedEntity>> myList(@RequestParam String email
+    public ResponseEntity<List<FeedEntity>> myList(HttpServletRequest request
             , @PageableDefault(sort = "feedId", direction = Sort.Direction.DESC) Pageable pageable) {
-        List<FeedEntity> feed = boardService.myList(email, pageable);
+        List<FeedEntity> feed = boardService.myList((String) request.getAttribute("email"), pageable);
         return ResponseEntity.ok(feed);
     }
 
     @GetMapping("/followList")
-    public ResponseEntity<List<FeedEntity>> followList(@RequestParam String email
+    public ResponseEntity<List<FeedEntity>> followList(HttpServletRequest request
             , @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        List<FeedEntity> feed = boardService.followingList(email, pageable);
+        List<FeedEntity> feed = boardService.followingList((String) request.getAttribute("email"), pageable);
 
         return ResponseEntity.ok(feed);
     }

@@ -30,7 +30,7 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> list(Model model, SearchParam parameter) {
+    public ResponseEntity<?> list(SearchParam parameter) {
 
         String type = parameter.getSearchType();
         String value = parameter.getSearchValue();

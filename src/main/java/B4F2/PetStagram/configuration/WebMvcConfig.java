@@ -28,5 +28,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/");
 //        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/feed/save-comment/*", "/feed/delete-comment/*");
         registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/feed/*");
+        registry.addInterceptor(bearerAuthInterceptor).addPathPatterns("/board/*");
     }
 }

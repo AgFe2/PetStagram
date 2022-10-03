@@ -45,6 +45,7 @@ public class BoardService {
         for (int i = 0; i < follows.size(); i++) {
             feeds = feedRepository.findByUserIdAndUpdateDitAfterOrderByUpdateDitDesc(follows.get(i).getFollowEmail(), LocalDateTime.now().minusDays(1));
             result.addAll(feeds);
+            System.out.println(feeds);
         }
         return result;
     }

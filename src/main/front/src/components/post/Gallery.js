@@ -26,7 +26,7 @@ export default function Gallery(props) {
   return (
     <section className={styles.postContainer}>
       <div className={styles.postlist}>
-        {data.length > 1 ? (
+        {data.length > 0 ? (
           data.map((item, idx) => (
             <GalleryItem
               imagepath={imgSrc}

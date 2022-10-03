@@ -108,7 +108,7 @@ export default function Main() {
       .get("/board/followList", {
         headers: {
           "Content-Type": "application/json",
-          // Authorization: "Bearer " + localStorage.getItem("JWT"),
+          "Authorization": "Bearer " + localStorage.getItem("JWT"),
         },
       })
       .then((res) => {
