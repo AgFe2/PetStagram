@@ -40,7 +40,7 @@ function ContentModal(props) {
   })
 
 
-  const addComment = (e) => {
+  const addComment = async (e) => {
     e.preventDefault();
     
     const variables = {
@@ -48,7 +48,7 @@ function ContentModal(props) {
       // email:localStorage.getItem('JWT')
     };
 
-    axios.post(
+    await axios.post(
       'http://localhost:8080/feed/save-comment',
       JSON.stringify({
 //      variables
