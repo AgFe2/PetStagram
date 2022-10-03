@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useId, useState } from "react";
+import axios from "axios";
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
-
+import mock from "../../data/feed.json";
 import styles from "../../styles/ContentModal.module.css";
+import { useMutation } from "react-query";
 
 function ContentModal(props) {
-  const { setOpenDetail, imgpath, postcomment } = props;
+  const { handleCloseDetail, imgpath, postcomment } = props;
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
@@ -26,12 +27,52 @@ function ContentModal(props) {
 
   // commentValue
   const [commentValue, setCommentValue] = useState("");
+  const [feedComments, setFeedComments] = useState([]); //댓글 모음
   const onChangeComment = (e) => {
+    console.log(typeof e.target.value);
     setCommentValue(e.target.value);
   };
 
-  const handleCloseDetail = () => {
-    setOpenDetail(false);
+  const mutation = useMutation((newComment) => {
+    return axios.post("/comment/save-comment", newComment);
+  });
+
+  const addComment = (e) => {
+    e.preventDefault();
+
+    const variables = {
+      context: commentValue,
+      // email:localStorage.getItem('JWT')
+    };
+
+    axios
+      .post(
+        "http://localhost:8080/feed/save-comment",
+        JSON.stringify({
+          //      variables
+          context: commentValue,
+        }),
+        //        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + localStorage.getItem("JWT"),
+          },
+          params: {
+            feedId: 1,
+          },
+        }
+      )
+      .then((res) => {
+        const copyFeedComments = [...commentValue];
+        copyFeedComments.push(commentValue);
+        setFeedComments(copyFeedComments);
+        setCommentValue("");
+        console.log(feedComments);
+        console.log(res);
+        //      res.json()})
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -45,7 +86,7 @@ function ContentModal(props) {
         </div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
-            <ItemUser userId={"userId"} />
+            <ItemUser userId={"user"} />
           </div>
           <div className={styles.main}>
             <div className={styles.scroll}>
@@ -55,7 +96,7 @@ function ContentModal(props) {
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <form className={styles.inputForm}>
+            <form className={styles.inputForm} onSubmit={addComment}>
               <input
                 type="text"
                 placeholder="댓글 달기..."

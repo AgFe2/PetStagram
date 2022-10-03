@@ -1,11 +1,15 @@
 import axios from "axios";
 
-export const BASE_URL= 'http://localhost:8080';
+export const API =(token) => axios.create({
 
-export const API = axios.create({
     baseURL:'http://localhost:8080',
     headers:{
         'Content-Type' : 'applications/json',
+        "Authorization": "Bearer "+token,
+      
+        // 추가  
+        "Access-Control-Allow-Origin": `http://localhost:3000`,
+        'Access-Control-Allow-Credentials':"true",
     },
 })
 
