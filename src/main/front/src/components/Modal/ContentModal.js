@@ -1,15 +1,15 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
-import mock from "../../data/feed.json";
 import styles from "../../styles/ContentModal.module.css";
 import { useMutation } from "react-query";
 
 function ContentModal(props) {
-  const { handleCloseDetail, imgpath, postcomment } = props;
+  const { handleCloseDetail, imgpath, postcomment, feedId } = props;
+
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
@@ -59,7 +59,7 @@ function ContentModal(props) {
             Authorization: "Bearer" + localStorage.getItem("JWT"),
           },
           params: {
-            feedId: 1,
+            feedId: feedId,
           },
         }
       )
@@ -91,7 +91,7 @@ function ContentModal(props) {
           <div className={styles.main}>
             <div className={styles.scroll}>
               <Paragraph text={postcomment} />
-              <Comments />
+              <Comments feedId={feedId} />
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />

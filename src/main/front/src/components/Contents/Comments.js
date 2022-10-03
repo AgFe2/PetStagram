@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
 
-function Comments() {
+function Comments(props) {
   const [comments, setComments] = useState([]);
 
   const getComment = async () => {
@@ -15,7 +15,7 @@ function Comments() {
           Authorization: "Bearer" + localStorage.getItem("JWT"),
         },
         params: {
-          feedId: 1,
+          feedId: props.feedId,
         },
       })
       .then((res) => setComments(res.data.content))

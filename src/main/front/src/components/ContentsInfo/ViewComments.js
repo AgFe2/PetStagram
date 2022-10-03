@@ -16,7 +16,7 @@ function ViewComments(props) {
         {props.comments} view all comments
       </button>
       {openDetail === true ? (
-        <ContentModal setOpenDetail={setOpenDetail} />
+        <ContentModal setOpenDetail={setOpenDetail} feedId={props.feedId} />
       ) : null}
     </>
   );

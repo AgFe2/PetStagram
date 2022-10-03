@@ -90,19 +90,9 @@ export default function Main() {
   // ];
 
   const [contents, setContents] = useState([]);
+  const [commentsLength, setCommentsLength] = useState();
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/board/followList")
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setContents(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-
-  // });
-
-  // 토큰
+  // 토큰 및 보드
   useEffect(() => {
     axios
       .get("/board/followList", {
@@ -112,11 +102,25 @@ export default function Main() {
         },
       })
       .then((res) => {
-        console.log("res.data");
         console.log(res.data);
+        setContents(res.data);
       })
       .then((json) => alert(json));
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/feed/show-comments", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: {
+          feedId: contents.map((item) => item.feedId),
+        },
+      })
+      .then((res) => setCommentsLength(res.data.content.length))
+      .catch((e) => console.log(e));
+  });
 
   // comments 갯수는 feedId를 통해서 comment에서 가져와야함.......
   return (
@@ -128,7 +132,7 @@ export default function Main() {
             <Contents
               userId={item.userId}
               liked={item.likeCnt}
-              comments={item.comment.length}
+              comments={commentsLength}
               key={item.feedId}
             />
           ))}
