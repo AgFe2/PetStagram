@@ -33,9 +33,9 @@ const CommentForm = ({comment}) => {
                 .then((res) => {
                     setCommentValue("");
                     console.log(res);
-                    axios.get(`http://localhost:8080/feed/show-comments?${feed_Id}`)
+                    axios.get(`http://localhost:8080/feed/show-comments?feedId=${feed_Id}`).then((data) => console.log(data))
                 })
-                
+
         }
         catch (e) { console.log(e) };
     };
