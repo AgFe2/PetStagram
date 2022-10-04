@@ -6,7 +6,7 @@ import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
 import CommentForm from "../Forms/CommentForms/CommentForm";
 import styles from "../../styles/ContentModal.module.css";
-import { useMutation } from "react-query";
+
 
 
 function ContentModal(props) {
@@ -27,50 +27,7 @@ function ContentModal(props) {
     };
   }, []);
 
-  // commentValue
-  // const [commentValue, setCommentValue] = useState("");
-  // const [feedComments, setFeedComments] = useState([]); //댓글 모음
-  // const onChangeComment = (e) => {
-  //   console.log(typeof e.target.value);
-  //   setCommentValue(e.target.value);
-  // };
 
-  // const mutation = useMutation((newComment) => {
-  //   return axios.post("/comment/save-comment", newComment);
-  // });
-  
-  // const addComment = async (e) => {
-  //   e.preventDefault();
-
-  //   try{
-  //     await axios
-  //       .post(
-  //         "http://localhost:8080/feed/save-comment",
-  //         JSON.stringify({
-  //           context: commentValue,
-  //         }),
-
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: "Bearer" + localStorage.getItem("JWT"),
-  //           },
-  //           params: {
-  //             feedId: 1,
-  //           },
-  //         }
-  //     )
-  //     .then((res) => {
-  //       const copyFeedComments = [...commentValue];
-  //       copyFeedComments.push(commentValue);
-  //       setFeedComments(copyFeedComments);
-  //       setCommentValue("");
-  //       console.log(res);
-  //     })
-      
-  //   }
-  //     catch(e){console.log(e)};
-  // };
     
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
@@ -93,7 +50,7 @@ function ContentModal(props) {
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <CommentForm/>
+
           </div>
         </div>
       </div>

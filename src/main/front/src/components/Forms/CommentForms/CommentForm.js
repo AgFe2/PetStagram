@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/ContentModal.module.css";
 
-const CommentForm = () => {
+const CommentForm = ({comment}) => {
     const [commentValue, setCommentValue] = useState("");
 
     const onChangeComment = (e) => {
@@ -18,9 +18,8 @@ const CommentForm = () => {
                 .post(
                     "http://localhost:8080/feed/save-comment",
                     JSON.stringify({
-                        context: commentValue,
+                        context:commentValue,
                     }),
-
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -32,6 +31,7 @@ const CommentForm = () => {
                     }
                 )
                 .then((res) => {
+                    
                     setCommentValue("");
                     console.log(res);
                 })
@@ -39,6 +39,8 @@ const CommentForm = () => {
         }
         catch (e) { console.log(e) };
     };
+
+    console.log(commentValue)
     return (
         <>
             <form className={styles.inputForm} onSubmit={addComment}>
