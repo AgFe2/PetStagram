@@ -12,7 +12,7 @@ const CommentForm = ({comment}) => {
 
     const addComment = async (e) => {
         e.preventDefault();
-
+        let feed_Id = 1
         try {
             await axios
                 .post(
@@ -26,16 +26,16 @@ const CommentForm = ({comment}) => {
                             Authorization: "Bearer" + localStorage.getItem("JWT"),
                         },
                         params: {
-                            feedId: 1,
+                            feedId: feed_Id,
                         },
                     }
                 )
                 .then((res) => {
-                    axios.get(`http://localhost:8080/feed/show-comments?${feedId}`)
                     setCommentValue("");
                     console.log(res);
+                    axios.get(`http://localhost:8080/feed/show-comments?${feed_Id}`)
                 })
-
+                
         }
         catch (e) { console.log(e) };
     };
