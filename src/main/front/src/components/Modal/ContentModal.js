@@ -111,7 +111,7 @@ function ContentModal(props) {
               <Paragraph text={postcomment} />
               
               {comments.map((comment) =>{
-                <Comments feedId={feedId} />
+                <Comments feedId={feedId} email={comment.email} createdAt={comment.createdAt} context={comment.context}/>
               })
               }
                 
