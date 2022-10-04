@@ -1,16 +1,18 @@
-import React, { useEffect, useId, useState } from "react";
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
-import mock from "../../data/feed.json";
 import styles from "../../styles/ContentModal.module.css";
 import { useMutation } from "react-query";
 
-
-
 function ContentModal(props) {
+  const [comments, setComments] = useState([
+    { email: "", context: "", createdAt: "" },
+  ]);
+  const { handleCloseDetail, imgpath, postcomment, feedId } = props;
+
   useEffect(() => {
     // 배경 스크롤 방지
     document.body.style.cssText = `
@@ -28,73 +30,91 @@ function ContentModal(props) {
 
   // commentValue
   const [commentValue, setCommentValue] = useState("");
-  const [feedComments, setFeedComments] = useState([])//댓글 모음
+  const [feedComments, setFeedComments] = useState([]); //댓글 모음
   const onChangeComment = (e) => {
-    console.log(typeof e.target.value)
+    console.log(typeof e.target.value);
     setCommentValue(e.target.value);
   };
-  
 
-  const mutation = useMutation(newComment => {
-    return axios.post('/comment/save-comment',newComment)
-  })
-
+  // const mutation = useMutation((newComment) => {
+  //   return axios.post("/comment/save-comment", newComment);
+  // });
 
   const addComment = async (e) => {
     e.preventDefault();
-    
+
     const variables = {
       context: commentValue,
       // email:localStorage.getItem('JWT')
     };
 
-    await axios.post(
-      'http://localhost:8080/feed/save-comment',
-      JSON.stringify({
-//      variables
-        context: commentValue
-      }),
-//        {},
+    await axios
+      .post(
+        "http://localhost:8080/feed/save-comment",
+        JSON.stringify({
+          context: commentValue,
+        }),
+
         {
-        headers:
-              {'Content-Type': 'application/json',
-               'Authorization': 'Bearer' + localStorage.getItem('JWT')
-               },
-               params: {
-                        feedId: 1
-                      }
-              },
-
-
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + localStorage.getItem("JWT"),
+          },
+          params: {
+            feedId: feedId,
+          },
+        }
       )
-    .then((res) => {
-    const copyFeedComments = [...commentValue]
-      copyFeedComments.push(commentValue)
-      setFeedComments(copyFeedComments)
-      setCommentValue('')
-      console.log(feedComments)
-      console.log(res)
-//      res.json()})
+      .then((res) => {
+        const copyFeedComments = [...commentValue];
+        copyFeedComments.push(commentValue);
+        setFeedComments(copyFeedComments);
+        setCommentValue("");
+        console.log(res);
+        //      res.json()})
       })
-    .catch((error) => console.log(error))
-  }
+      .catch((error) => console.log(error));
+  };
+    useEffect(() => {
+      async function getComment() {
+        await axios
+          .get("http://localhost:8080/feed/show-comments", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer" + localStorage.getItem("JWT"),
+            },
+            params: {
+              feedId: 1,
+            },
+          })
+          .then((res) => setComments(res.data.content))
+          .catch((e) => console.log(e));
+      }
+      getComment();
+    }, [comments.context]);
 
-  const { handleCloseDetail } = props;
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
       <button className={styles.closeBtn} onClick={handleCloseDetail}>
         ✖
       </button>
       <div className={styles.body} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.pic}>사진</div>
+        <div className={styles.picWrap}>
+          <img src={imgpath} className={styles.pic} alt="contents-img" />
+        </div>
         <div className={styles.info}>
           <div className={styles.infoTop}>
-            <ItemUser userId={'user'} />
+            <ItemUser userId={"user"} />
           </div>
           <div className={styles.main}>
             <div className={styles.scroll}>
-              <Paragraph />
-              <Comments />
+              <Paragraph text={postcomment} />
+              
+              {comments.map((comment) =>{
+                <Comments feedId={feedId} email={comment.email} createdAt={comment.createdAt} context={comment.context}/>
+              })
+              }
+                
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
@@ -110,8 +130,7 @@ function ContentModal(props) {
               {commentValue.length > 0 ? (
                 <button
                   type="submit"
-                  className={`${styles.inputButton} ${styles.btnActive}`
-                  }
+                  className={`${styles.inputButton} ${styles.btnActive}`}
                 >
                   게시
                 </button>

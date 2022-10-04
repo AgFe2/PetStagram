@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../Button/Button";
 import styles from "./AuthForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const LoginForm = () => {
+  const [isLogined, setIsLogined] = useState(false)
   const navigate = useNavigate();
 
   const LoginValidSchema = Yup.object().shape({
@@ -22,9 +23,9 @@ const LoginForm = () => {
     try {
       await axios
         .post("http://localhost:8080/member/sign-in", JSON.stringify(data), {
-          headers : { "Content-Type": "application/json" },
-//          "Access-Control-Allow-Origin": "http://localhost:3000",
-//           'Access-Control-Allow-Credentials':"true"},
+          headers: { "Content-Type": "application/json" },
+          //          "Access-Control-Allow-Origin": "http://localhost:3000",
+          //           'Access-Control-Allow-Credentials':"true"},
         })
         .then((response) => {
           axios.defaults.headers.common[
@@ -36,8 +37,11 @@ const LoginForm = () => {
           localStorage.setItem("JWT", token.accessToken);
           alert("로그인되었습니다.");
         });
+        if(!isLogined) {
+          setIsLogined(true)
+        }
       setTimeout(() => {
-        navigate("/my");
+        navigate("/");
       }, 2000);
     } catch (e) {
       alert("아이디가 존재하지않습니다.");

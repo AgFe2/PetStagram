@@ -14,8 +14,12 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-query": "^3.39.2",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

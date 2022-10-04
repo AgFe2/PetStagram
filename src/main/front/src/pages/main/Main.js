@@ -1,42 +1,57 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import Header from "../../components/Header/Header";
 import Contents from "../../components/Contents/Contents";
 import styles from "../../styles/Contents.module.css";
-import mock from '../../data/feed.json'
-
-
-
-
+import axios from "axios";
 export default function Main() {
-  const [state,setState] = useState('')
+  const [contents, setContents] = useState([]);
+  const [commentsLength, setCommentsLength] = useState();
 
-  // useEffect(()=>{
-  //   axios.get('/data/mock_feed.json')
-  //   .then((res) =>res.json())
-  //   .then((res) =>{
-  //     console.log(res +'success');
-  //     setState({
-  //       data:res.data
-  //     })
-  //     console.log(res)
-  //   })
-  // })
-  
+  // 토큰 및 보드
+  useEffect(() => {
+    axios
+      .get("/board/followList", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setContents(res.data);
+      })
+      .then((json) => alert(json));
+  }, []);
 
-  const contentsItem = mock.map((data,idx) => (
-    <Contents
-      userId={data.feed_id}
-      liked={data.total_like_number}
-      comments={data.comment.length}
-      key={idx}
-    />
-  ));
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/feed/show-comments", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: {
+          feedId: contents.map((item) => item.feedId),
+        },
+      })
+      .then((res) => setCommentsLength(res.data.content.length))
+      .catch((e) => console.log(e));
+  });
 
+  // comments 갯수는 feedId를 통해서 comment에서 가져와야함.......
   return (
     <>
+      <Header />
       <div className="container">
         <div className={styles.contentsGroup}>
-          <div>{contentsItem}</div>
+          {contents.map((item) => (
+            <Contents
+              userId={item.userId}
+              liked={item.likeCnt}
+              comments={commentsLength}
+              key={item.feedId}
+            />
+          ))}
         </div>
       </div>
     </>

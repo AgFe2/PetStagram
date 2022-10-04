@@ -1,12 +1,17 @@
 import React from "react";
+
 import Header from "../../components/Header/Header";
+import Gallery from "../../components/post/Gallery";
+import styles from "../../styles/Top.module.css";
+
 function Explore(props) {
   return (
-    <Header>
-    <div>
-      <h1>SearchPage</h1>
-    </div>
-    </Header>
+    <>
+      <Header />
+      <div className={styles.galleryWrap}>
+        <Gallery />
+      </div>
+    </>
   );
 }
 

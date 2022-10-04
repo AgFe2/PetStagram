@@ -1,16 +1,32 @@
-import React ,{useEffect} from "react";
-import Info from "../../components/Info/Info";
-import Gallery from "../../components/post/Gallery";
-import styles from "../../styles/My.module.css";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Header from "../../components/Header/Header";
+import Info from "../../components/Info/Info";
+import Gallery from "../../components/post/Gallery";
+
 function My() {
+  const [gallery, setGallery] = useState([]);
 
-
+  useEffect(() => {
+    axios
+      .get("/board/myList", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setGallery(res.data);
+      })
+      .then((json) => alert(json));
+  }, []);
   return (
     <>
+      <Header />
       <Info />
-      <Gallery />
+      <Gallery data={gallery} />
     </>
   );
 }

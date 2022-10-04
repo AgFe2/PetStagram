@@ -1,17 +1,31 @@
 /* search*/
 
-.searchBar {
+.body {
   position: relative;
 }
 
-.searchBarInput {
+.radioBox {
+  text-align: center;
+}
+
+.radioLabel {
+  margin-right: 12px;
+}
+
+.input {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 12px 8px;
   border-radius: 8px;
   min-width: 230px;
 }
 
-/* searchRecent - 보류*/
+.option {
+  background-color: #333;
+  color: #fff;
+  padding: 3px 0;
+}
+
+/* searchRecent - 보류
 .searchRecentTitle {
   display: flex;
   align-items: center;
@@ -26,12 +40,13 @@
   color: cornflowerblue;
   cursor: pointer;
 }
+*/
 
 /* searchResult */
 
 .searchResult {
   position: absolute;
-  left: -25px;
+  right: -15px;
   background-color: #fff;
   width: 280px;
   height: 280px;

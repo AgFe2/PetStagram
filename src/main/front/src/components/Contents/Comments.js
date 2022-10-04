@@ -3,123 +3,88 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
-import { useQuery } from 'react-query'
-import { useParams } from "react-router-dom";
 
-function Comments(){
-  const [comments,setComments] = useState([{
-                                               email:'',
-                                               context:'',
-                                               createdAt:''
-                                             }])
+import date from '../../data/feed.json'
+
+function Comments(props) {
+  // const [comments, setComments] = useState([
+  //   { email: "", context: "", createdAt: "" },
+  // ]);
+
+  
+
+  // useEffect(() => {
+  //   async function getComment() {
+  //     await axios
+  //       .get("http://localhost:8080/feed/show-comments", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer" + localStorage.getItem("JWT"),
+  //         },
+  //         params: {
+  //           feedId: props.feedId,
+  //         },
+  //       })
+  //       .then((res) => setComments(res.data.content))
+  //       .catch((e) => console.log(e));
+  //   }
+  //   getComment();
+  // }, [comments.context]);
 
 
-
-  useEffect( ()=>{
-  async function getComment (){
-      await axios.get('http://localhost:8080/feed/show-comments',
-        {
-         headers: {
-           'Content-Type': 'application/json',
-           'Authorization': 'Bearer' + localStorage.getItem('JWT')
-         },
-         params:{
-            feedId:1
-         }
-       })
-       .then((res) => setComments(res.data.content))
-       .catch((e) => console.log(e))
-      }
-    getComment()
-  }, [comments])
-
-console.log(comments)
-
-const commentArray = comments.map((comment) =>{
-    return (
-    <li className={styles.item} key={comment.commentId}>
-    <div className={`${ItemUser.pic} ${styles.pic}`}></div>
-    <div className={styles.main}>
-      <span className={`${ItemUser.userName} ${styles.userName}`}>
-        {comment.email}
-      </span>
-      <span className={styles.text}>{comment.context}</span>
-    <span className={styles.time}>{comment.createdAt}</span>
-    </div>
-  </li>
-  )
-  })
+  // console.log(comments);
+  // const commentArray = comments.map((comment) => {
+  //   return (
+  //     <li className={styles.item} key={comment.commentId}>
+  //       <div className={`${ItemUser.pic} ${styles.pic}`}></div>
+  //       <div className={styles.main}>
+  //         <span className={`${ItemUser.userName} ${styles.userName}`}>
+  //           {comment.email}
+  //         </span>
+  //         <span className={styles.text}>{comment.context}</span>
+  //         <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
+  //         <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
+  //       </div>
+  //     </li>
+  //   );
+  // });
 
   return (
     <>
-      <ul className={comments.group}>
-      {commentArray}
+      <ul className={styles.group}>
+        <li className={styles.item}>
+        <div className={`${ItemUser.pic} ${styles.pic}`}></div>
+        <div className={styles.main}>
+          <span className={`${ItemUser.userName} ${styles.userName}`}>
+            {props.email}
+          </span>
+          <span className={styles.text}>{props.context}</span>
+          <span className={styles.time}>{props.createdAt[0] + '년' + props.createdAt[1]+'월' + props.createdAt[2] + '일'}</span>
+          {/* <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span> */}
+        </div>
+      </li>
       </ul>
-          </>
-        );
-      }
-//       { comments.map((comment) => {
-//        <li className={comments.item}>
-//          <div className={`${ItemUser.pic} ${comments.pic}`}></div>
-//          <div className={comments.main}>
-//            <span className={`${ItemUser.userName} ${comments.userName}`}>
-//              {comment.email}
-//            </span>
-//            <span className={comments.text}>{comment.context}</span>
-//          </div>
-//        </li>
-//       })
-//        }
-//      </ul>
-
-
-//function Comments(){
-//  const FEED_ID = useParams();
-//  const [board,setBoard] = useState({})
-//  const [isLoded, setIsLoded] = useState(false)
-//
-//const getComment = async () =>{
-//    await axios.get('http://localhost:8080/feed/show-comments',
-//    {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer' + localStorage.getItem('JWT')
-//       },
-//             params: {
-//                               feedId: 1
-//                             }
-//     })
-//     .then(res => setBoard(res.data.content))
-//  }
-//
-//
-//  useEffect( ()=>{
-//    getComment()
-//  },[])
-//
-////const commentArray = JSON.parse(board)
-//
-////  console.log(commentArray)
-//  console.log(board[0])
-//
-//
-//
-//
-//  return (
-//    <>
-//      <ul className={comments.group}>
-//        <li className={comments.item}>
-//          <div className={`${ItemUser.pic} ${comments.pic}`}></div>
-//          <div className={comments.main}>
-//            <span className={`${ItemUser.userName} ${comments.userName}`}>
-//              userName
-//            </span>
-//            <span className={comments.text}>abcdefghijk</span>
-//          </div>
-//        </li>
-//      </ul>
-//    </>
-//  );
-//}
+    </>
+  );
+}
 
 export default Comments;
+
+
+
+// return (
+//   <>
+//     <ul className={comments.group}>
+//       <li className={styles.item} key={comments.commentId}>
+//       <div className={`${ItemUser.pic} ${styles.pic}`}></div>
+//       <div className={styles.main}>
+//         <span className={`${ItemUser.userName} ${styles.userName}`}>
+//           {comments.email}
+//         </span>
+//         <span className={styles.text}>{comment.context}</span>
+//         <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
+//         <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
+//       </div>
+//     </li>
+//     </ul>
+//   </>)
