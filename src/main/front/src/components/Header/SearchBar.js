@@ -45,6 +45,9 @@ function SearchBar(props) {
     setSearch(e.target.value);
   };
 
+  // tagTitle 이 태그이름
+  // id 가 아이디들
+
   return (
     <>
       <div className={styles.body}>
@@ -81,7 +84,12 @@ function SearchBar(props) {
           onFocus={handleFocusSearch}
           onBlur={handleBlurSearch}
         ></input>
-        <SearchResult activeSearch={activeSearch} search={search} data={data} />
+        <SearchResult
+          activeSearch={activeSearch}
+          search={search}
+          data={data}
+          searchType={select}
+        />
       </div>
     </>
   );

@@ -1,11 +1,12 @@
 import React from "react";
 
+// COMPONENTS
+import ExistResult from "./ExistResult";
 //CSS
 import styles from "../../styles/SearchBar.module.css";
-import { FaHashtag } from "react-icons/fa";
 
 function SearchResult(props) {
-  const { data, activeSearch, search } = props;
+  const { data, activeSearch, search, searchType } = props;
   return (
     <>
       <div
@@ -14,24 +15,7 @@ function SearchResult(props) {
         }`}
       >
         {data.length > 0 && search.length > 0 ? (
-          data.map((item) => (
-            <div className={styles.resultItem}>
-              <div className={styles.hashtagBg}>
-                <FaHashtag className={styles.hashtagIcon} />
-              </div>
-              <div className={styles.hashtagTxt}>
-                <span className={styles.hashtagName}>
-                  #{item.hashtag_context}
-                </span>
-                <span className={styles.hashtagCount}>
-                  {item.hashtag_feed_count
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                  posts
-                </span>
-              </div>
-            </div>
-          ))
+          <ExistResult data={data} search={search} searchType={searchType} />
         ) : (
           <div className={`${styles.resultNothing}`}>
             <span>검색 결과가 없습니다.</span>
