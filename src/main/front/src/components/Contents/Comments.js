@@ -4,38 +4,36 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
 
-import date from '../../data/feed.json'
-
 function Comments(props) {
   const [comments, setComments] = useState([
     { email: "", context: "", createdAt: "" },
   ]);
+  const[ commentList, setCommentList ]= useState([])
 
   useEffect(() => {
-    async function getComment() {
-      try{await axios
-        .get("http://localhost:8080/feed/show-comments", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer" + localStorage.getItem("JWT"),
-          },
-          params: {
-            feedId: 1,
-          },
-        })
-        .then(
-          (res) => {
-            const copyFeedComments = [...comments];
-            copyFeedComments.push(comments);
-            setComments(copyFeedComments);
-            setComments(res.data.content)}
-        )
+      async function getComment() {
+        try{await axios
+          .get("http://localhost:8080/feed/show-comments", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer" + localStorage.getItem("JWT"),
+            },
+            params: {
+              feedId: 1,
+            },
+          })
+          .then(
+            (res) => {
+              setComments(res.data.content)
+              setCommentList([...commentList,...res.data.content])
+            }
+          )
+        }
+          catch(e){console.log(e)};
       }
-        catch(e){console.log(e)};
-    }
-    getComment();
+      getComment()
   }, []);
-
+  
   const commentArray = comments.map((comment) => {
     return (
       <li className={styles.item} key={comment.commentId}>
