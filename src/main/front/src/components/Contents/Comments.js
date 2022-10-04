@@ -5,7 +5,6 @@ import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
 
 import date from '../../data/feed.json'
-import { useQuery } from "react-query";
 
 function Comments(props) {
   const [comments, setComments] = useState([
@@ -13,9 +12,9 @@ function Comments(props) {
   ]);
 
 
-
-  async function getComment() {
-      await axios
+  useEffect(() => {
+    async function getComment() {
+      try{await axios
         .get("http://localhost:8080/feed/show-comments", {
           headers: {
             "Content-Type": "application/json",
@@ -25,18 +24,16 @@ function Comments(props) {
             feedId: 1,
           },
         })
-        .then((res) => setComments(res.data.content))
-        .catch((e) => console.log(e));
+        .then((res) => setComments(res.data.content))}
+        
+        catch(e){console.log(e)};
     }
-
-
-
-  const commentQueries = useQuery(['show-comments'], getComment)
-
-  console.log(comments);
+    getComment();
+  }, [comments.context]);
 
   
-  const commentArray = commentQueries.map((comment) => {
+  console.log(comments);
+  const commentArray = comments.map((comment) => {
     return (
       <li className={styles.item} key={comment.commentId}>
         <div className={`${ItemUser.pic} ${styles.pic}`}></div>
