@@ -25,7 +25,7 @@ function TextareaForm(props) {
     console.log(fd);
 
     await axios
-      .post("feed/write", fd, {
+      .post("http://localhost:8080/feed/write", fd, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

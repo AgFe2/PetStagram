@@ -44,7 +44,7 @@ function UploadModal(props) {
     console.log(fd);
 
     await axios
-      .post("file/upload", fd, {
+      .post("http://localhost:8080/file/upload", fd, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

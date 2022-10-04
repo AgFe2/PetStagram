@@ -5,10 +5,8 @@ import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
 import styles from "../../styles/ContentModal.module.css";
-import { useMutation } from "react-query";
 
-function ContentModal(props) {
-  const { handleCloseDetail, imgpath, postcomment, feedId } = props;
+function ContentModal({ handleCloseDetail, imgpath, postcomment, feedId }) {
 
   useEffect(() => {
     // 배경 스크롤 방지
@@ -33,21 +31,14 @@ function ContentModal(props) {
     setCommentValue(e.target.value);
   };
 
-  const mutation = useMutation((newComment) => {
-    return axios.post("/comment/save-comment", newComment);
-  });
+
 
   const addComment = async (e) => {
     e.preventDefault();
 
-    const variables = {
-      context: commentValue,
-      // email:localStorage.getItem('JWT')
-    };
-
     await axios
       .post(
-        "http://localhost:8080/feed/save-comment",
+        'http://localhost:8080/feed/save-comment',
         JSON.stringify({
           context: commentValue,
         }),
@@ -57,18 +48,15 @@ function ContentModal(props) {
             "Content-Type": "application/json",
             Authorization: "Bearer" + localStorage.getItem("JWT"),
           },
-          params: {
-            feedId: feedId,
-          },
+          params:
+          {
+            feedId:1
+          }
         }
       )
       .then((res) => {
-        const copyFeedComments = [...commentValue];
-        copyFeedComments.push(commentValue);
-        setFeedComments(copyFeedComments);
+        console.log(res)
         setCommentValue("");
-        console.log(res);
-        //      res.json()})
       })
       .catch((error) => console.log(error));
   };

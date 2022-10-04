@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../Button/Button";
 import styles from "./AuthForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
