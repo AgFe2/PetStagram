@@ -16,7 +16,7 @@ function Comments(props) {
           .get("http://localhost:8080/feed/show-comments", {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer" + localStorage.getItem("JWT"),
+              "Authorization": "Bearer" + localStorage.getItem("JWT"),
             },
             params: {
               feedId: 1,
@@ -25,7 +25,6 @@ function Comments(props) {
           .then(
             (res) => {
               setComments(res.data.content)
-              props.refreshFunction()
             }
           )
         }
@@ -35,7 +34,6 @@ function Comments(props) {
   }, []);
   
 
-  const { isLoding,error, data} = useQuery('')
 
 
 
@@ -48,12 +46,12 @@ function Comments(props) {
             {comment.email}
           </span>
           <span className={styles.text}>{comment.context}</span>
-          <span className={styles.time}>
+          {/* <span className={styles.time}>
             {comment.createdAt[0] + '년'
               + comment.createdAt[1] + '월'
               + comment.createdAt[2] + '일'
               + comment.createdAt[3] + '시'
-              + comment.createdAt[4] + '분'}</span>
+              + comment.createdAt[4] + '분'}</span> */}
         </div>
       </li>
     );

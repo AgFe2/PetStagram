@@ -2,45 +2,40 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/ContentModal.module.css";
 
-const CommentForm = (props) => {
+
+
+const CommentForm = () => {
     const [commentValue, setCommentValue] = useState("");
-    const [lists, setLists] = useState([])
 
     const onChangeComment = (e) => {
         console.log(typeof e.target.value);
         setCommentValue(e.target.value);
     };
-
-
     const addComment = async (e) => {
         e.preventDefault();
-        let feed_Id = 1
-        try {
-            await axios
-                .post(
-                    "http://localhost:8080/feed/save-comment",
-                    JSON.stringify({
-                        context:commentValue,
-                    }),
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer" + localStorage.getItem("JWT"),
-                        },
-                        params: {
-                            feedId: feed_Id,
-                        },
-                    }
-                )
-                .then((res) => {
-                    setCommentValue("");
-                    console.log(res);
-                })
-
-        }
-        catch (e) { console.log(e) };
-    };
-
+        await axios.post(
+            "http://localhost:8080/feed/save-comment",
+            JSON.stringify({
+                context: commentValue,
+            }),
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer" + localStorage.getItem("JWT"),
+                },
+                params: {
+                    feedId: 1,
+                },
+            }
+        )
+            .then((res) => {
+                setCommentValue("");
+                console.log(res);
+                res.json();
+            })
+            .catch((e) => console.log(e))
+        };
+        
 
     return (
         <>
