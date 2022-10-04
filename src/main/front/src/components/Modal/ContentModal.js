@@ -40,27 +40,23 @@ function ContentModal(props) {
   const addComment = async (e) => {
     e.preventDefault();
 
-    const variables = {
-      context: commentValue,
-      // email:localStorage.getItem('JWT')
-    };
+    try{
+      await axios
+        .post(
+          "http://localhost:8080/feed/save-comment",
+          JSON.stringify({
+            context: commentValue,
+          }),
 
-    await axios
-      .post(
-        "http://localhost:8080/feed/save-comment",
-        JSON.stringify({
-          context: commentValue,
-        }),
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer" + localStorage.getItem("JWT"),
-          },
-          params: {
-            feedId: 1,
-          },
-        }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer" + localStorage.getItem("JWT"),
+            },
+            params: {
+              feedId: 1,
+            },
+          }
       )
       .then((res) => {
         const copyFeedComments = [...commentValue];
@@ -68,9 +64,13 @@ function ContentModal(props) {
         setFeedComments(copyFeedComments);
         setCommentValue("");
         console.log(res);
-        //      res.json()})
+        if(res.status === 200){
+          window.location.reload()
+        }
       })
-      .catch((error) => console.log(error));
+      
+    }
+      catch(e){console.log(e)};
   };
     
   return (
