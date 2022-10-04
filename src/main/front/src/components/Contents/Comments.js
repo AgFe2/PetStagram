@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
-
+import CommentForm from "../Forms/CommentForms/CommentForm";
 function Comments(props) {
   const [comments, setComments] = useState([
     { email: "", context: "", createdAt: "" },
@@ -59,6 +59,7 @@ function Comments(props) {
       <ul className={comments.group}>
         {commentArray}
       </ul>
+      <CommentForm />
     </>)
 }
 

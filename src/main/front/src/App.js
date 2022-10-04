@@ -31,7 +31,6 @@ function App() {
           <Route path={"/taged"} element={<Taged />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
-          {/* <Route component={PageNotFound} /> */}
         </Routes>
       </QueryClientProvider>
     </div>
