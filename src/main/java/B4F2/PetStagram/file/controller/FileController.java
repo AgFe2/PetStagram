@@ -23,9 +23,9 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<List<ResultDto>> uploadFile(@RequestParam Long feedId , MultipartFile file){
+    public ResponseEntity<ResultDto> uploadFile(MultipartFile file){
 
-        return fileService.uploadFile(feedId, file);
+        return fileService.uploadFile(file);
     }
 
     @GetMapping("/list")

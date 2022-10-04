@@ -2,6 +2,7 @@ package B4F2.PetStagram.file.service;
 
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
+import B4F2.PetStagram.feed.repository.FeedRepository;
 import B4F2.PetStagram.file.domain.FileDto;
 import B4F2.PetStagram.file.domain.ResultDto;
 import B4F2.PetStagram.file.entity.FileEntity;
@@ -46,6 +47,8 @@ public class FileService {
 
     private final FileRepository fileRepository;
 
+    private final FeedRepository feedRepository;
+
 //    @Transactional
 //    public void uploadFile(Long feedId, MultipartHttpServletRequest request) throws IOException {
 //
@@ -80,7 +83,11 @@ public class FileService {
 
     @Transactional
     public void deleteFile(Long feedId) {
-        FileEntity file = fileRepository.findByFeedId(feedId)
+        Long fileId = feedRepository.findById(feedId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD))
+                .getFileId();
+
+        FileEntity file = fileRepository.findById(fileId)
                 .orElseThrow(() -> new CustomException(ErrorCode.WRONG_APPROACH));
 
         fileRepository.deleteById(file.getFileId());
@@ -88,14 +95,14 @@ public class FileService {
     }
 
     @Transactional
-    public ResponseEntity<List<ResultDto>> uploadFile(Long feedId, MultipartFile file) {
+    public ResponseEntity<ResultDto> uploadFile(MultipartFile file) {
 
         if(!file.getContentType().startsWith("image")) {
             log.warn("this file is not image type");
             return  new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        List<ResultDto> resultDTOList = new ArrayList<>();
+        ResultDto resultDto = new ResultDto(null, null, null, null);
 
         //파일명 (경로포함)
         String originalName = file.getOriginalFilename();
@@ -114,16 +121,16 @@ public class FileService {
         Path savePath = Paths.get(saveName);
         //Paths.get() 메서드는 특정 경로의 파일 정보를 가져옵니다.(경로 정의하기)
 
-        fileRepository.save(new FileDto.fileDto().form(feedId, saveName, uploadPath));
+        FileEntity save = fileRepository.save(new FileDto.fileDto().form(saveName, uploadPath));
 
         try{
             file.transferTo(savePath);
-            resultDTOList.add(new ResultDto(fileName,feedId,uuid,folderPath));
+            resultDto = new ResultDto(fileName,uuid,folderPath,save.getFileId());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
 
     }
     private String makeFolder(){
@@ -146,7 +153,11 @@ public class FileService {
 
         ResponseEntity<byte[]> result;
 
-        FileEntity fileEntity = fileRepository.findByFeedId(feedId)
+        Long fileId = feedRepository.findById(feedId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_BOARD))
+                .getFileId();
+
+        FileEntity fileEntity = fileRepository.findById(fileId)
                 .orElseThrow(() -> new CustomException(ErrorCode.WRONG_APPROACH));
 
         try{
