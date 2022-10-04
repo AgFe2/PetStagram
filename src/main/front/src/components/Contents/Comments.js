@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
@@ -33,6 +34,11 @@ function Comments(props) {
       getComment()
   }, []);
   
+
+  const { isLoding,error, data} = useQuery('')
+
+
+
   const commentArray = comments.map((comment) => {
     return (
       <li className={styles.item} key={comment.commentId}>
