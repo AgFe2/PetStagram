@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../Button/Button";
 import styles from "./AuthForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const LoginForm = () => {
+  const [isLogined, setIsLogined] = useState(false)
   const navigate = useNavigate();
 
   const LoginValidSchema = Yup.object().shape({
@@ -36,6 +37,9 @@ const LoginForm = () => {
           localStorage.setItem("JWT", token.accessToken);
           alert("로그인되었습니다.");
         });
+        if(!isLogined) {
+          setIsLogined(true)
+        }
       setTimeout(() => {
         navigate("/");
       }, 2000);
