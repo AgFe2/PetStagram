@@ -11,8 +11,9 @@ import styles from "../../styles/Contents.module.css";
 
 export default function Contents(props) {
   const [imgSrc, setImgSrc] = useState();
+  // const [userProfileImg, setUserProfileImg] = useState();
+  // 게시글 이미지 말고 유저 이미지는 어디서?
 
-  /*
   axios
     .get("file/list", { params: { userId: props.userID } })
     .then((res) => {
@@ -24,7 +25,7 @@ export default function Contents(props) {
       setImgSrc(URL.createObjectURL(blob));
     })
     .catch((err) => console.log(err));
-    */
+
   return (
     <>
       <div className={styles.Item}>
