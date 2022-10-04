@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
 
+import date from '../../data/feed.json'
+
 function Comments(props) {
   const [comments, setComments] = useState([
     { email: "", context: "", createdAt: "" },
@@ -27,9 +29,10 @@ function Comments(props) {
     getComment();
   }, [comments.context]);
 
-  console.log(comments);
 
+  console.log(comments);
   const commentArray = comments.map((comment) => {
+
     return (
       <li className={styles.item} key={comment.commentId}>
         <div className={`${ItemUser.pic} ${styles.pic}`}></div>
@@ -38,7 +41,8 @@ function Comments(props) {
             {comment.email}
           </span>
           <span className={styles.text}>{comment.context}</span>
-          <span className={styles.time}>{comment.createdAt[0]}</span>
+          <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
+          <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
         </div>
       </li>
     );
