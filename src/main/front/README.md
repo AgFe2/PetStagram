@@ -18,6 +18,16 @@ Create React App이 빠르게 React 프로젝트를 만드는데는 \
 
 ### 3) React-icons
     npm install react-icons
-필요한 아이콘을 불러오기가 굉장히 편리해서 사용했습니다
+필요한 아이콘을 불러오기가 굉장히 편리해서 사용했습니다.\
+사용하는거도 어렵지 않아서 선택하게 됐습니다.
+![스크린샷 2022-10-04 오후 10 43 55](https://user-images.githubusercontent.com/92585734/193836588-fcc2fda5-7325-448b-ac2b-eba900e87bdb.png)
+
+![스크린샷 2022-10-04 오후 10 44 07](https://user-images.githubusercontent.com/92585734/193836432-910a4efb-deb8-44eb-8d75-19cbfa9052ea.png)
+
 ### 4) axios
+    npm install axios
+    
+API를 호출할떄 쓰고자 사용했습니다. promise기반으로 만들어진거라 fetch보단 다루기 편리하기에 사용했습니다.
+
+
 
