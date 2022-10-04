@@ -4,8 +4,10 @@ import ItemUser from "../Contents/ItemUser";
 import Paragraph from "../ContentsInfo/Paragraph";
 import Comments from "../Contents/Comments";
 import Liked from "../ContentsInfo/Liked";
+import CommentForm from "../Forms/CommentForms/CommentForm";
 import styles from "../../styles/ContentModal.module.css";
 import { useMutation } from "react-query";
+
 
 function ContentModal(props) {
   const { handleCloseDetail, imgpath, postcomment, feedId } = props;
@@ -26,52 +28,49 @@ function ContentModal(props) {
   }, []);
 
   // commentValue
-  const [commentValue, setCommentValue] = useState("");
-  const [feedComments, setFeedComments] = useState([]); //댓글 모음
-  const onChangeComment = (e) => {
-    console.log(typeof e.target.value);
-    setCommentValue(e.target.value);
-  };
+  // const [commentValue, setCommentValue] = useState("");
+  // const [feedComments, setFeedComments] = useState([]); //댓글 모음
+  // const onChangeComment = (e) => {
+  //   console.log(typeof e.target.value);
+  //   setCommentValue(e.target.value);
+  // };
 
   // const mutation = useMutation((newComment) => {
   //   return axios.post("/comment/save-comment", newComment);
   // });
+  
+  // const addComment = async (e) => {
+  //   e.preventDefault();
 
-  const addComment = async (e) => {
-    e.preventDefault();
+  //   try{
+  //     await axios
+  //       .post(
+  //         "http://localhost:8080/feed/save-comment",
+  //         JSON.stringify({
+  //           context: commentValue,
+  //         }),
 
-    try{
-      await axios
-        .post(
-          "http://localhost:8080/feed/save-comment",
-          JSON.stringify({
-            context: commentValue,
-          }),
-
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer" + localStorage.getItem("JWT"),
-            },
-            params: {
-              feedId: 1,
-            },
-          }
-      )
-      .then((res) => {
-        const copyFeedComments = [...commentValue];
-        copyFeedComments.push(commentValue);
-        setFeedComments(copyFeedComments);
-        setCommentValue("");
-        console.log(res);
-        if(res.status === 200){
-          window.location.reload()
-        }
-      })
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: "Bearer" + localStorage.getItem("JWT"),
+  //           },
+  //           params: {
+  //             feedId: 1,
+  //           },
+  //         }
+  //     )
+  //     .then((res) => {
+  //       const copyFeedComments = [...commentValue];
+  //       copyFeedComments.push(commentValue);
+  //       setFeedComments(copyFeedComments);
+  //       setCommentValue("");
+  //       console.log(res);
+  //     })
       
-    }
-      catch(e){console.log(e)};
-  };
+  //   }
+  //     catch(e){console.log(e)};
+  // };
     
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
@@ -89,34 +88,12 @@ function ContentModal(props) {
           <div className={styles.main}>
             <div className={styles.scroll}>
               <Paragraph text={postcomment} />
-  
-                <Comments />
-                
+                <Comments />             
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>
               <Liked />
             </div>
-            <form className={styles.inputForm} onSubmit={addComment}>
-              <input
-                type="text"
-                placeholder="댓글 달기..."
-                className={styles.inputComment}
-                value={commentValue}
-                onChange={onChangeComment}
-              />
-              {commentValue.length > 0 ? (
-                <button
-                  type="submit"
-                  className={`${styles.inputButton} ${styles.btnActive}`}
-                >
-                  게시
-                </button>
-              ) : (
-                <button type="button" className={styles.inputButton}>
-                  게시
-                </button>
-              )}
-            </form>
+            <CommentForm/>
           </div>
         </div>
       </div>
