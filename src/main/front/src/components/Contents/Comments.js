@@ -8,8 +8,7 @@ function Comments(props) {
   const [comments, setComments] = useState([
     { email: "", context: "", createdAt: "" },
   ]);
-  const[ commentList, setCommentList ]= useState([])
-
+  
   useEffect(() => {
       async function getComment() {
         try{await axios
@@ -25,7 +24,6 @@ function Comments(props) {
           .then(
             (res) => {
               setComments(res.data.content)
-              setCommentList([...commentList,...res.data.content])
             }
           )
         }
@@ -59,7 +57,7 @@ function Comments(props) {
       <ul className={comments.group}>
         {commentArray}
       </ul>
-      <CommentForm />
+        <CommentForm />
     </>)
 }
 
