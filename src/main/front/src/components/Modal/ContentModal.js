@@ -8,9 +8,6 @@ import styles from "../../styles/ContentModal.module.css";
 import { useMutation } from "react-query";
 
 function ContentModal(props) {
-  const [comments, setComments] = useState([
-    { email: "", context: "", createdAt: "" },
-  ]);
   const { handleCloseDetail, imgpath, postcomment, feedId } = props;
 
   useEffect(() => {
@@ -61,7 +58,7 @@ function ContentModal(props) {
             Authorization: "Bearer" + localStorage.getItem("JWT"),
           },
           params: {
-            feedId: feedId,
+            feedId: 1,
           },
         }
       )
@@ -75,24 +72,7 @@ function ContentModal(props) {
       })
       .catch((error) => console.log(error));
   };
-    useEffect(() => {
-      async function getComment() {
-        await axios
-          .get("http://localhost:8080/feed/show-comments", {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer" + localStorage.getItem("JWT"),
-            },
-            params: {
-              feedId: 1,
-            },
-          })
-          .then((res) => setComments(res.data.content))
-          .catch((e) => console.log(e));
-      }
-      getComment();
-    }, [comments.context]);
-
+    
   return (
     <div className={styles.bg} onClick={handleCloseDetail}>
       <button className={styles.closeBtn} onClick={handleCloseDetail}>
@@ -109,11 +89,8 @@ function ContentModal(props) {
           <div className={styles.main}>
             <div className={styles.scroll}>
               <Paragraph text={postcomment} />
-              
-              {comments.map((comment) =>{
-                <Comments feedId={feedId} email={comment.email} createdAt={comment.createdAt} context={comment.context}/>
-              })
-              }
+  
+                <Comments />
                 
             </div>
             <div className={`${styles.likedBox} ${styles.infoBottom}`}>

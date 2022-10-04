@@ -7,84 +7,56 @@ import ItemUser from "../../styles/ItemUser.module.css";
 import date from '../../data/feed.json'
 
 function Comments(props) {
-  // const [comments, setComments] = useState([
-  //   { email: "", context: "", createdAt: "" },
-  // ]);
-
-  
-
-  // useEffect(() => {
-  //   async function getComment() {
-  //     await axios
-  //       .get("http://localhost:8080/feed/show-comments", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: "Bearer" + localStorage.getItem("JWT"),
-  //         },
-  //         params: {
-  //           feedId: props.feedId,
-  //         },
-  //       })
-  //       .then((res) => setComments(res.data.content))
-  //       .catch((e) => console.log(e));
-  //   }
-  //   getComment();
-  // }, [comments.context]);
+  const [comments, setComments] = useState([
+    { email: "", context: "", createdAt: "" },
+  ]);
 
 
-  // console.log(comments);
-  // const commentArray = comments.map((comment) => {
-  //   return (
-  //     <li className={styles.item} key={comment.commentId}>
-  //       <div className={`${ItemUser.pic} ${styles.pic}`}></div>
-  //       <div className={styles.main}>
-  //         <span className={`${ItemUser.userName} ${styles.userName}`}>
-  //           {comment.email}
-  //         </span>
-  //         <span className={styles.text}>{comment.context}</span>
-  //         <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
-  //         <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
-  //       </div>
-  //     </li>
-  //   );
-  // });
+  useEffect(() => {
+    async function getComment() {
+      await axios
+        .get("http://localhost:8080/feed/show-comments", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + localStorage.getItem("JWT"),
+          },
+          params: {
+            feedId: 1,
+          },
+        })
+        .then((res) => setComments(res.data.content))
+        .catch((e) => console.log(e));
+    }
+    getComment();
+  }, [comments.context]);
 
-  return (
-    <>
-      <ul className={styles.group}>
-        <li className={styles.item}>
+
+  console.log(comments);
+  const commentArray = comments.map((comment) => {
+    return (
+      <li className={styles.item} key={comment.commentId}>
         <div className={`${ItemUser.pic} ${styles.pic}`}></div>
         <div className={styles.main}>
           <span className={`${ItemUser.userName} ${styles.userName}`}>
-            {props.email}
+            {comment.email}
           </span>
-          <span className={styles.text}>{props.context}</span>
-          <span className={styles.time}>{props.createdAt[0] + '년' + props.createdAt[1]+'월' + props.createdAt[2] + '일'}</span>
-          {/* <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span> */}
+          <span className={styles.text}>{comment.context}</span>
+          <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
+          <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
         </div>
       </li>
+    );
+  });
+
+  return (
+    <>
+      <ul className={comments.group}>
+       {commentArray}
       </ul>
-    </>
-  );
+    </>)
 }
 
 export default Comments;
 
 
 
-// return (
-//   <>
-//     <ul className={comments.group}>
-//       <li className={styles.item} key={comments.commentId}>
-//       <div className={`${ItemUser.pic} ${styles.pic}`}></div>
-//       <div className={styles.main}>
-//         <span className={`${ItemUser.userName} ${styles.userName}`}>
-//           {comments.email}
-//         </span>
-//         <span className={styles.text}>{comment.context}</span>
-//         <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
-//         <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
-//       </div>
-//     </li>
-//     </ul>
-//   </>)
