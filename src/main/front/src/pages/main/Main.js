@@ -10,34 +10,34 @@ export default function Main() {
   const [commentsLength, setCommentsLength] = useState();
 
   // 토큰 및 보드
-  // useEffect(() => {
-  //   axios
-  //     .get("/board/followList", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + localStorage.getItem("JWT"),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setContents(res.data);
-  //     })
-  //     .then((json) => alert(json));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("/board/followList", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setContents(res.data);
+      })
+      .then((json) => alert(json));
+  }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8080/feed/show-comments", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       params: {
-  //         feedId: contents.map((item) => item.feedId),
-  //       },
-  //     })
-  //     .then((res) => setCommentsLength(res.data.content.length))
-  //     .catch((e) => console.log(e));
-  // });
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/feed/show-comments", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: {
+          feedId: contents.map((item) => item.feedId),
+        },
+      })
+      .then((res) => setCommentsLength(res.data.content.length))
+      .catch((e) => console.log(e));
+  });
 
   // comments 갯수는 feedId를 통해서 comment에서 가져와야함.......
   return (
