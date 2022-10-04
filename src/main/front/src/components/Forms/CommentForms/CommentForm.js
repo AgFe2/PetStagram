@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../../styles/ContentModal.module.css";
 
-const CommentForm = ({context}) => {
+const CommentForm = (props) => {
     const [commentValue, setCommentValue] = useState("");
     const [lists, setLists] = useState([])
 
@@ -10,6 +10,12 @@ const CommentForm = ({context}) => {
         console.log(typeof e.target.value);
         setCommentValue(e.target.value);
     };
+
+    const refreshFunction = () =>{
+       const array = setLists([...commentValue])
+        
+       return lists.concat(array)
+    }
 
     const addComment = async (e) => {
         e.preventDefault();
@@ -34,33 +40,15 @@ const CommentForm = ({context}) => {
                 .then((res) => {
                     setCommentValue("");
                     console.log(res);
-                    axios.get(`http://localhost:8080/feed/show-comments?feedId=${feed_Id}`)
-                    .then((response) => {
-                        console.log(response.data)
-                        setLists(response.data)
-                    })
                 })
 
         }
         catch (e) { console.log(e) };
     };
 
-    const CommentList = () =>{
-        return(
-            <>
-                {lists.map((list) =>{
-                    <div>
-                        <div>{list.email}</div>
-                        <div>{list.comment}</div>
-                        <div>{list.createdAt}</div>
-                    </div>
-                })}
-            </>
-        )
-    }
+
     return (
-        <div>
-            <CommentList />
+        <>
             <form className={styles.inputForm} onSubmit={addComment}>
                 <input
                     type="text"
@@ -82,7 +70,7 @@ const CommentForm = ({context}) => {
                     </button>
                 )}
             </form>
-        </div>
+        </>
     );
 };
 

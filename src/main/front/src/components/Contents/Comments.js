@@ -24,6 +24,7 @@ function Comments(props) {
           .then(
             (res) => {
               setComments(res.data.content)
+              props.refreshFunction()
             }
           )
         }
@@ -57,7 +58,7 @@ function Comments(props) {
       <ul className={comments.group}>
         {commentArray}
       </ul>
-        <CommentForm context={comments}/>
+        <CommentForm />
     </>)
 }
 
