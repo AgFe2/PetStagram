@@ -11,7 +11,7 @@ export default function Main() {
   // 토큰 및 보드
   useEffect(() => {
     axios
-      .get("http://localhost:8080/board/followList", {
+      .get("/board/followList", {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("JWT"),
@@ -24,21 +24,20 @@ export default function Main() {
       .then((json) => alert(json));
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8080/feed/show-comments", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       params: {
-  //         feedId: contents.map((item) => item.feedId),
-  //       },
-  //     })
-  //     .then((res) => setCommentsLength(res.data.content.length))
-  //     .catch((e) => console.log(e));
-  // });
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/feed/show-comments", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        params: {
+          feedId: contents.map((item) => item.feedId),
+        },
+      })
+      .then((res) => setCommentsLength(res.data.content.length))
+      .catch((e) => console.log(e));
+  });
 
-  // comments 갯수는 feedId를 통해서 comment에서 가져와야함.......
   return (
     <>
       <Header />
@@ -49,6 +48,7 @@ export default function Main() {
               userId={item.userId}
               liked={item.likeCnt}
               comments={commentsLength}
+              mainText={item.mainText}
               key={item.feedId}
             />
           ))}

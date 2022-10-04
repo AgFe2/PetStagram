@@ -34,7 +34,7 @@ export default function Contents(props) {
         </div>
         <div className={styles.itemInfo}>
           <Liked liked={props.liked} />
-          <Paragraph userId={props.userId} text={props.text} />
+          <Paragraph userId={props.userId} text={props.mainText} />
           <ViewComments comments={props.comments} feedId={props.key} />
         </div>
       </div>

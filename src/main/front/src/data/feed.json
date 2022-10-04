@@ -1,14 +1,8 @@
 [
   {
-    "feedId": 1,
-    "total_like_number": 13,
-    "comment": 
-      [{
-      "comment_id": "user99",
-      "comment_feed_id": "user01",
-      "comment_context": "blahbalh",
-      "comment_writer": "user99"
-    }],
-    "imgsrc" :"/Users/yangseongjin/Desktop/petstargram/PetStagram/src/main/front/public/images/Cat1.jpeg"
+    "userID": "a@gmail.com",
+    "likedCnt": 32,
+    "mainText": "text",
+    "feedId": 1
   }
 ]
