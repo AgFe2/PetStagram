@@ -57,7 +57,7 @@ function Comments(props) {
       <ul className={comments.group}>
         {commentArray}
       </ul>
-        <CommentForm context={comments}/>
+//        <CommentForm context={comments}/>
     </>)
 }
 
