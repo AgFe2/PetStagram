@@ -5,6 +5,7 @@ import styles from "../../styles/Comments.module.css";
 import ItemUser from "../../styles/ItemUser.module.css";
 
 import date from '../../data/feed.json'
+import { useQuery } from "react-query";
 
 function Comments(props) {
   const [comments, setComments] = useState([
@@ -12,8 +13,8 @@ function Comments(props) {
   ]);
 
 
-  useEffect(() => {
-    async function getComment() {
+
+  async function getComment() {
       await axios
         .get("http://localhost:8080/feed/show-comments", {
           headers: {
@@ -27,12 +28,15 @@ function Comments(props) {
         .then((res) => setComments(res.data.content))
         .catch((e) => console.log(e));
     }
-    getComment();
-  }, [comments.context]);
 
+
+
+  const commentQueries = useQuery(['show-comments'], getComment)
 
   console.log(comments);
-  const commentArray = comments.map((comment) => {
+
+  
+  const commentArray = commentQueries.map((comment) => {
     return (
       <li className={styles.item} key={comment.commentId}>
         <div className={`${ItemUser.pic} ${styles.pic}`}></div>
@@ -41,8 +45,12 @@ function Comments(props) {
             {comment.email}
           </span>
           <span className={styles.text}>{comment.context}</span>
-          <span className={styles.time}>{comment.createdAt[0] + '년' + comment.createdAt[1]+'월' + comment.createdAt[2] + '일'}</span>
-          <span className={styles.time}>{date[0] + '년' + date[1]+'월'}</span>
+          <span className={styles.time}>
+            {comment.createdAt[0] + '년'
+              + comment.createdAt[1] + '월'
+              + comment.createdAt[2] + '일'
+              + comment.createdAt[3] + '시'
+              + comment.createdAt[4] + '분'}</span>
         </div>
       </li>
     );
@@ -51,7 +59,7 @@ function Comments(props) {
   return (
     <>
       <ul className={comments.group}>
-       {commentArray}
+        {commentArray}
       </ul>
     </>)
 }
