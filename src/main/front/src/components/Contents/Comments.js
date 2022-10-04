@@ -11,7 +11,6 @@ function Comments(props) {
     { email: "", context: "", createdAt: "" },
   ]);
 
-
   useEffect(() => {
     async function getComment() {
       try{await axios
@@ -24,15 +23,19 @@ function Comments(props) {
             feedId: 1,
           },
         })
-        .then((res) => setComments(res.data.content))}
-        
+        .then(
+          (res) => {
+            const copyFeedComments = [...comments];
+            copyFeedComments.push(comments);
+            setComments(copyFeedComments);
+            setComments(res.data.content)}
+        )
+      }
         catch(e){console.log(e)};
     }
     getComment();
-  }, [comments.context]);
+  }, []);
 
-  
-  console.log(comments);
   const commentArray = comments.map((comment) => {
     return (
       <li className={styles.item} key={comment.commentId}>
