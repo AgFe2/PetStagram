@@ -18,14 +18,16 @@ function Paragraph(props) {
           }`}
         >
           {props.text}
-          <button
-            type="button"
-            className={styles.moreBtn}
-            onClick={handleDescOpen}
-          >
-            ...더보기
-          </button>
         </p>
+        <button
+          type="button"
+          className={`${styles.moreBtn} ${
+            descOpen ? `${styles.active}` : null
+          }`}
+          onClick={handleDescOpen}
+        >
+          ...더보기
+        </button>
       </div>
     </>
   );

@@ -47,6 +47,7 @@
 }
 
 .paragraphDesc {
+  width: 300px;
   padding-left: 12px;
   display: inline-block;
   text-overflow: ellipsis;
@@ -65,6 +66,10 @@
   cursor: pointer;
   color: #777;
   margin-left: 3px;
+}
+
+.moreBtn.active {
+  display: none;
 }
 
 .allComments {

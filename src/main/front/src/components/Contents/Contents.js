@@ -34,7 +34,11 @@ export default function Contents(props) {
           <img src={imgSrc} alt="" className={styles.img} />
         </div>
         <div className={styles.itemInfo}>
-          <Liked liked={props.liked} />
+          <Liked
+            likeCnt={props.likeCnt}
+            userId={props.userId}
+            feedId={props.feedId}
+          />
           <Paragraph userId={props.userId} text={props.mainText} />
           <ViewComments comments={props.comments} feedId={props.key} />
         </div>

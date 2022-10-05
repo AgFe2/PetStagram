@@ -46,12 +46,18 @@ export default function Main() {
           {contents.map((item) => (
             <Contents
               userId={item.userId}
-              liked={item.likeCnt}
+              likeCnt={item.likeCnt}
               comments={commentsLength}
               mainText={item.mainText}
               key={item.feedId}
             />
           ))}
+          <Contents
+            userId={"userId"}
+            likeCnt={12}
+            comments={12}
+            mainText={"texttexttexttexttexttexttexttexttexttexttexttext"}
+          />
         </div>
       </div>
     </>
