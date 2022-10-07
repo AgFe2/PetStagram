@@ -9,16 +9,14 @@ function ViewComments(props) {
   const handleOpenDetail = () => {
     setOpenDetail(true);
   };
-  const handleCloseDetail = () => {
-    setOpenDetail(false);
-  };
+
   return (
     <>
       <button className={styles.allComments} onClick={handleOpenDetail}>
         {props.comments} view all comments
       </button>
       {openDetail === true ? (
-        <ContentModal handleCloseDetail={handleCloseDetail} />
+        <ContentModal setOpenDetail={setOpenDetail} feedId={props.feedId} />
       ) : null}
     </>
   );

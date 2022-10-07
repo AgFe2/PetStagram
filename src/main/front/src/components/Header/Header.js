@@ -11,47 +11,6 @@ import styles from "../../styles/Header.module.css";
 import { FaHome, FaIcons, FaCamera, FaRegUserCircle } from "react-icons/fa";
 
 export default function Header() {
-  const hashtag = [
-    {
-      hashtag_feed_id: "userId99",
-      hashtag_context: "abc",
-      hashtag_feed_count: 1512,
-    },
-    {
-      hashtag_feed_id: "userId98",
-      hashtag_context: "abd",
-      hashtag_feed_count: 12328,
-    },
-    {
-      hashtag_feed_id: "userId97",
-      hashtag_context: "acd",
-      hashtag_feed_count: 1112,
-    },
-    {
-      hashtag_feed_id: "userId96",
-      hashtag_context: "ade",
-      hashtag_feed_count: 1867759,
-    },
-    {
-      hashtag_feed_id: "userId95",
-      hashtag_context: "adf",
-      hashtag_feed_count: 17238,
-    },
-  ];
-
-  // searchBar filter
-  const [search, setSearch] = useState("");
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const filterTag = hashtag.filter((tag) => {
-    return tag.hashtag_context
-      .replace(" ", "")
-      .toLocaleLowerCase()
-      .includes(search.toLocaleLowerCase());
-  });
-
   // uploadModal
   const [uploadModal, setUploadModal] = useState(false);
   // const handleOpenUpload = () => {
@@ -63,6 +22,7 @@ export default function Header() {
 
   // profileModal
   const [profileDepth, setProfileDepth] = useState(false);
+  
 
   return (
     <header>
@@ -71,11 +31,7 @@ export default function Header() {
           <Link to="/" className={styles.logo}>
             <h1 className={styles.logoTxt}>PetStagram</h1>
           </Link>
-          <SearchBar
-            search={search}
-            onChange={handleSearchChange}
-            filterTag={filterTag}
-          ></SearchBar>
+          <SearchBar></SearchBar>
           <nav className={styles.nav}>
             <Link to="/" className={styles.navItem}>
               <p className="sr-only">Home</p>

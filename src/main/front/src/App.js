@@ -2,9 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-// componets
-import Header from "./components/Header/Header";
-
 //Page
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
@@ -20,21 +17,20 @@ import "./styles/reset.css";
 
 const queryClient = new QueryClient();
 
+
 function App() {
+
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        <Header />
         <Routes>
           <Route path={"/"} element={<Main />} />
           <Route path={"top"} element={<Top />} />
-          <Route path={"explore"} element={<Explore />} />
+          <Route path={"explore/tagName"} element={<Explore />} />
           <Route path={"userId"} element={<My />} />
+          <Route path={"/taged"} element={<Taged />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
-          <Route path={"/my"} element={<My />} />
-          <Route path={"/taged"} element={<Taged />} />
-          {/* <Route component={PageNotFound} /> */}
         </Routes>
       </QueryClientProvider>
     </div>

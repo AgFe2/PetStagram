@@ -42,6 +42,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileService {
 
+    //todo 수정
     @Value("${upload.path}")
     String uploadPath;
 
