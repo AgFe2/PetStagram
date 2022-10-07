@@ -13,7 +13,7 @@ const Info = () => {
       <InfoHeader />
       <ProfileStories />
       <div className={styles.switchContainer}>
-        <Link className={styles.switch} to="/my">
+        <Link className={styles.switch} to="/userId">
           <div>
             <BsGrid3X3 className={styles.icon} />
             <span>POST</span>

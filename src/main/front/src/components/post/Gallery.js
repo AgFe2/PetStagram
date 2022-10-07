@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { data } from '../../data/data';
-import styles from '../../styles/Gallery.module.css'
-import Modal from '../Modal/Modal'
-import GalleryItem from './GalleryItem';
+import React, { useState } from "react";
+import axios from "axios";
 
-export default function Gallery() {
-    const navigate = useNavigate()
+import styles from "../../styles/Gallery.module.css";
 
-    return (
-        <section className={styles.postContainer}>
+import GalleryItem from "./GalleryItem";
 
-            <div className={styles.postlist} >
-                {data.length > 1 ?
-                    data.map((item, idx) => (
-                        <GalleryItem imagepath={item.imagepath} postcomment={item.postcomment} key={idx}>
-                        </GalleryItem>
-                    ))
-                    : <div>No Post</div>
-                }
-            </div>
-        </section>
-    );
-};
+export default function Gallery(props) {
+  const { data } = props;
+
+  const [imgSrc, setImgSrc] = useState();
+  /*
+  axios
+    .get("file/list", { params: { userId: data.userID } })
+    .then((res) => {
+      console.log(res.data);
+      res.arrayBuffer();
+    })
+    .then((buffer) => {
+      const blob = new Blob([buffer]);
+      setImgSrc(URL.createObjectURL(blob));
+    })
+    .catch((err) => console.log(err));
+
+    */
+  return (
+    <section className={styles.postContainer}>
+      <div className={styles.postlist}>
+        {data.length > 0 ? (
+          data.map((item) => (
+            <GalleryItem
+              imagepath={imgSrc}
+              postcomment={item.postcomment}
+              key={data.feedId}
+            ></GalleryItem>
+          ))
+        ) : (
+          <div>No Post</div>
+        )}
+      </div>
+    </section>
+  );
+}

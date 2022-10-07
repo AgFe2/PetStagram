@@ -62,18 +62,22 @@
 .main {
   height: 100%;
 }
+
+.main.formActive {
+  display: flex;
+}
 /* form */
 .form {
-  width: 100%;
+  width: 50%;
   height: 100%;
   padding-top: 65px;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
+}
+
+.form.formActive {
 }
 
 .imgWrapper {
-  width: 50%;
+  width: 100%;
 }
 .imgPreview img {
   width: 100%;
@@ -81,7 +85,8 @@
 }
 
 /* infoWrapper */
-.infoWrapper {
+.textform {
+  padding-top: 65px;
   width: 50%;
   height: 100%;
   display: flex;
@@ -89,7 +94,8 @@
   align-content: space-around;
 }
 
-.infoTxt {
+.textarea {
+  margin: 16px;
   padding: 16px 8px;
   height: 60%;
   resize: none;

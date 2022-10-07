@@ -10,12 +10,22 @@
   margin-bottom: 30px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.img {
+  width: 500px;
+  height: 500px;
+  background-color: pink;
+  border: none;
 }
 
 /*itemInfo*/
 .itemInfo {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   padding: 8px 16px;
+  background-color: #fff;
 }
 
 /*liked*/
@@ -37,12 +47,29 @@
 }
 
 .paragraphDesc {
+  width: 300px;
   padding-left: 12px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.paragraphDesc span {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
+.paragraphDesc.active {
+  text-overflow: "";
+  overflow: visible;
+  white-space: normal;
+}
+
+.moreBtn {
+  display: inline;
+  cursor: pointer;
+  color: #777;
+  margin-left: 3px;
+}
+
+.moreBtn.active {
+  display: none;
 }
 
 .allComments {

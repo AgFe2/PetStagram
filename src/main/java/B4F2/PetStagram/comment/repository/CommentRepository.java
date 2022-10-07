@@ -20,8 +20,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     Optional<Member> findByEmailAndCommentId(String email, Long commentId);
 
 
-    Slice<Comment> findAllByFeedIdOrderByCommentIdDesc(Long feedId, Pageable pageable);
 //    Slice<Comment> findAllByFeedIdOrderByCommentIdDesc(@Param("feedId") Long feedId, Pageable pageable);
+    Slice<Comment> findAllByFeedIdOrderByCommentIdDesc(@Param("feedId") Long feedId, Pageable pageable);
 
 
 }

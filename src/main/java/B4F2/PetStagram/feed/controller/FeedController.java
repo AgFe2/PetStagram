@@ -1,14 +1,9 @@
 package B4F2.PetStagram.feed.controller;
 
-import B4F2.PetStagram.feed.domain.DetailFeed;
-import B4F2.PetStagram.feed.domain.UpdateFeed;
-import B4F2.PetStagram.feed.domain.WriteFeed;
+import B4F2.PetStagram.feed.domain.*;
 import B4F2.PetStagram.feed.service.FeedService;
-import B4F2.PetStagram.tag.service.TagService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +18,13 @@ public class FeedController {
 
 
     @PostMapping("/write")
-    public WriteFeed.Response writeFeed(@RequestBody WriteFeed.Request writeFeed,
-                                       HttpServletRequest request){
+    public WriteFeedRes writeFeed(@RequestBody WriteFeedRes writeFeed,
+                                  HttpServletRequest request,
+                                  @RequestParam Long fileId){
 
-        return WriteFeed.Response.form(feedService.writeFeed(
+        return WriteFeedRes.form(feedService.writeFeed(
                 writeFeed.getMainText(),
-                (String) request.getAttribute("email")
-        ));
+                (String) request.getAttribute("email"), fileId));
 
     }
 
@@ -42,11 +37,11 @@ public class FeedController {
     }
 
     @PutMapping("/update")
-    public UpdateFeed.Response updateFeed(@RequestParam("feedId") Long feedId,
-                                        @RequestBody UpdateFeed.Request updateRequest,
-                                        HttpServletRequest request) {
+    public UpdateFeedRes updateFeed(@RequestParam("feedId") Long feedId,
+                                    @RequestBody UpdateFeedReq updateRequest,
+                                    HttpServletRequest request) {
 
-        return UpdateFeed.Response.form(
+        return UpdateFeedRes.form(
                 feedService.updateFeed(updateRequest,
                         feedId,
                         (String)request.getAttribute("email"))
@@ -54,23 +49,22 @@ public class FeedController {
     }
 
     @GetMapping("/detail")
-    public DetailFeed.Response detailFeed(@RequestParam("feedId") Long feedId) {
+    public DetailFeedRes detailFeed(@RequestParam("feedId") Long feedId,
+                                    HttpServletRequest request) {
 
-        return DetailFeed.Response.form(
-                feedService.detailFeed(feedId)
-        );
+        return feedService.detailFeed(feedId, request);
     }
 
     @GetMapping("/like")
-    public boolean likeFeed(@RequestParam Long feedId) {
+    public boolean likeFeed(@RequestParam Long feedId, HttpServletRequest request) {
 
-        return feedService.likeFeed(feedId);
+        return feedService.likeFeed(feedId, request);
     }
 
     @GetMapping("/unlike")
-    public boolean unLikeFeed(@RequestParam Long feedId) {
+    public boolean unLikeFeed(@RequestParam Long feedId,HttpServletRequest request) {
 
-        return feedService.unLikeFeed(feedId);
+        return feedService.unLikeFeed(feedId, request);
     }
 
 }

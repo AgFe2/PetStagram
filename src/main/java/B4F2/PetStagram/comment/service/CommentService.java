@@ -44,9 +44,9 @@ public class CommentService {
                 () -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
 
         //todo 작성자 동일인 비교
-        if (!email.equals(commentRepository.findByEmailAndCommentId(email,commentId).get().getEmail())) {
-            throw new CustomException(ErrorCode.COMMENT_DELETE_UNAUTHORIZED);
-        }
+//        if (!email.equals(commentRepository.findByEmailAndCommentId(email,commentId).get().getEmail())) {
+//            throw new CustomException(ErrorCode.COMMENT_DELETE_UNAUTHORIZED);
+//        }
 
         commentRepository.deleteById(commentId);
 

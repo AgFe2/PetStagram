@@ -5,6 +5,7 @@ import B4F2.PetStagram.comment.model.CommentSaveDto;
 import B4F2.PetStagram.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +17,7 @@ public class CommentSaveApplication {
 
         Comment c = commentService.saveComment(feedId, commentSaveDto, email);
 
-        //todo 댓글 getApi(새로고침)
-//        return "redirect:/feed/{feedId}";
-        return "redirect:/";
+        return "redirect:/feed/show-comments/" + feedId;
         }
+
 }

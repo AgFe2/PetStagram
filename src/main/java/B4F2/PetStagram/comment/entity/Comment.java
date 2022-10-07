@@ -7,6 +7,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 @NoArgsConstructor
@@ -41,7 +43,7 @@ public class Comment {
     public static Comment from(CommentSaveDto commentSaveDto, Long feedId, String email){
         return Comment.builder()
                 .context(commentSaveDto.getContext())
-                .email(commentSaveDto.getEmail())
+                .email(email)
                 .feedId(feedId)
                 .createdAt(LocalDateTime.now())
                 .build();

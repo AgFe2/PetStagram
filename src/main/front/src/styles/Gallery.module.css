@@ -1,19 +1,20 @@
 .postlist {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
-.postImg{
-    width: 100%;
-    max-width: 300px;
-    height: 100%;
-    max-height: 300px;
-    display: block;
+.postImg {
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  max-height: 300px;
+  display: block;
+  cursor: pointer;
 }
 
-.postContainer{
-    width: 100%;
-    max-width: 850px;
-    margin: auto;
+.postContainer {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
 }
