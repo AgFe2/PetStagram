@@ -15,10 +15,11 @@ public class FeedDto {
     private Long feedId;
     private String mainText;
     private String userId;
+    private Long fileId;
 
     private LocalDateTime updateDit;
 
-    private Long like;
+    private Long likeCnt;
 
 //    차후 comment 파트와 함께 merge 되면 추가
 //    @OneToMany
@@ -30,8 +31,9 @@ public class FeedDto {
 
         return  FeedDto.builder()
                 .feedId(feed.getFeedId())
+                .fileId(feed.getFileId())
                 .mainText(feed.getMainText())
-                .like(feed.getLikeCnt())
+                .likeCnt(feed.getLikeCnt())
                 .updateDit(feed.getUpdateDit())
                 .userId(feed.getUserId())
                 .build();
