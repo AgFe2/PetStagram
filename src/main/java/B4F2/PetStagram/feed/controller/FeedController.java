@@ -19,12 +19,12 @@ public class FeedController {
 
     @PostMapping("/write")
     public WriteFeedRes writeFeed(@RequestBody WriteFeedRes writeFeed,
-                                  HttpServletRequest request){
+                                  HttpServletRequest request,
+                                  @RequestParam Long fileId){
 
         return WriteFeedRes.form(feedService.writeFeed(
                 writeFeed.getMainText(),
-                (String) request.getAttribute("email")
-        ));
+                (String) request.getAttribute("email"), fileId));
 
     }
 
@@ -49,23 +49,22 @@ public class FeedController {
     }
 
     @GetMapping("/detail")
-    public DetailFeedRes detailFeed(@RequestParam("feedId") Long feedId) {
+    public DetailFeedRes detailFeed(@RequestParam("feedId") Long feedId,
+                                    HttpServletRequest request) {
 
-        return DetailFeedRes.form(
-                feedService.detailFeed(feedId)
-        );
+        return feedService.detailFeed(feedId, request);
     }
 
     @GetMapping("/like")
-    public boolean likeFeed(@RequestParam Long feedId) {
+    public boolean likeFeed(@RequestParam Long feedId, HttpServletRequest request) {
 
-        return feedService.likeFeed(feedId);
+        return feedService.likeFeed(feedId, request);
     }
 
     @GetMapping("/unlike")
-    public boolean unLikeFeed(@RequestParam Long feedId) {
+    public boolean unLikeFeed(@RequestParam Long feedId,HttpServletRequest request) {
 
-        return feedService.unLikeFeed(feedId);
+        return feedService.unLikeFeed(feedId, request);
     }
 
 }

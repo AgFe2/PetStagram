@@ -15,6 +15,7 @@ public class FeedDto {
     private Long feedId;
     private String mainText;
     private String userId;
+    private Long fileId;
 
     private LocalDateTime updateDit;
 
@@ -30,6 +31,7 @@ public class FeedDto {
 
         return  FeedDto.builder()
                 .feedId(feed.getFeedId())
+                .fileId(feed.getFileId())
                 .mainText(feed.getMainText())
                 .likeCnt(feed.getLikeCnt())
                 .updateDit(feed.getUpdateDit())
