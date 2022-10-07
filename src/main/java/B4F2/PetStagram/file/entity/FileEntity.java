@@ -17,10 +17,8 @@ public class FileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "file_id")
     private Long fileId;
 
-    private Long feedId;
     private String filename;
     private String fileUrl;
 

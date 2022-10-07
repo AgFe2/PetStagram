@@ -13,13 +13,11 @@ public class FileDto {
     @Builder
     public static class fileDto {
 
-        private Long feedId;
         private String filename;
         private String fileUrl;
 
-        public FileEntity form(Long feedId, String filename, String fileUrl) {
+        public FileEntity form(String filename, String fileUrl) {
             return FileEntity.builder()
-                    .feedId(feedId)
                     .filename(filename)
                     .fileUrl(fileUrl)
                     .build();
