@@ -8,6 +8,7 @@ import B4F2.PetStagram.follow.service.FollowService;
 import B4F2.PetStagram.member.domain.MemberRegisterForm;
 import B4F2.PetStagram.member.entity.Member;
 import B4F2.PetStagram.member.repository.MemberRepository;
+import B4F2.PetStagram.search.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class RegisterService {
     private final PasswordEncoder passwordEncoder;
     private final EmailConfirmTokenService emailConfirmTokenService;
     private final FollowService followService;
+    private final SearchService searchService;
 
 
     /**
@@ -65,6 +67,9 @@ public class RegisterService {
 
         // following follower count 테이블 생성
         followService.createFollowCount(member);
+
+        //자동완성을 위해 Trie에 정보 저장
+        this.searchService.addAutocompleteKeyword(member.getEmail());
 
         return member;
     }

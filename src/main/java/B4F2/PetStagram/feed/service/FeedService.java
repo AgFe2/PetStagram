@@ -1,5 +1,9 @@
 package B4F2.PetStagram.feed.service;
 
+import B4F2.PetStagram.member.entity.Member;
+import B4F2.PetStagram.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import B4F2.PetStagram.exception.CustomException;
 import B4F2.PetStagram.exception.ErrorCode;
 import B4F2.PetStagram.feed.Like.Entity.LikeEntity;

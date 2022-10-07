@@ -43,4 +43,16 @@ public class Member {
         this.emailAuthYn = true;
     }
 
+    public static Member SearchFrom(Member member) {
+
+        return Member.builder()
+                .name(member.getName())
+                .password(member.getPassword())
+                .email(member.getEmail())
+                .phone(member.getPhone())
+                .regDt(member.getRegDt())
+                .build();
+
+    }
 }
+
