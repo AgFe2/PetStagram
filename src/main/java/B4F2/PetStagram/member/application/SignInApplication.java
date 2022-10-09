@@ -38,6 +38,10 @@ public class SignInApplication {
         Member m = memberService.findValidMember(form.getEmail(), form.getPassword())
                 .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAIL));
 
+        if (!m.isEmailAuthYn()) {
+            throw new CustomException(ErrorCode.EMAIL_AUTH_FIRST);
+        }
+
         return provider.createToken(m.getEmail());
 
 
