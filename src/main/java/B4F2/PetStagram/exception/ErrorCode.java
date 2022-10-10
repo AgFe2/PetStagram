@@ -15,6 +15,7 @@ public enum ErrorCode {
     INVALID_PASSWORD(HttpStatus.BAD_REQUEST,"잘못된 패스워드입니다"),
 
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST,"해당 유저를 찾을 수 없습니다"),
+    EMAIL_AUTH_FIRST(HttpStatus.BAD_REQUEST,"이메일 인증을 먼저 진행해주세요"),
 
     //Feed 돤련 오류
     NOT_FOUND_BOARD(HttpStatus.BAD_REQUEST, "해당 게시물을 찾을 수 없습니다."),

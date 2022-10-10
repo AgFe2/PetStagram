@@ -40,6 +40,6 @@ public class RegisterController {
     public String viewConfirmEmail(@Valid @RequestParam String token) {
         registerService.confirmEmail(token);
 
-        return "redirect:/sign-in";
+        return "redirect:/member/sign-in";
     }
 }
