@@ -35,7 +35,7 @@ function ContentModal({ handleCloseDetail, imgpath, postcomment, feedId }) {
 
   const addComment = async (e) => {
     e.preventDefault();
-
+    
     await axios
       .post(
         'http://localhost:8080/feed/save-comment',
